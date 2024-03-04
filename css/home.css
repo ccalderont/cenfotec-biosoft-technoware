@@ -1,0 +1,30 @@
+header{
+    display: flex;
+    justify-content: center;
+    margin: 0px 25px;
+    align-items: center;
+    gap: 7rem;
+}
+
+header li{
+    display: inline;
+    text-transform: uppercase; 
+    padding: 0 25px;  
+}
+
+#logo-cnp{
+    height: 80px;
+    width: 125px;
+}
+
+.logo-and-nav{
+    display: flex;
+    align-items: center;
+}
+
+.search-bar{
+    width: 200px;
+    border-radius: 7px;
+    background-color: rgb(236, 223, 202);
+    border: none;
+}
