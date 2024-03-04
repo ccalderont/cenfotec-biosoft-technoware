@@ -1,9 +1,14 @@
+body{
+    margin: 0;
+}
+
 header{
     display: flex;
     justify-content: center;
     margin: 0px 25px;
     align-items: center;
     gap: 7rem;
+    padding: 15px 0 15px 0;
 }
 
 header li{
@@ -27,4 +32,18 @@ header li{
     border-radius: 7px;
     background-color: rgb(236, 223, 202);
     border: none;
+}
+
+#carrousel-image{
+    height: 400px;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    padding: 60px 0 60px 0;
 }
