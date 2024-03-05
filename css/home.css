@@ -14,7 +14,8 @@
 }
 
 body{
-    margin: 0
+    margin: 0;
+
 }
 
 header{
@@ -28,8 +29,11 @@ header{
 
 header li{
     display: inline;
-    text-transform: uppercase; 
     padding: 0 25px;  
+    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    color: #005b4d;
+    letter-spacing: 1;
+    text-transform: uppercase; 
 }
 
 #logo-cnp{
@@ -90,4 +94,33 @@ main h3{
     font-family: "Poppins-Extrabold";
     color: #fa7d35;
     font-size: 33px;
+}
+
+.bottom-right-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.buttons span{
+    font-family: "Poppins-bold";
+    border-radius: 20px;
+    padding: 5px;
+    width: 150px;
+    color: white;
+    text-align: center;
+}
+
+#supplier-button{
+    background-color: #fa7d35;
+}
+
+#category-button{
+    background-color: #005b4d;
 }
