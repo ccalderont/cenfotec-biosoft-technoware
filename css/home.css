@@ -1,3 +1,18 @@
+@font-face{
+    font-family: "Poppins-Bold";
+    src: url(/resources/fonts/Poppins-Bold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Extrabold";
+    src: url(/resources/fonts/Poppins-ExtraBold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(/resources/fonts/Poppins-Medium.ttf);
+}
+
 body{
     margin: 0;
 }
@@ -46,4 +61,32 @@ header li{
     justify-content: center;
     gap: 10rem;
     padding: 60px 0 60px 0;
+}
+
+.container-left{
+    width: 1000px;
+}
+
+.subcontainer-left{
+    width: 72%;
+}
+
+.subcontainer-left p{
+    font-family: "Poppins medium";
+    font-size: 24.8px;
+    color: #818181;
+    text-align: justify;
+}
+
+main h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+}
+
+main h3{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 33px;
 }
