@@ -18,6 +18,15 @@ body{
 
 }
 
+a{
+    text-decoration: none;
+    padding: 0 25px;  
+    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    color: #005b4d;
+    letter-spacing: 1;
+    text-transform: uppercase; 
+}
+
 header{
     display: flex;
     justify-content: center;
@@ -29,11 +38,10 @@ header{
 
 header li{
     display: inline;
-    padding: 0 25px;  
-    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
-    color: #005b4d;
-    letter-spacing: 1;
-    text-transform: uppercase; 
+}
+
+#current-page{
+    color: #fa7d35;
 }
 
 #logo-cnp{
