@@ -14,7 +14,7 @@
 }
 
 body{
-    margin: 0;
+    margin: 0
 }
 
 header{
@@ -45,7 +45,8 @@ header li{
 .search-bar{
     width: 200px;
     border-radius: 7px;
-    background-color: rgb(236, 223, 202);
+    background-color: #fa7d35;
+    opacity: 0.22;
     border: none;
 }
 
