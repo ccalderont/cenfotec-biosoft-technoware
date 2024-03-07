@@ -13,24 +13,29 @@
     src: url(/resources/fonts/Poppins-Medium.ttf);
 }
 
+/*body*/
 body{
     margin: 0;
-
 }
 
-a{
-    text-decoration: none;
-    padding: 0 25px;  
-    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+/*main*/
+main h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
     color: #005b4d;
-    letter-spacing: 1;
-    text-transform: uppercase; 
+    line-height: 1;
 }
 
+main h3{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 33px;
+}
+
+/*header*/
 header{
     display: flex;
     justify-content: center;
-    margin: 0px 25px;
     align-items: center;
     gap: 7rem;
     padding: 15px 0 15px 0;
@@ -38,10 +43,6 @@ header{
 
 header li{
     display: inline;
-}
-
-#current-page{
-    color: #fa7d35;
 }
 
 #logo-cnp{
@@ -54,6 +55,20 @@ header li{
     align-items: center;
 }
 
+a{
+    text-decoration: none;
+    padding: 0 25px;  
+    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    color: #005b4d;
+    letter-spacing: 1;
+    text-transform: uppercase; 
+}
+
+#current-page{
+    color: #fa7d35;
+}
+
+/*search bar*/
 .search-bar{
     width: 200px;
     border-radius: 7px;
@@ -62,11 +77,13 @@ header li{
     border: none;
 }
 
+/*carrousel*/
 #carrousel-image{
     height: 400px;
     width: 100%;
 }
 
+/*after carrousel*/
 .container{
     display: flex;
     flex-direction: row;
@@ -76,7 +93,7 @@ header li{
     padding: 60px 0 60px 0;
 }
 
-.container-left{
+.container-left-section{
     width: 1000px;
 }
 
@@ -91,20 +108,7 @@ header li{
     text-align: justify;
 }
 
-main h1{
-    font-family: "Poppins-Bold";
-    font-size: 93;
-    color: #005b4d;
-    line-height: 1;
-}
-
-main h3{
-    font-family: "Poppins-Extrabold";
-    color: #fa7d35;
-    font-size: 33px;
-}
-
-.bottom-right-container{
+.container-right-section{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,4 +135,17 @@ main h3{
 
 #category-button{
     background-color: #005b4d;
+}
+
+/*footer*/
+footer{
+    display: flex;
+    justify-content: right;
+    font-family: "Poppins-Bold";
+    padding-right: 50px;
+    align-items: center;
+    gap: 2rem;
+    letter-spacing: 1;
+    text-transform: uppercase; 
+    color: #005b4d;
 }
