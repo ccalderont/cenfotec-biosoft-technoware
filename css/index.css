@@ -46,10 +46,6 @@ header li{
     display: inline;
 }
 
-header li::marker{
-    color: #fa7d35;
-}
-
 #logo-cnp{
     height: 80px;
     width: 125px;
@@ -87,7 +83,7 @@ a{
 .slider-box{
     width: 1280px;
     height: auto;
-    margin: 50px auto 0;
+    margin: 10px auto 0;
     overflow: hidden;
 }
 
@@ -133,6 +129,7 @@ a{
 
 .container-left-section{
     width: 1000px;
+
 }
 
 .subcontainer-left{
@@ -186,4 +183,38 @@ footer{
     letter-spacing: 1;
     text-transform: uppercase; 
     color: #005b4d;
+}
+
+@media(max-width: 991px) { 
+    header{
+        gap: 5rem;
+    }
+    
+    header li{
+        display: list-item;
+    }
+    
+    header li::marker{
+        color: #fa7d35;
+    }
+
+    .slider-box{
+        width: 95%;
+        align-items: center;
+    }
+
+    .container{
+        flex-direction: column;
+        text-align: center;
+        gap: 0;
+    }
+    
+    .subcontainer-left{
+        width: auto;
+        padding: 0 70px 0 70px;
+    }
+
+    footer{
+        justify-content: center;
+    }
 }
