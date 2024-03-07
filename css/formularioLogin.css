@@ -25,6 +25,11 @@ main{
     max-width: 484px;
 }
 
+.main-container img{
+    width: 300px;
+    height: 200px;
+}
+
 .main-container-inputs{
     display: flex;
     flex-direction: column;
@@ -32,18 +37,12 @@ main{
     text-align: start;
 }
 
-hr{
-    height: 1px;
-    width: 100%;
-    background-color: red;
-}
-
 #button-accesar{
     padding: 5px;
     width: 15rem;
-    border: 1px solid green;
+    border: 1px solid #005b4d;
     border-radius: 4px;
-    background-color: green;
+    background-color: #005b4d;
     color: white;
 }
 
