@@ -69,13 +69,15 @@ a{
     color: #fa7d35;
 }
 
-/*search bar*/
+/*container search bar*/
+
 .search-bar{
     width: 200px;
     border-radius: 7px;
     background-color: #fa7d35;
     opacity: 0.22;
     border: none;
+    color: black;
 }
 
 /*carrousel*/
@@ -174,6 +176,7 @@ a{
 
 /*footer*/
 footer{
+    background-color: white;
     display: flex;
     justify-content: right;
     font-family: "Poppins-Bold";
@@ -185,6 +188,7 @@ footer{
     color: #005b4d;
 }
 
+/*responsiveness*/
 @media(max-width: 991px) { 
     header{
         gap: 5rem;
