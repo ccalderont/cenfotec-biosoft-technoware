@@ -70,18 +70,60 @@ a{
 }
 
 /*container search bar*/
+/*adapted from https://www.youtube.com/watch?v=bBZVb_r_enY&t=11s*/
+.container-search-bar{
+    transform:  translate(0, 0);
+    padding: 10px;
+}
 
-.search-bar{
-    width: 200px;
-    border-radius: 7px;
-    background-color: #fa7d35;
-    opacity: 0.22;
-    border: none;
-    color: black;
+input{
+    outline: none;
+    box-sizing: border-box;
+    height: 30px;
+    width: 0;
+    padding: 0 15px;
+    color: #000;
+    border-radius: 50px;
+    font-size: 15px;
+    border: 1px solid #fa7d35;
+    transition: all .7s ease;
+}
+
+::placeholder{
+    color: grey;
+}
+
+.btn{
+    position: absolute;
+    right: 0;
+    top: 2;
+    width: 50px;
+    height: 50px;
+    background: #005b4d;
+    line-height: -20px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn i{
+    font-size: 25px;
+    color: #fa7d35;
+    line-height: 55px;
+    transition: all .7s ease;
+}
+
+.container-search-bar:hover input{
+    width: 300px;
+}
+
+.container-search-bar:hover i{
+    transform: rotate(-360deg);
 }
 
 /*carrousel*/
-/*adaptado de https://www.youtube.com/watch?v=XE0uQthmIuw*/
+/*adapted from https://www.youtube.com/watch?v=XE0uQthmIuw*/
 .slider-box{
     width: 1280px;
     height: auto;
