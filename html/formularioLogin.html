@@ -3,12 +3,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/formularioLogin.css">
-    <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/formularioLogin.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="">Comprar</a></li>
+                    <li><a href="">Categorias</a></li>
+                    <li><a href="">Proveedores</a></li>
+                    <li><a href="">Contactenos</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!--search bar-->
+        <div class="container-search-bar">
+            <input type="text" placeholder="Buscar">
+            <div class="btn">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+        <!--account and cart-->
+        <div>
+            <ul>
+                <li><a id="current-page" href="">Mi cuenta</a></li>
+                <li><a href="">Carrito</a></li>
+            </ul>
+        </div>
+    </header>
     <main >
+        <!--login container-->
         <div class="main-container">
             <img src="/resources/images/home/logoCNP.png" alt="Logo CNP">
             <div>
@@ -17,13 +46,11 @@
             <div class="main-container-inputs">
                 <label for="">Número de identificación</label>
                 <input type="text" placeholder="0-0000-0000">
-            </div>
-            <div class="main-container-inputs">
                 <label for="">Contraseña</label>
                 <input type="text" placeholder="XXXXXXXX">
             </div>
-            <span id="button-accesar" onclick="">Accesar</span>
-            <div>
+            <span id="button-continue" onclick="">Continuar</span>
+            <div class="reminder">
                 <p><a href="">¿Olvidaste tu contraseña?</a></p>
                 <p><a href="">Crear una cuenta</a></p>
             </div>
@@ -35,4 +62,5 @@
         <i class="fa-brands fa-square-instagram fa-xl" style="color: #005b4d;"></i>
     </footer>
 </body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 </html>

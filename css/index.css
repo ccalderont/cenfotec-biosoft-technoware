@@ -34,6 +34,7 @@ main h3{
 
 /*header*/
 header{
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +91,7 @@ input{
 }
 
 ::placeholder{
-    color: grey;
+    color: #818181;
 }
 
 .btn{
@@ -125,7 +126,7 @@ input{
 /*carrousel*/
 /*adapted from https://www.youtube.com/watch?v=XE0uQthmIuw*/
 .slider-box{
-    width: 1280px;
+    width: auto;
     height: auto;
     margin: 10px auto 0;
     overflow: hidden;
@@ -171,6 +172,10 @@ input{
     padding: 0 0 60px 0;
 }
 
+.container-search-bar:hover input{
+    width: 300px;
+}
+
 .container-left-section{
     width: 1000px;
 
@@ -203,7 +208,7 @@ input{
     font-family: "Poppins-bold";
     border-radius: 20px;
     padding: 5px;
-    width: 150px;
+    width: 10rem;
     color: white;
     text-align: center;
 }
@@ -244,11 +249,9 @@ footer{
         color: #fa7d35;
     }
 
-    .slider-box{
-        width: 95%;
-        align-items: center;
+    .container-search-bar:hover input{
+        width: 210px;
     }
-
     .container{
         flex-direction: column;
         text-align: center;

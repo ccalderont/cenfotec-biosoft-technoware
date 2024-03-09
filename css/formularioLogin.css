@@ -1,12 +1,4 @@
-@font-face{
-    font-family: "Poppins-Bold";
-    src: url(/resources/fonts/Poppins-Bold.ttf) format(truetype);
-}
-
-body{
- background-color: aqua; 
- margin: 0;  
-}
+/*check index.ccs for fonts and source styles*/
 
 main{
     display: flex;
@@ -21,6 +13,7 @@ main{
 }
 .main-container{
     background-color: white;
+    border-radius: 20px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     height: 70vh;
     width: 50vw;
@@ -33,6 +26,12 @@ main{
     max-width: 484px;
 }
 
+.main-container h1{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 33px;
+}
+
 .main-container img{
     width: 300px;
     height: 200px;
@@ -41,34 +40,53 @@ main{
 .main-container-inputs{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    text-align: start;
+    text-align: left;
+    gap: 0.5rem;
 }
 
-#button-accesar{
-    padding: 5px;
-    width: 15rem;
+.main-container label{
+    font-family: "Poppins-Bold";
+    color: #005b4d;
+}
+
+.main-container input{
+    outline: none;
+    box-sizing: border-box;
+    width: 250px;
+    padding: 0 15px;
+    font-size: 15px;
     border: 1px solid #005b4d;
-    border-radius: 4px;
+    background-color: #005b4d;
+    opacity: 0.22;/*este atributo afecta tambien placeholder y color*/
+
+}
+
+.main-container input::placeholder{
+    color: black;
+}
+
+.main-container a{
+    font-family: "Poppins-Bold";
+    color: #818181;
+    text-transform: none;
+    line-height: 0.5;
+}
+
+#button-continue{
+    font-family: "Poppins-bold";
+    padding: 5px;
+    width: 10rem;
+    border: 1px solid #005b4d;
+    border-radius: 20px;
     background-color: #005b4d;
     color: white;
 }
 
-#button-accesar:hover{
-    background-color: lightgreen;
-    border: 1px solid lightgreen;
+#button-continue:hover{
+    background-color: #fa7d35;
+    border: 1px solid #fa7d35;
 }
 
-/*footer*/
-footer{
-    background-color: white;
-    display: flex;
-    justify-content: right;
-    font-family: "Poppins-Bold";
-    padding-right: 50px;
-    align-items: center;
-    gap: 2rem;
-    letter-spacing: 1;
-    text-transform: uppercase; 
-    color: #005b4d;
+.reminder{
+    margin-top: 50px;
 }
