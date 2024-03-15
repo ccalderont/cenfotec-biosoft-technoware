@@ -289,9 +289,8 @@ function showExtraOptions(li){
 
 
 
-// Add click event listener to the document
+// Ocultar opciones extra al hacer click fuera de ellas
 document.addEventListener('click', function(event) {
-    // Get the element
     if(event.target.parentElement.classList.contains('extra-menu')) return; // Si se hace click en una opción extra no se ocultan las opciones
     var extraOptions = document.getElementsByClassName('extra-menu-options');
     for(const option of extraOptions){
