@@ -36,10 +36,10 @@ main h3{
 header{
     background-color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 7rem;
-    padding: 15px 0 15px 0;
+    gap: 1rem;
+    padding: 15px 2rem 15px 2rem;
 }
 
 /**/
@@ -59,10 +59,10 @@ header li{
 
 a{
     text-decoration: none;
-    padding: 0 25px;  
+    padding: 0 15px;  
     font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
     color: #005b4d;
-    letter-spacing: 1;
+    letter-spacing: 0;
     text-transform: uppercase; 
 }
 
@@ -75,6 +75,8 @@ a{
 .container-search-bar{
     transform:  translate(0, 0);
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 input{
