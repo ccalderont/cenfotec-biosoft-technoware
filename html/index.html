@@ -3,53 +3,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en linea</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/mainMenu.css">
 </head>
 <body>
     <header>
         <!--logo and nav-->
         <div class="logo-and-nav">
-            <img id="logo-cnp" src="resources/images/home/logoCNP.png" alt="">
-            <nav>
-                <ul>
-                    <li><a id="current-page" href="">Inicio</a></li>
-                    <li><a href="">Comprar</a></li>
-                    <li><a href="">Categorias</a></li>
-                    <li><a href="">Proveedores</a></li>
-                    <li><a href="">Contáctenos</a></li>
-                </ul>
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+                
             </nav>
         </div>
-        <!--search bar-->
-        <div class="container-search-bar">
-            <input type="text" placeholder="Buscar">
-            <div class="btn">
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
+       
         <!--account and cart-->
-        <div>
-            <ul>
-                <li><a href="html/formularioLogin.html">Mi cuenta</a></li>
-                <li><a href="">Carrito</a></li>
-            </ul>
-        </div>
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar">
+                <div class="btn">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
     </header>
     <main>
         <!--carrousel-->
         <div class="slider-box">
             <ul>
                 <li>
-                    <img src="resources/images/home/carrousel1.jpg" alt="imagen-uno">
+                    <img src="../resources/images/home/carrousel1.jpg" alt="imagen-uno">
                 </li>
                 <li>
-                    <img src="resources/images/home/carrousel2.jpg" alt="imagen-dos">
+                    <img src="../resources/images/home/carrousel2.jpg" alt="imagen-dos">
                 </li>
                 <li>
-                    <img src="resources/images/home/carrousel3.jpg" alt="imagen-tres">
+                    <img src="../resources/images/home/carrousel3.jpg" alt="imagen-tres">
                 </li>
                 <li>
-                    <img src="resources/images/home/carrousel4.jpg" alt="imagen-cuatro">
+                    <img src="../resources/images/home/carrousel4.jpg" alt="imagen-cuatro">
                 </li>
             </ul>
         </div>
@@ -83,4 +75,5 @@
     </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
 </html>

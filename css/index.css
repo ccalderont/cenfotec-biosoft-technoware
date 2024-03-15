@@ -70,15 +70,6 @@ a{
     color: #fa7d35;
 }
 
-/*container search bar*/
-/*adapted from https://www.youtube.com/watch?v=bBZVb_r_enY&t=11s*/
-.container-search-bar{
-    transform:  translate(0, 0);
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-
 input{
     outline: none;
     box-sizing: border-box;
@@ -117,13 +108,7 @@ input{
     transition: all .7s ease;
 }
 
-.container-search-bar:hover input{
-    width: 300px;
-}
 
-.container-search-bar:hover i{
-    transform: rotate(-360deg);
-}
 
 /*carrousel*/
 /*adapted from https://www.youtube.com/watch?v=XE0uQthmIuw*/
@@ -239,32 +224,6 @@ footer{
 
 /*responsiveness*/
 @media(max-width: 991px) { 
-    header{
-        gap: 5rem;
-    }
-    
-    header li{
-        display: list-item;
-    }
-    
-    header li::marker{
-        color: #fa7d35;
-    }
-
-    .container-search-bar:hover input{
-        width: 210px;
-    }
-    .container{
-        flex-direction: column;
-        text-align: center;
-        gap: 0;
-    }
-    
-    .subcontainer-left{
-        width: auto;
-        padding: 0 70px 0 70px;
-    }
-
     footer{
         justify-content: center;
     }

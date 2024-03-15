@@ -57,12 +57,13 @@ main{
     font-size: 15px;
     border: 1px solid #005b4d;
     background-color: #005b4d;
+    color: white;
     opacity: 0.22;/*este atributo afecta tambien placeholder y color*/
 
 }
 
 .main-container input::placeholder{
-    color: black;
+    color: white;
 }
 
 .main-container a{
