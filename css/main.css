@@ -65,7 +65,8 @@ a{
     font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
     color: #005b4d;
     letter-spacing: 0;
-    text-transform: uppercase; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 #current-page{
@@ -113,6 +114,7 @@ header li{
     background-color: #005b4d;
     color: white;
     padding: 1rem;
+    white-space: nowrap;
 }
 
 
