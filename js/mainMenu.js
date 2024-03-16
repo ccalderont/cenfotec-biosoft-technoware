@@ -6,7 +6,6 @@ function loadMainMenu() {
     const menuOptions = getMenuOptions(user);
     
     loadMenuOptions(menuOptions);
-    
 }
 
 function getMenuOptions(user){
