@@ -59,6 +59,10 @@ function loadAdminMenu(){
                     href: 'reporteVentasAdmin.html'
                 },
                 {
+                    text: 'Productos',
+                    href: 'reporteProductosAdmin.html'
+                },
+                {
                     text: 'Tramos',
                     href: 'reporteTramosAdmin.html'
                 },
