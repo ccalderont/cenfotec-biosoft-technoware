@@ -78,11 +78,11 @@ function loadAdminMenu(){
 
     const secondNavoptions = [
         {
-            text: 'Mi perfil',
+            text: '<i class="fa-solid fa-user fa-xl"></i>',
             href: 'userProfile.html'
         },
         {
-            text: 'Cerrar sesión',
+            text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
             href: 'formularioLogin.html'
         }
 
@@ -126,11 +126,11 @@ function loadSellerMenu(){
 
     const secondNavoptions = [
         {
-            text: 'Mi perfil',
+            text: '<i class="fa-solid fa-user fa-xl"></i>',
             href: 'userProfile.html'
         },
         {
-            text: 'Cerrar sesión',
+            text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
             href: 'formularioLogin.html'
         }
 
@@ -169,16 +169,17 @@ function loadClientMenu(){
 
     const secondNavoptions = [
         {
-            text: 'Mi perfil',
+            text: '<i class="fa-solid fa-user fa-xl"></i>',
             href: 'userProfile.html'
         },
+        
         {
-            text: 'Cerrar sesión',
-            href: 'formularioLogin.html'
+            text: '<i class="fa-solid fa-cart-shopping fa-xl"></i>',
+            href: 'carrito.html'
         },
         {
-            text: 'Carrito',
-            href: 'carrito.html'
+            text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
+            href: 'formularioLogin.html'
         }
 
     ];
@@ -212,7 +213,7 @@ function loadDefaultMenu(){
 
     const secondNavoptions = [
         {
-            text: 'Iniciar sesión',
+            text: '<i class="fa-solid fa-right-to-bracket fa-xl"></i>',
             href: 'formularioLogin.html'
         }
     ];
@@ -251,7 +252,7 @@ function loadSearchBarOptions(showSearchBar){
 function addMenuOption(ul, option){
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.textContent = option.text;
+    a.innerHTML = option.text;
     if(option.href){
         a.href = option.href;
     }
