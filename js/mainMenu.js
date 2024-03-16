@@ -78,7 +78,7 @@ function loadAdminMenu(){
     ];
 
     const showSearchBar = false;
-
+    
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
