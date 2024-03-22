@@ -73,7 +73,7 @@ a{
     color: #fa7d35;
 }
 
-input{
+.container-search-bar input{
     outline: none;
     box-sizing: border-box;
     height: 30px;
