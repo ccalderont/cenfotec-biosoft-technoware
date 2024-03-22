@@ -4,6 +4,26 @@ window.onload = function() {
     numberOfPages = addProductsToCatalogue();
     showPage(); // At the start it will show the first page
     activatePaginationButtons();
+    removeCartButtons();
+}
+
+/**
+ * Confirms if the user is logged in as a client
+ * @returns {boolean} - True if the user is logged in as a client, false otherwise
+ * */
+function clientUserIsLoggedIn(){
+    return localStorage.getItem('user') === 'cliente';
+}
+
+/**
+ * Removes the cart buttons if the logged on user is not a client
+ * */
+function removeCartButtons(){
+    if(clientUserIsLoggedIn()) return;
+    const cartButtons = document.getElementsByClassName("add-to-cart-catalogue");
+    for (let i = cartButtons.length-1; i >= 0; i--){
+        cartButtons[i].remove();
+    }
 }
 
 /**
@@ -162,7 +182,10 @@ function closeModal(event){
     }
 }
 
-
+/**
+ * Adds the product and quantity selected to the cart
+ * @param {HTMLElement} target - The target element that was clicked
+ */
 function addToCart(target){
     target.innerHTML = `<i class="fa-solid fa-square-check fa-lg" style="color: #005b4d;"></i>`;
     setTimeout(() => {
@@ -172,6 +195,7 @@ function addToCart(target){
         }
         let product = {
             id: target.getAttribute('data-productid'),
+            quantity: document.getElementById('modal-product-quantity').value,
         }
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
