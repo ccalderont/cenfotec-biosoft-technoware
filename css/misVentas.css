@@ -1,0 +1,93 @@
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    gap: 2rem;
+    margin-left: 1rem;
+}
+
+h2{
+    margin-top: 0;
+}
+
+main i:hover{
+    color: #005b4d;
+}
+
+table{
+    
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #005b4d;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+td{
+    padding: 0.5rem;
+    border: 1px solid #000;
+}
+
+#filter-form h2{
+    margin-top: 0;
+    
+}
+
+#filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: #000 1px solid;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+
+#filter-form-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#filter-form-info section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+
+#table-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 5rem;
+}
+
+#header-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+#header-section p{
+    margin: 0.5rem;
+}
+
+.centered-td{
+    text-align: center;
+}
+
+
