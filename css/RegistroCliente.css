@@ -232,20 +232,24 @@ footer i:hover{
 
 }
 
+
 .signin-form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Poppins-Medium";    
-
+    font-family: "Poppins-Medium"; 
+    color: #005b4d;
   }
-  
-  .registry-container {
+
+  .registry-container { 
     display: flex;
-    width: 50%;
     flex-direction: column;
     gap: 1rem;
+    width: 50%;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 1rem;
   }
   
   .input-form {
@@ -264,23 +268,18 @@ footer i:hover{
     justify-content: space-between;
     align-items: center;
   }
-  
-  @media (max-width: 767px) {
-    .formulario-input {
-      width: 100%;
-    }
-  
-    .line-form {
-      flex-direction: column;
-    }
-  }
-  
-
-  button {
-    font-family: "Poppins-Medium";  
-  }
 
   #id-type {
     font-family: "Poppins-Medium"; 
     color: #818181;
+
+  }
+
+  .signin-form button { 
+    display: flex;
+    justify-content:center;
+    align-self: self-end;
+    width: 25%;
+    font-family: "Poppins-Medium"; 
+
   }
