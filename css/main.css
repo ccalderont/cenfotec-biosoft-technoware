@@ -13,6 +13,11 @@
     src: url(/resources/fonts/Poppins-Medium.ttf);
 }
 
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(/resources/fonts/Poppins-Regular.ttf);
+}
+
 
 
 /*body*/

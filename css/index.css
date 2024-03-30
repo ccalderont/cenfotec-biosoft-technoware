@@ -61,7 +61,28 @@
 }
 
 .subcontainer-left p{
-    font-family: "Poppins medium";
+    font-family: "Poppins-Medium";
+    font-size: 24.8px;
+    color: #818181;
+    text-align: justify;
+}
+
+.container-left-section h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+}
+
+.about-us h3{
+    font-family: "Poppins-Extrabold";
+    font-size: 24.8px;
+    color: #fa7d35;
+    text-align: justify;
+}
+
+.about-us p{
+    font-family: "Poppins-Regular";
     font-size: 24.8px;
     color: #818181;
     text-align: justify;
