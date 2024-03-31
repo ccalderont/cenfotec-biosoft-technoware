@@ -1,6 +1,6 @@
 changePasswordView();
 saveChanges();
-loadAdminProfile();
+loadCustomerProfile();
 
 /**
  * Retrieve the change-password-view by clicking on the button "Cambiar contraseña". 
@@ -86,9 +86,9 @@ function mostrarHelper(helper){
  * Load all the information of the admin.
  * THIS METHOD WILL BE UPDATED ONCE THE CONNECTION TO THE DB HAS BEEN SET!!!
  */
-function loadAdminProfile(){
+function loadCustomerProfile(){
     let userType = document.querySelector("#user-type");
-    userType.innerHTML = "Administrador"
+    userType.innerHTML = "Cliente"
 
     let userName = document.querySelector("#user-name");
     userName.innerHTML = "Christian XXXX"

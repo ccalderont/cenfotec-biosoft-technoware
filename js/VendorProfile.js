@@ -4,6 +4,7 @@ loadSellerProfile();
 
 /**
  * Retrieve the change-password-view by clicking on the button "Cambiar contraseña". 
+ * THIS METHOD WILL BE UPDATED ONCE THE CHANGE-PASSWORD-VIEW HAS BEEN CREATED!!!
  */
 function changePasswordView(){
     document.getElementById("btn-change-password").addEventListener("click", function(evento){
@@ -48,6 +49,8 @@ function saveChanges(){
             let lastNameHelper = document.getElementById("last-name-helper");
             lastNameHelper.style.display = "none";
         }
+
+        //Aca continuan mas validaciones
 
         if(tramoName.length<2){
             let tramoHelper = document.getElementById("input-tramo-name-helper");
