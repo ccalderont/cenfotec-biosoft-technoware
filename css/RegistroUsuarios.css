@@ -283,3 +283,9 @@ footer i:hover{
     font-family: "Poppins-Medium"; 
 
   }
+
+
+  .error-message {
+    font-family: "Poppins-Medium"; 
+    color: #bb1414;
+  }

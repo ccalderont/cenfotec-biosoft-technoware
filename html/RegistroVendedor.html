@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en linea</title>
-    <script defer src="/js/RegistroCliente.js"></script>
+    <script defer src="/js/RegistroVendedor.js"></script>
     <link rel="stylesheet" href="../css/RegistroUsuarios.css">
 </head>
 <body>
@@ -29,12 +29,12 @@
     </header>
     <main>
         <form onSubmit={handleSubmit(onSubmit)} noValidate id= "signin-form" class="signin-form">
-            <h2>Creá una cuenta</h2>
+            <h2>Solicitud de registro de vendedor</h2>
 
             <div class="registry-container">
 
                 <div class="input-form">
-                    <label for="user-picture">Agregar Foto</label>
+                    <label for="user-picture"> Agregar Foto</label>
                     <input
                       name="user-picture"
                       id="user-picture"
@@ -117,6 +117,27 @@
                     id="e-mail"
                     type="email"
                     placeholder="juan.perez@laferia.com"
+                    required
+                  />
+                </div>
+
+                <div class="input-form">
+                  <label for="store-name">Nombre del Tramo*</label>
+                  <input
+                    name="store-name"
+                    id="store-name"
+                    type="text"
+                    placeholder="Tramo Las Rosas"
+                    required
+                  />
+                </div>
+
+                <div class="input-form">
+                  <label for="gov-permit">Permisos Municipales*</label>
+                  <input
+                    name="gov-permit"
+                    id="gov-permit"
+                    type="file"
                     required
                   />
                 </div>

@@ -45,6 +45,24 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!emailRegex.test(email.value.trim())) {
             displayErrorMessage(email, 'Por favor, ingrese un correo electrónico válido.');
         }
+        
+        //Validacion del nombre del tramo
+        const storeName = form.querySelector('#store-name');
+        if (storeName.value.trim() === '') {
+            displayErrorMessage(storeName, 'Por favor, ingrese el nombre del tramo.');
+        }        
+
+        //Validacion del documento de permisos municipales
+        const permitFile = form.querySelector('#gov-permit');
+        if (permitFile.value.trim() === '') {
+        displayErrorMessage(permitFile, 'Por favor, agregue un archivo en formato PDF con los permisos municipales.');
+        } else {
+        const allowedExtensions = ['pdf'];
+        const fileExtension = permitFile.value.split('.').pop().toLowerCase();
+    
+        if (!allowedExtensions.includes(fileExtension)) {
+        displayErrorMessage(permitFile, 'El archivo debe ser formato PDF.');
+        } }
                 
 
         // Validacion de contraseña y confirmacion
