@@ -243,11 +243,13 @@ footer i:hover{
   }
 
   .registry-container { 
+    background-color: white;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 50%;
     padding: 20px;
+    margin-bottom: 1.5rem;
     border: 1px solid gray;
     border-radius: 1rem;
   }
@@ -258,6 +260,7 @@ footer i:hover{
     width: 45%;
   }
   
+
   .checkbox-form {
     display: flex;
     flex-direction: row;
@@ -272,7 +275,6 @@ footer i:hover{
   #id-type {
     font-family: "Poppins-Medium"; 
     color: #818181;
-
   }
 
   .signin-form button { 
@@ -281,11 +283,19 @@ footer i:hover{
     align-self: self-end;
     width: 25%;
     font-family: "Poppins-Medium"; 
-
   }
 
 
   .error-message {
     font-family: "Poppins-Medium"; 
     color: #bb1414;
+  }
+
+  #form-background {
+    background-image: url(/resources/images/home/back.svg);
+  }
+
+  #form-background h2 {
+    color: white;
+    letter-spacing: 0.5;
   }

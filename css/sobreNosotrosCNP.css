@@ -51,72 +51,6 @@
     width: 300px;
 }
 
-.container-left-section{
-    width: 1000px;
-
-}
-
-.subcontainer-left{
-    width: 72%;
-}
-
-.subcontainer-left p{
-    font-family: "Poppins-Medium";
-    font-size: 24.8px;
-    color: #818181;
-    text-align: justify;
-}
-
-.container-left-section h1{
-    font-family: "Poppins-Bold";
-    font-size: 93;
-    color: #005b4d;
-    line-height: 1;
-}
-
-.about-us h3{
-    font-family: "Poppins-Extrabold";
-    font-size: 24.8px;
-    color: #fa7d35;
-    text-align: justify;
-}
-
-.about-us p{
-    font-family: "Poppins-Regular";
-    font-size: 24.8px;
-    color: #818181;
-    text-align: justify;
-}
-
-.container-right-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.buttons{
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-}
-
-.buttons span{
-    font-family: "Poppins-bold";
-    border-radius: 20px;
-    padding: 5px;
-    width: 10rem;
-    color: white;
-    text-align: center;
-}
-
-#supplier-button{
-    background-color: #fa7d35;
-}
-
-#category-button{
-    background-color: #005b4d;
-}
-
 #logo-cnp{
     height: 80px;
     width: 125px;
@@ -127,54 +61,28 @@
     align-items: center;
 }
 
-#logo-technoware{
-    padding: 15px 2rem 15px 2rem;
-    height: 45%;
-    width: 25%;
-}
 
-#meet-the-team img{
-    display: flex;
-    padding: 15px 2rem 15px 2rem;
-    height: 70%;
-    width: 70%;
-}
-
-#meet-the-team h3{
-    font-family: "Poppins-Extrabold";
-    color: #fa7d35;
-    font-size: 33px;
-    padding: 0 15px;  
-}
-
-#meet-the-team p{
-    font-family: "Poppins-Medium";
-    color: #818181;
-    text-align: center; 
-}
-
-#about-us-tech {
-    padding: 0 15px;  
-}
-
-#about-us-tech h1 {
+.about-us-container h1{
     font-family: "Poppins-Bold";
-    font-size: 83;
+    font-size: 93;
     color: #005b4d;
     line-height: 1;
-    padding: 0 15px;  
+    width: 1000px;
 }
 
-#about-us-tech-container h2{
-    font-family: "Poppins-Bold";
-    color: #818181;
-    font-size: 20px;
-    padding: 0 15px;  
+.about-us h3{
+    padding: 0 15px; 
+    font-family: "Poppins-Extrabold";
+    font-size: 30px;
+    color: #fa7d35;
+    text-align: justify;
 }
 
-#about-us-tech-container p{
+.about-us p{
     padding: 0 15px;  
     font-family: "Poppins-Regular";
     color: #818181;
     letter-spacing: 0;
+    font-size: 24.8px;
+    text-align: justify;
 }
