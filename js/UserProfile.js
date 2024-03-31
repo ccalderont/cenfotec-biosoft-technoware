@@ -1,11 +1,10 @@
 /*According to the DB model/Version 2/Collection Usuarios the list was adapted to simulate the connection*/
-let users = [
-    {
+let users = {
         id:1,
         nombre:"Christian",
         apellido:"Calderon",
         cedula:1234,
-        telefono:1234, 
+        telefono:12347845, 
         correoElectronico:"c@gmail.com",
         tipoUsuario:"Vendedor",
         contraseña:1234,
@@ -14,42 +13,16 @@ let users = [
             nombre:"Tramo de frutas",
             estado:"Activo",
             descripcion:"Venta de frutas frescas",
-            idDireccion:1,
+            idDireccion:112,
             calificacion:5 
         } 
-    },
-    {
-        id:2,
-        nombre:"Daniel",
-        apellido:"Camacho",
-        cedula:4567,
-        telefono:4567, 
-        correoElectronico:"d@gmail.com",
-        tipoUsuario:"Cliente",
-        contraseña:4567,
-        foto:"../resources/images/home/lupa.png",
-    },
-    {
-        id:3,
-        nombre:"Maricruz",
-        apellido:"Perez",
-        cedula:7894,
-        telefono:7894, 
-        correoElectronico:"m@gmail.com",
-        tipoUsuario:"Administrador(a)",
-        contraseña:7894,
-        foto:"../resources/images/home/lupa.png",
-    }
-]
+    };
 
 const user = localStorage.getItem('user');
 
 changePasswordView();
-saveEditChanges();
-/*loadProfileFields(user);*/
-/*loadSellerProfile()*/
-/*loadAdminProfile();*/
-loadCustomerProfile();
+saveEditChanges(user);
+loadProfileFields(user);
 
 /**
  * Retrieve the change-password-view by clicking on the button "Cambiar contraseña". 
@@ -84,15 +57,15 @@ function loadSellerProfile(){
     userType.innerHTML = "Vendedor";
 
     let tramoName = document.querySelector("#tramo-name");
-    tramoName.innerHTML = "Tramo de frutas";
+    tramoName.innerHTML = users.tramo.nombre;
 
     loadMainProfileInfo();
     
     let inputTramoName = document.querySelector("#input-tramo-name");
-    inputTramoName.value = "Tramo de frutas";
+    inputTramoName.value = users.tramo.nombre;
 
     let inputAddress = document.querySelector("#address");
-    inputAddress.value = "San Fra";
+    inputAddress.value = users.tramo.idDireccion;
 }
 
 function loadAdminProfile(){
@@ -113,22 +86,22 @@ function loadCustomerProfile(){
 
 function loadMainProfileInfo(){
     let userName = document.querySelector("#user-name");
-    userName.innerHTML = "Christian XXXX"
+    userName.innerHTML = users.nombre + " " + users.apellido;
 
     let identificationNumber = document.querySelector("#identification-number");
-    identificationNumber.innerHTML = "1-XXXX-XXXX89";
+    identificationNumber.innerHTML = users.cedula;
     
     let inputName = document.querySelector("#name");
-    inputName.value = "Christian";
+    inputName.value = users.nombre;
 
     let inputLastName = document.querySelector("#last-name");
-    inputLastName.value = "Calderon";
+    inputLastName.value = users.apellido;
 
     let inputPhone = document.querySelector("#phone-number");
-    inputPhone.value = "88556699";
+    inputPhone.value = users.telefono;
 
     let inputEmail = document.querySelector("#email");
-    inputEmail.value = "c@gmail.com";
+    inputEmail.value = users.correoElectronico;
 }
 
 function loadDefaultProfile(){
@@ -154,23 +127,199 @@ function removeVendorOptions(){
  * Display a message after clicking on the button located within the form. 
  * Creates two new elements, div and h2, which will be located at the bottom part of the form. The message is styled in red, centered and padded.
  */
-function saveEditChanges(){
+function saveEditChanges(user){
     document.getElementById("edit-profile").addEventListener("submit", function(evento){
         evento.preventDefault();
 
-        let name = document.getElementById("name").value;
-        let lastName = document.getElementById("last-name").value;
-        /*let address = document.getElementById("address").value;*/
-        let phone = document.getElementById("phone-number").value;
-        let email = document.getElementById("email").value;
-        /*let tramoName = document.getElementById("tramo-name").value;*/
-
-        let confirmEdition = document.createElement("div");
-        let confirmEditionMessage = document.createElement("h2");
-        confirmEditionMessage.innerHTML = "Edición confirmada";
-        confirmEdition.appendChild(confirmEditionMessage);
-
-        let form = document.getElementById("edit-profile");
-        form.appendChild(confirmEdition).style.cssText = 'color:red;text-align:center;padding:30px 0 15px 0';
+        switch(user){
+            case 'admin':
+                validateAdminInfo();
+                break;
+            case 'cliente':
+                validateCustomerInfo();
+                break;
+            case 'vendedor':
+                validateVendorInfo();
+                break;
+            default:
+                loadDefaultProfile();
+                break;
+        }      
     })
+
 }
+//Validations
+
+function validateVendorInfo(){
+    let name = document.getElementById("name").value;
+    let lastName = document.getElementById("last-name").value;
+    let phone = document.getElementById("phone-number").value;
+    let email = document.getElementById("email").value;
+    let tramoName = document.getElementById("input-tramo-name").value;
+    let address = document.getElementById("address").value;
+
+    if(name.length<2){
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.innerText = "El nombre debe tener al menos dos letras.";
+        mostrarHelper(nameHelper);
+        return
+    }else{
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.style.display = "none";
+    }
+
+    if(lastName.length<2){
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.innerText = "El apellido debe tener al menos dos letras.";
+        mostrarHelper(lastNameHelper);
+        return;
+    }else{
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.style.display = "none";
+    }
+
+    if(tramoName.length<2){
+        let tramoHelper = document.getElementById("input-tramo-name-helper");
+        tramoHelper.innerText ="El tramo debe tener al menos dos letras.";
+        mostrarHelper(tramoHelper);
+        return;
+    }else{
+        let tramoHelper = document.getElementById("input-tramo-name-helper");
+        tramoHelper.style.display ="none";
+    }
+
+    if(phone.length<8){
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.innerHTML = "El telefono debe tener al menos ocho digitos.";
+        mostrarHelper(phoneHelper);
+        return;
+    }else{
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.style.display = "none";
+    }
+
+    if(!email.match(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/)){
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.innerText = "Correo inválido.";
+        mostrarHelper(emailHelper);
+        return
+    }else{
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.style.display = "none"; 
+    }
+
+    if(address.length<2){
+        let addressHelper = document.getElementById("address-helper");
+        addressHelper.innerText ="La direccion debe contener provincia, canton y distrito.";
+        mostrarHelper(addressHelper);
+        return;
+    }else{
+        let addressHelper = document.getElementById("address-helper");
+        addressHelper.style.display ="none";
+    }
+
+    window.location.href = "index.html"; 
+}
+
+function validateCustomerInfo(){
+    let name = document.getElementById("name").value;
+    let lastName = document.getElementById("last-name").value;
+    let phone = document.getElementById("phone-number").value;
+    let email = document.getElementById("email").value;
+
+    if(name.length<2){
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.innerText = "El nombre debe tener al menos dos letras.";
+        mostrarHelper(nameHelper);
+        return
+    }else{
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.style.display = "none";
+    }
+
+    if(lastName.length<2){
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.innerText = "El apellido debe tener al menos dos letras.";
+        mostrarHelper(lastNameHelper);
+        return;
+    }else{
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.style.display = "none";
+    }
+
+    if(phone.length<8){
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.innerHTML = "El telefono debe tener al menos ocho digitos.";
+        mostrarHelper(phoneHelper);
+        return;
+    }else{
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.style.display = "none";
+    }
+
+    if(!email.match(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/)){
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.innerText = "Correo inválido.";
+        mostrarHelper(emailHelper);
+        return
+    }else{
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.style.display = "none"; 
+    }
+    window.location.href = "index.html"; 
+}
+
+function validateAdminInfo(){
+    let name = document.getElementById("name").value;
+    let lastName = document.getElementById("last-name").value;
+    let phone = document.getElementById("phone-number").value;
+    let email = document.getElementById("email").value;
+
+    if(name.length<2){
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.innerText = "El nombre debe tener al menos dos letras.";
+        mostrarHelper(nameHelper);
+        return
+    }else{
+        let nameHelper = document.getElementById("name-helper");
+        nameHelper.style.display = "none";
+    }
+
+    if(lastName.length<2){
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.innerText = "El apellido debe tener al menos dos letras.";
+        mostrarHelper(lastNameHelper);
+        return;
+    }else{
+        let lastNameHelper = document.getElementById("last-name-helper");
+        lastNameHelper.style.display = "none";
+    }
+
+    if(phone.length<8){
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.innerHTML = "El telefono debe tener al menos ocho digitos.";
+        mostrarHelper(phoneHelper);
+        return;
+    }else{
+        let phoneHelper = document.getElementById("phone-helper");
+        phoneHelper.style.display = "none";
+    }
+
+    if(!email.match(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/)){
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.innerText = "Correo inválido.";
+        mostrarHelper(emailHelper);
+        return
+    }else{
+        let emailHelper = document.getElementById("email-helper");
+        emailHelper.style.display = "none"; 
+    }
+    window.location.href = "index.html"; 
+}
+
+function mostrarHelper(helper){
+    helper.style.color = "#fa7d35";
+    helper.style.display = "block";
+}
+
+//Validations end

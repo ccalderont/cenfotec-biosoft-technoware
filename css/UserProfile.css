@@ -46,6 +46,10 @@ main{
     padding-bottom: 5%;  
 }
 
+.helper{
+    display: none;
+}
+
 .edit-input{
     width: 70%;
     justify-content: right;
