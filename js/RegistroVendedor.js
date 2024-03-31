@@ -62,23 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
         if (!allowedExtensions.includes(fileExtension)) {
         displayErrorMessage(permitFile, 'El archivo debe ser formato PDF.');
-        } }
-                
-
-        // Validacion de contraseña y confirmacion
-        const passwordMain = form.querySelector('#password-main');
-        const passwordConfirmation = form.querySelector('#password-confirmation');
-        if (passwordMain.value.trim() === '') {
-            displayErrorMessage(passwordMain, 'Por favor, ingrese una contraseña.');
-        } else if (passwordMain.value !== passwordConfirmation.value) {
-            displayErrorMessage(passwordConfirmation, 'Las contraseñas no coinciden.');
-        }
-
-        // Validacion del criterio de la contraseña
-        const passwordMainRegex = /^(?=.*[0-9])(?=.*[^aeiou])(?=.*\W)(?!.* ).{8}$/;
-        if (!passwordMainRegex.test(passwordMain.value.trim())) {
-            displayErrorMessage(passwordMain, 'Verifique el criterio para la creación de contraseña.');
-        }       
+        } }      
 
         // Validacion de terminos y condiciones
         const termsConditions = form.querySelector('#terms-conditions');

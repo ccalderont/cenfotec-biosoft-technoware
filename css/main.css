@@ -54,69 +54,6 @@ header li{
     display: inline;
 }
 
-#logo-cnp{
-    height: 80px;
-    width: 125px;
-}
-
-.logo-and-nav{
-    display: flex;
-    align-items: center;
-}
-
-#logo-technoware{
-    padding: 15px 2rem 15px 2rem;
-    height: 45%;
-    width: 25%;
-}
-
-#meet-the-team img{
-    display: flex;
-    padding: 15px 2rem 15px 2rem;
-    height: 70%;
-    width: 70%;
-}
-
-#meet-the-team h3{
-    font-family: "Poppins-Extrabold";
-    color: #fa7d35;
-    font-size: 33px;
-    padding: 0 15px;  
-}
-
-#meet-the-team p{
-    font-family: "Poppins-Medium";
-    color: #818181;
-    text-align: center; 
-}
-
-
-#about-us-tech {
-    padding: 0 15px;  
-}
-
-#about-us-tech h1 {
-    font-family: "Poppins-Bold";
-    font-size: 83;
-    color: #005b4d;
-    line-height: 1;
-    padding: 0 15px;  
-}
-
-#about-us-tech-container h2{
-    font-family: "Poppins-Bold";
-    color: #818181;
-    font-size: 20px;
-    padding: 0 15px;  
-}
-
-#about-us-tech-container p{
-    padding: 0 15px;  
-    font-family: "Poppins-Regular";
-    color: #818181;
-    letter-spacing: 0;
-}
-
 a{
     text-decoration: none;
     padding: 0 15px;  
@@ -131,7 +68,7 @@ a{
     color: #fa7d35;
 }
 
-input{
+.container-search-bar input{
     outline: none;
     box-sizing: border-box;
     height: 30px;
