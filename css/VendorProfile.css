@@ -51,6 +51,10 @@ main{
     justify-content: right;
 }
 
+.helper{
+    display: none;
+}
+
 #edit-button{
     text-align: right;
 }

@@ -32,43 +32,61 @@
                 <!--photo-->
                 <div class="photo-section">
                     <img src="../resources/images/home/lupa.png" style="width: 150px; height: 200px; border: solid 0.1rem red;" alt="">
-                    <h3 id="user-type">Vendedor</h3>
+                    <h3 id="user-type"></h3>
                     <button id="btn-change-password">Cambiar contraseña</button>
                 </div>
                 <!--tramo-name-->
                 <div>
-                    <h2 id="tramo-name">Tramo XXX</h2>
-                    <h3 id="user-name">Christian XXX</h3>
-                    <p id="identification-number">1-XXXX-XXXX</p>
+                    <h2 id="tramo-name"></h2>
+                    <h3 id="user-name"></h3>
+                    <p id="identification-number"></p>
                 </div>
             </div>
             <!--edit-box-section-->
             <div class="edit-box-section">
                 <form id="edit-profile" action="">
                     <h2>Editar perfil</h2>
-                    <div class="input">
-                        <label for="name">Nombre:</label>
-                        <input class="edit-input" type="text" id="name">
+                    <div>
+                        <div class="input">
+                            <label for="name">Nombre:</label>
+                            <input class="edit-input" type="text" id="name">
+                        </div>
+                        <p class="helper" id="name-helper"></p>
                     </div>
-                    <div class="input">
-                        <label for="last-name">Apellido(s):</label>
-                        <input class="edit-input" type="text" id="last-name">
+                    <div>
+                        <div class="input">
+                            <label for="last-name">Apellido(s):</label>
+                            <input class="edit-input" type="text" id="last-name">
+                        </div>
+                        <p class="helper" id="last-name-helper"></p>
                     </div>
-                    <div class="input">
-                        <label for="tramo-name">Nombre del tramo:</label>
-                        <input class="edit-input" type="text" id="tramo-name">
+                    <div>
+                        <div class="input">
+                            <label for="tramo-name">Nombre del tramo:</label>
+                            <input class="edit-input" type="text" id="input-tramo-name">
+                        </div>
+                        <p class="helper" id="input-tramo-name-helper"></p>
                     </div>
-                    <div class="input">
-                        <label for="phone-number">Número de teléfono:</label>
-                        <input class="edit-input" type="number" id="phone-number">
+                    <div>
+                        <div class="input">
+                            <label for="phone-number">Número de teléfono:</label>
+                            <input class="edit-input" type="number" id="phone-number">
+                        </div>
+                        <p class="helper" id="phone-helper"></p>
                     </div>
-                    <div class="input">
-                        <label for="email">Correo electrónico:</label>
-                        <input class="edit-input" type="email" id="email">
+                    <div>
+                        <div class="input">
+                            <label for="email">Correo electrónico:</label>
+                            <input class="edit-input" type="email" id="email">  
+                        </div>
+                        <p class="helper" id="email-helper"></p>
                     </div>
-                    <div class="input">
-                        <label for="address">Dirección:</label>
-                        <input class="edit-input" type="text" id="address">
+                    <div>
+                        <div class="input">
+                            <label for="address">Dirección:</label>
+                            <input class="edit-input" type="text" id="address">
+                        </div>
+                        <p class="helper" id="address-helper"></p>
                     </div>
                     <div id="edit-button">
                         <button>Guardar</button>    
@@ -86,5 +104,4 @@
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>
 <script src="../js/VendorProfile.js"></script>
-
 </html>
