@@ -209,3 +209,6 @@ main i:hover{
 }
 
 
+.hidden-element{
+    display: none;
+}
