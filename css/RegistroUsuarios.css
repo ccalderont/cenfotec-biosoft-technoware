@@ -299,3 +299,33 @@ footer i:hover{
     color: white;
     letter-spacing: 0.5;
   }
+
+  /*tooltip style
+
+  /* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width:50%;
+    height:auto ;
+    background-color: #FFDAC8 ;
+    color: #e35c0f;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
