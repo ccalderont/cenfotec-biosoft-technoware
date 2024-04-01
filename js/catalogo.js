@@ -1,5 +1,9 @@
 let currentPage = 0; // Global variable that stores the current page number
 let numberOfPages = 0; // Global variable that stores the number of pages
+
+/**
+ * Run when loading the page. Sets up the page accordingly
+ */
 window.onload = function() {
     numberOfPages = addProductsToCatalogue();
     showPage(); // At the start it will show the first page
@@ -215,7 +219,7 @@ const products = [
     
     {
         id: 7,
-        nombre: "Piña",
+        nombre: "Uvas",
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         tramo: "Piña de Tía Panchita",
         calificacion: 4,
@@ -224,17 +228,7 @@ const products = [
         unidad: "kg",
         imagen: "https://www.saluzzocr.com/wp-content/uploads/2021/08/pinia-el-sabor-de-la-frecura-1.jpg"
     },
-    {
-        id: 8,
-        nombre: "Naranjas",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        tramo: "Naranjas de Tía Panchita",
-        calificacion: 5,
-        precio: 450,
-        cantidad: 80,
-        unidad: "unidades",
-        imagen: "https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2023/06/12/2-naranjas.jpeg"
-    },
+    
     {
         id: 9,
         nombre: "Mango",
@@ -246,17 +240,7 @@ const products = [
         unidad: "gramos",
         imagen: "https://www.finedininglovers.com/es/sites/g/files/xknfdk1706/files/styles/article_1200_800_fallback/public/2021-10/mango%C2%A9iStock.jpg?itok=b0BXEvPw"
     },
-    {
-        id: 10,
-        nombre: "Papaya",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        tramo: "Papaya de Tía Panchita",
-        calificacion: 5,
-        precio: 550,
-        cantidad: 82,
-        unidad: "unidades",
-        imagen: "https://eldiariony.com/wp-content/uploads/sites/2/2023/07/shutterstock_1528885103.jpg?w=1200"
-    },
+    
     {
         id: 11,
         nombre: "Melón",

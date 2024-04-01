@@ -200,11 +200,6 @@ main i:hover{
     width: 100%;
 }
 
-.hidden-element{
-    display: none;
-}
-
-
 .page-button-section{
     display: flex;
     align-items: center;
