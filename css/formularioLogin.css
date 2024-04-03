@@ -8,7 +8,8 @@ main{
     /* height: 100vh;
     width: 100vw; */
     align-items: center;
-    background-color: #005b4d;
+    background-image: url(/resources/back-01.png);
+    background-size: 1920px;
 
 }
 .main-container{
@@ -34,7 +35,7 @@ main{
 
 .main-container img{
     width: 300px;
-    height: 150px;
+
 }
 
 .main-container-inputs{
@@ -56,14 +57,13 @@ main{
     padding: 0 15px;
     font-size: 15px;
     border: 1px solid #005b4d;
-    background-color: #005b4d33;
-    color: #005b4d;
-    /* opacity: 0.22;este atributo afecta tambien placeholder y color */
+    background-color: #cfdbd8;
+    color: 005b4d;
 
 }
 
 .main-container input::placeholder{
-    color: #005b4d;
+    color: 005b4d;
 }
 
 .main-container a{
@@ -71,6 +71,7 @@ main{
     color: #818181;
     text-transform: none;
     line-height: 0.5;
+
 }
 
 #button-continue{
@@ -81,6 +82,7 @@ main{
     border-radius: 20px;
     background-color: #005b4d;
     color: white;
+    margin-top: 2rem;
 }
 
 #button-continue:hover{

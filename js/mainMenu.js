@@ -72,13 +72,13 @@ function loadAdminMenu(){
             ]
         },
         {
-            text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            text: 'Contáctenos',
+            href: 'contactenos.html'
         }
     ];
 
     const showSearchBar = false;
-    
+
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
@@ -120,8 +120,8 @@ function loadSellerMenu(){
             ]
         },
         {
-            text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            text: 'Contáctenos',
+            href: 'contactenos.html'
         }
     ];
 
@@ -163,8 +163,8 @@ function loadClientMenu(){
             href: 'misCompras.html'
         },
         {
-            text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            text: 'Contáctenos',
+            href: 'contactenos.html'
         }
     ];
 
@@ -207,8 +207,8 @@ function loadDefaultMenu(){
             href: 'catalogo.html'
         },
         {
-            text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            text: 'Contáctenos',
+            href: 'contactenos.html'
         }
     ];
 
