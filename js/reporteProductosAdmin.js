@@ -5,6 +5,7 @@ const ProductsReport = [
     Producto : "Zanahoria",
     Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
     Cantidad: "60",
+    Unidad:"kilos",
     PrecioSinImpuesto: "600",
     PrecioConImpuesto: "700",
 
@@ -12,9 +13,10 @@ const ProductsReport = [
 {
     Categoria : "verduras",
     Tramo : "Campo verde",
-    Producto : "Zanahoria",
+    Producto : "Zanahoria unidades",
     Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
     Cantidad: "90",
+    Unidad:"kilos",
     PrecioSinImpuesto: "650",
     PrecioConImpuesto: "750",
 },
@@ -24,6 +26,7 @@ const ProductsReport = [
     Producto : "Manzana mixta",
     Detalle : "Manzanas mixtas importadas desde california EEUU",
     Cantidad: "30",
+    Unidad:"kilos",
     PrecioSinImpuesto: "1000",
     PrecioConImpuesto: "1100",
 },
@@ -33,6 +36,7 @@ const ProductsReport = [
     Producto : "Manzana mixta",
     Detalle : "frescas manzanas libres de quimicos",
     Cantidad: "60",
+    Unidad:"kilos",
     PrecioSinImpuesto: "900",
     PrecioConImpuesto: "1000",
 },
@@ -42,6 +46,7 @@ const ProductsReport = [
     Producto : "cebolla",
     Detalle : "Sembrada en San Carlos, libre de pesticidas y  quimicos",
     Cantidad: "70",
+    Unidad:"kilos",
     PrecioSinImpuesto: "800",
     PrecioConImpuesto: "825",
 },
@@ -57,7 +62,7 @@ function buildTable(data) {
                         <td>${data[i].Tramo}</td>
                         <td>${data[i].Producto}</td>
                         <td>${data[i].Detalle}</td>
-                        <td>${data[i].Cantidad}</td>
+                        <td>${data[i].Cantidad} ${data[i].Unidad}</td>
                         <td>${data[i].PrecioSinImpuesto}</td>
                         <td>${data[i].PrecioConImpuesto}</td>
                     </tr>`;
