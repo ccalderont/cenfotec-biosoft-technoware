@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en linea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/misCompras.css">
+</head>
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+                
+            </nav>
+        </div>
+       
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+        <section id="filter-section">
+            <form action="" id="filter-form">
+                <h2>Filtros</h2>
+                <section id="filter-form-info">
+                    <section>
+                        <label for="date-filter-from">Desde:</label>
+                        <label for="date-filter-to">Hasta:</label>
+                    </section>
+                    <section>
+                        <input type="date" id="date-filter-from">
+                        <input type="date" id="date-filter-to">
+                    </section>
+                </section>
+                <section id="filter-buttons">
+                    <button type="submit">Filtrar</button>
+                    <i class="fa-solid fa-eraser fa-xl"></i>
+                </section>
+            </form>
+        </section>
+        <section id="table-section">
+            <section id="header-section">
+                <h2>Mis compras</h2>
+                <p id="total-price">Total: ₡1.000.000</p>
+            </section>
+            <table id="main-table">
+                <thead>
+                    <th class="first-column">Fecha</th>
+                    <th class="second-column">Detalle</th>
+                    <th class="third-column">Precio Total</th>
+                </thead>
+                <tbody id="purchases-tbody">
+                    
+                </tbody>
+            </table>
+        </section>
+        <section id="modal" class="" onclick="closeModal(event)">
+            <section id="modal-content">
+                <section>
+                    <img id="modal-product-image" class="product-img">
+                </section>
+                <section id="modal-info">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-store"></p>
+                    <section class="modal-pending-evaluation">
+                        <section id="evaluation-section">
+                            <p>Calificación:</p>
+                            <section id="stars-select">
+                                <span id="star-1"
+                                    class="star star-selected"
+                                    onmouseover="overStar(1)" 
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(1)"></span>
+                                <span id="star-2"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(2)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(2)"></span>
+                                <span id="star-3"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(3)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(3)"></span>
+                                <span id="star-4"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(4)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(4)"></span>
+                                <span id="star-5"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(5)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(5)"></span>
+                            </section>
+                        </section>
+                        <section id="comment-section">
+                            <p>Comentario:</p>
+                            <textarea id="review-comment" rows="5" cols="30"></textarea>
+                        </section>
+                        <section id="submit-comment-section">
+                            <span id="add-review-button" onclick="addReview()">Agregar reseña</span>
+                        </section>
+                    </section>
+                    <section class="modal-submitted-evaluation">
+                        <section id="submitted-evaluation-section">
+                            <p>Calificación: 
+                                <span id="stars-submitted"></span>
+                            </p>
+                        </section>
+                        
+                        <p id="review-comment-submitted"></p>
+                        <span id="delete-review-button" onclick="deleteReview()">Eliminar reseña</span>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>Seguinos en</p>
+        <i class="fa-brands fa-facebook fa-xl"></i>
+        <i class="fa-brands fa-square-instagram fa-xl"></i>
+    </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+<script src="../js/misCompras.js"></script>
+</html>
