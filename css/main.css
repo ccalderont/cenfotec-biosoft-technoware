@@ -84,10 +84,6 @@ a{
     color: #fa7d35;
 }
 
-::placeholder{
-    color: #818181;
-}
-
 header li{
     position: relative;
 }
