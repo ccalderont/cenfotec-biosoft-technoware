@@ -49,7 +49,7 @@
         </section>
         <section id="table-section">
             <section id="header-section">
-                <h2>Mis compras</h2>
+                <h2>Mis ventas</h2>
                 <p id="total-brute-price">Total neto: ₡1.000.000</p>
                 <p id="total-net-with-my-taxes">Total con mis impuestos: ₡1.000.000</p>
                 <p id="total-net-with-admin-taxes">Total con impuestos de admin: ₡1.000.000</p>
@@ -63,12 +63,32 @@
                     <th>Precio bruto</th>
                     <th>Precio con mis impuestos</th>
                     <th>Precio con impuestos de admin</th>
+                    <th>Reseña</th>
                 </thead>
                 <tbody id="sells-tbody">
                     
                     
                 </tbody>
             </table>
+        </section>
+        <section id="modal" class="" onclick="closeModal(event)">
+            <section id="modal-content">
+                <section>
+                    <img id="modal-product-image" class="product-img">
+                </section>
+                <section id="modal-info">
+                    <h2 id="modal-product-name"></h2>
+                    <section class="modal-submitted-evaluation">
+                        <section id="submitted-evaluation-section">
+                            <p>Calificación: 
+                                <span id="stars-submitted"></span>
+                            </p>
+                        </section>
+                        
+                        <p id="review-comment-submitted"></p>
+                    </section>
+                </section>
+            </section>
         </section>
     </main>
     <footer>

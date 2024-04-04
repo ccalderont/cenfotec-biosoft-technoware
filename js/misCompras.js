@@ -82,15 +82,29 @@ function createRow(purchase){
                                 <td>${product.quantity} ${product.unit}</td>
                                 <td>₡${product.net_price}</td>
                                 <td>₡${product.brute_price}</td>
-                                <td class="centered-td"
+                                ${(product.review) ?
+                                    `<td class="centered-td review-filled"
                                     data-purchaseid="${purchase.id}"
-                                    data-productname="${product.name}"
                                     data-productid="${product.id}"
+                                    data-productname="${product.name}"
                                     data-store="${product.store}"
-                                    data 
+                                    data-reviewid="${product.review.id}"
+                                    data-stars="${product.review.stars}"
+                                    data-comment="${product.review.comment}"
                                     onclick=showModal(this)>
                                         <i class="fa-solid fa-list-check"></i>
-                                </td>
+                                    </td>`
+                                : 
+                                    `<td class="centered-td"
+                                        data-purchaseid="${purchase.id}"
+                                        data-productname="${product.name}"
+                                        data-productid="${product.id}"
+                                        data-store="${product.store}"
+                                        onclick=showModal(this)>
+                                            <i class="fa-solid fa-list"></i>
+                                    </td>`
+                                }
+                                
                             </tr>
                         `).join('')}
                     </tbody>
@@ -160,14 +174,84 @@ function hideDetails(parentCell){
 }
 
 /**
- * Shows the modal to add the product to the cart
+ * Prepares and shows the modal for the review (pending or submitted)
+ * @param {HTMLElement} target - Cell clicked with the information to load in the modal
  */
 
 function showModal(target) {
-    document.getElementById('modal-product-name').innerHTML = target.getAttribute('data-productname');
-    document.getElementById('modal-product-store').innerHTML = "<strong>Tramo:</strong> " + target.getAttribute('data-store');
+    loadPendingReviewModal(target);
+    
+    if(isReviewSubmitted(target)){
+        loadSubmittedReviewModal(target);
+    }
+    
+    displayModalInView();
+    
+}
+
+/**
+ * Displays the modal in the view
+ */
+function displayModalInView(){
     let modal = document.getElementById('modal');
     modal.style.display = 'block';
+}
+
+/**
+ * Loads the elements for a submitted review in the modal
+ * @param {HTMLElement} target - Cell clicked with the information to load in the modal
+ */
+function loadSubmittedReviewModal(target){
+    document.getElementsByClassName('modal-pending-evaluation')[0].classList.add('hidden-element');
+    document.getElementsByClassName('modal-submitted-evaluation')[0].classList.remove('hidden-element');
+    let stars = target.getAttribute('data-stars');
+    const star = document.getElementById(`stars-submitted`);
+    star.style.color = 'gold';
+    star.innerText = '';
+    for(let i = 1; i <= stars; i++){
+        star.innerText += '★';
+    }
+    document.getElementById('delete-review-button').dataset.reviewid = target.getAttribute('data-reviewid');
+    document.getElementById('review-comment-submitted').innerText = target.getAttribute('data-comment');
+}
+
+/**
+ * Confirms if the review is submitted or not
+ * @param {HTMLElement} target 
+ * @returns {boolean} - True if the review is submitted, false otherwise
+ */
+function isReviewSubmitted(target){
+    return target.classList.contains('review-filled');
+}
+
+/**
+ * Loads the elements for a pending review in the modal
+ * @param {HTMLElement} target - Cell clicked with the information to load in the modal
+ */
+function loadPendingReviewModal(target){
+    document.getElementsByClassName('modal-pending-evaluation')[0].classList.remove('hidden-element');
+    document.getElementsByClassName('modal-submitted-evaluation')[0].classList.add('hidden-element');
+    document.getElementById('modal-product-name').innerHTML = target.getAttribute('data-productname');
+    document.getElementById('modal-product-store').innerHTML = "<strong>Tramo:</strong> " + target.getAttribute('data-store');
+}
+
+/**
+ * Adds the review to the product
+ */
+function addReview(){
+    const stars = document.getElementsByClassName('star-selected').length;
+    const comment = document.getElementById('review-comment').value;
+    alert('Reseña agregada con éxito');
+    window.location.reload();
+}
+
+/**
+ * Deletes the review of the product
+ * @param {HTMLElement} target - Delete button with the id of the review to delete
+ */
+function deleteReview(target){
+    alert('Reseña eliminada con éxito');
+    window.location.reload();
 }
 
 /**
@@ -183,16 +267,25 @@ function closeModal(event){
     
 }
 
+/**
+ * Resets the review form to its default values
+ */
 function resetReviewForm(){
     resetReviewComment();
     resetAllStars();
 }
 
+/**
+ * Resets the review comment from the form to its default value
+ */
 function resetReviewComment(){
     const reviewComment = document.getElementById('review-comment');
     reviewComment.value = '';
 }
 
+/**
+ * Resets the stars from the form to their default value
+ */
 function resetAllStars(){
     for (let i = 2; i <= 5; i++){
         const star = document.getElementById(`star-${i}`);
@@ -263,7 +356,12 @@ const purchases= [
                 quantity: 2,
                 unit: 'kg',
                 net_price: 50,
-                brute_price: 45
+                brute_price: 45,
+                review: {
+                    id: 1,
+                    stars: 4,
+                    comment: 'Muy buenas manzanas'
+                }
             },
             {
                 id: 2,

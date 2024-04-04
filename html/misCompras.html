@@ -71,42 +71,54 @@
                 <section id="modal-info">
                     <h2 id="modal-product-name"></h2>
                     <p id="modal-product-store"></p>
-                    <section id="evaluation-section">
-                        <p>Calificación:</p>
-                        <section id="stars-select">
-                            <span id="star-1"
-                                class="star star-selected"
-                                onmouseover="overStar(1)" 
-                                onmouseout="resetStars()"
-                                onclick="selectStar(1)"></span>
-                            <span id="star-2"
-                                class="star star-unselected"
-                                onmouseover="overStar(2)"
-                                onmouseout="resetStars()"
-                                onclick="selectStar(2)"></span>
-                            <span id="star-3"
-                                class="star star-unselected"
-                                onmouseover="overStar(3)"
-                                onmouseout="resetStars()"
-                                onclick="selectStar(3)"></span>
-                            <span id="star-4"
-                                class="star star-unselected"
-                                onmouseover="overStar(4)"
-                                onmouseout="resetStars()"
-                                onclick="selectStar(4)"></span>
-                            <span id="star-5"
-                                class="star star-unselected"
-                                onmouseover="overStar(5)"
-                                onmouseout="resetStars()"
-                                onclick="selectStar(5)"></span>
+                    <section class="modal-pending-evaluation">
+                        <section id="evaluation-section">
+                            <p>Calificación:</p>
+                            <section id="stars-select">
+                                <span id="star-1"
+                                    class="star star-selected"
+                                    onmouseover="overStar(1)" 
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(1)"></span>
+                                <span id="star-2"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(2)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(2)"></span>
+                                <span id="star-3"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(3)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(3)"></span>
+                                <span id="star-4"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(4)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(4)"></span>
+                                <span id="star-5"
+                                    class="star star-unselected"
+                                    onmouseover="overStar(5)"
+                                    onmouseout="resetStars()"
+                                    onclick="selectStar(5)"></span>
+                            </section>
+                        </section>
+                        <section id="comment-section">
+                            <p>Comentario:</p>
+                            <textarea id="review-comment" rows="5" cols="30"></textarea>
+                        </section>
+                        <section id="submit-comment-section">
+                            <span id="add-review-button" onclick="addReview()">Agregar reseña</span>
                         </section>
                     </section>
-                    <section id="comment-section">
-                        <p>Comentario:</p>
-                        <textarea id="review-comment" rows="5" cols="30"></textarea>
-                    </section>
-                    <section id="submit-comment-section">
-                        <button>Enviar</button>
+                    <section class="modal-submitted-evaluation">
+                        <section id="submitted-evaluation-section">
+                            <p>Calificación: 
+                                <span id="stars-submitted"></span>
+                            </p>
+                        </section>
+                        
+                        <p id="review-comment-submitted"></p>
+                        <span id="delete-review-button" onclick="deleteReview()">Eliminar reseña</span>
                     </section>
                 </section>
             </section>

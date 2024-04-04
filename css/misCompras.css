@@ -1,3 +1,5 @@
+
+
 main{
     display: flex;
     flex-direction: row;
@@ -164,6 +166,41 @@ td{
     margin-left: 0.5rem;
 }
 
+
+
+#submitted-evaluation-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+
+#delete-review-button{
+    background-color: #FF204E;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+
+
+#delete-review-button:hover{
+    background-color: #A0153E;
+}
+
+#add-review-button{
+    background-color: #005b4d;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#add-review-button:hover{
+    background-color: #00453a;
+}
+
 .first-column{
     width: 10%;
 }
@@ -206,7 +243,7 @@ td{
 
 .details-button{
     width: 100%;
-    background-color: #fa7d35;;
+    background-color: #fa7d35;
     color: white;
     border: 0;
     margin-top: 0.1rem;
@@ -215,6 +252,10 @@ td{
 
 .details-button:hover{
     color: #005b4d;
+}
+
+.star{
+    color: gold;
 }
 
 .star-selected{
@@ -229,3 +270,26 @@ td{
     content: "☆";
 }
 
+.review-filled{
+    color: #fa7d35;
+}
+
+.modal-submitted-evaluation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.modal-pending-evaluation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.hidden-element{
+    display: none;
+}

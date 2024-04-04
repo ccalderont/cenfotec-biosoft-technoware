@@ -14,7 +14,7 @@ function loadPage(){
 function setUpTotalNetPriceWithAdminTaxes(){
     const totalPrice = document.getElementById('total-net-with-admin-taxes');
     const total = getTotalNetExpenseWithAdminTaxes();
-    totalPrice.innerText = `Net total with admin taxes: ₡${total}`
+    totalPrice.innerText = `Total con impuestos de admin: ₡${total}`
 }
 
 /**
@@ -31,7 +31,7 @@ function getTotalNetExpenseWithAdminTaxes(){
 function setUpTotalNetPriceWithVendorTaxes(){
     const totalPrice = document.getElementById('total-net-with-my-taxes');
     const total = getTotalNetExpenseWithVendorTaxes();
-    totalPrice.innerText = `Net total with my taxes: ₡${total}`
+    totalPrice.innerText = `Total con mis impuestos: ₡${total}`
 }
 
 /**
@@ -48,7 +48,7 @@ function getTotalNetExpenseWithVendorTaxes(){
 function setUpTotalBrutePrice(){
     const totalPrice = document.getElementById('total-brute-price');
     const total = getTotalBruteExpense();
-    totalPrice.innerText = `Brute total: ₡${total}`;
+    totalPrice.innerText = `Total bruto: ₡${total}`;
 }
 
 /**
@@ -86,66 +86,72 @@ function createRow(sell){
             <td>₡${sell.brute_price}</td>
             <td>₡${sell.net_price_my_tax}</td>
             <td>₡${sell.total_with_admin_taxes}</td>
+            ${(sell.review) ?
+                `<td class="centered-td"
+                data-purchaseid="${sell.id}"
+                data-productname="${sell.product}"
+                data-reviewid="${sell.review.id}"
+                data-stars="${sell.review.stars}"
+                data-comment="${sell.review.comment}"
+                onclick=showModal(this)>
+                    <i class="fa-solid fa-list-check"></i>
+                </td>`
+            : 
+                `<td></td>`
+            }
         </tr>
     `
     return row;
 }
 
 /**
- * Hides or shows the details table of each sell depending on the button clicked
- * @param {HTMLElementEventMap} target - Button clicked on the table
+ * Closes the modal to add to the cart
  */
-function showHideDetails(target){
-    const centerCell = getCenterCell(target);
-    if(buttonIsShowDetails(target)) 
-        showDetails(centerCell);
-    else
-        hideDetails(centerCell);
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+    
 }
 
 /**
- * Gets the parent cell of the button clicked
- * @param {HTMLElementEventMap} button - Button clicked in the cell
- * @returns {HTMLElement} - Parent cell that contains the clicked button
+ * Prepares and shows the modal for the review selected
+ * @param {HTMLElement} target - Cell clicked with the information to load in the modal
  */
-function getCenterCell(button){
-    const sellId = button.dataset.sellid;
-    const centerCellId = `center-cell-${sellId}`;
-    return document.getElementById(centerCellId);
+
+function showModal(target) {
+    loadSubmittedReviewModal(target);    
+    displayModalInView();
+    
 }
 
 /**
- * Returns a boolean informing if the button clicked is for showing the details table
- * @param {HTMLElement} button - Button clicked, it can be to show or hide details
- * @returns 
+ * Displays the modal in the view
  */
-function buttonIsShowDetails(button){
-    return button.classList.contains('show-details-button');
+function displayModalInView(){
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
 }
 
 /**
- * Shows the details table for a sell
- * @param {HTMLElement} parentCell - Parent cell containing the details to show
+ * Loads the elements for a submitted review in the modal
+ * @param {HTMLElement} target - Cell clicked with the information to load in the modal
  */
-function showDetails(parentCell){
-    const generalSection = parentCell.getElementsByClassName('general-section')[0];
-    const detailsSection = parentCell.getElementsByClassName('details-section')[0];
-
-    generalSection.classList.add('hidden-element');
-    detailsSection.classList.remove('hidden-element');
+function loadSubmittedReviewModal(target){
+    let stars = target.getAttribute('data-stars');
+    const star = document.getElementById(`stars-submitted`);
+    star.style.color = 'gold';
+    star.innerText = '';
+    for(let i = 1; i <= stars; i++){
+        star.innerText += '★';
+    }
+    document.getElementById('review-comment-submitted').innerText = target.getAttribute('data-comment');
+    document.getElementById('modal-product-name').innerHTML = target.getAttribute('data-productname');
 }
 
-/**
- * Hides the details table for a sell
- * @param {HTMLElement} parentCell - Parent cell containing the details to hide
- */
-function hideDetails(parentCell){
-    const generalSection = parentCell.getElementsByClassName('general-section')[0];
-    const detailsSection = parentCell.getElementsByClassName('details-section')[0];
 
-    generalSection.classList.remove('hidden-element');
-    detailsSection.classList.add('hidden-element');   
-}
 
 const sells= [
     {
@@ -157,7 +163,12 @@ const sells= [
         id_client: 'Jose Fernandez',
         brute_price: 1200,
         net_price_my_tax: 1250,
-        total_with_admin_taxes: 1320
+        total_with_admin_taxes: 1320,
+        review: {
+            id: 1,
+            stars: 5,
+            comment: 'Excelente producto, muy fresco y delicioso'
+        }
     },
     {
         id: 2,
