@@ -82,7 +82,7 @@ function loadAdminMenu(){
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'userProfile.html'
+            href: 'UserProfile.html'
         },
         {
             text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
@@ -130,7 +130,7 @@ function loadSellerMenu(){
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'userProfile.html'
+            href: 'UserProfile.html'
         },
         {
             text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
@@ -173,7 +173,7 @@ function loadClientMenu(){
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'userProfile.html'
+            href: 'UserProfile.html'
         },
         
         {

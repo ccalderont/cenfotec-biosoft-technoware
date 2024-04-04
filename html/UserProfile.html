@@ -36,7 +36,7 @@
                     <button id="btn-change-password">Cambiar contraseña</button>
                 </div>
                 <!--tramo-name-->
-                <div>
+                <div class="tramo-name-section">
                     <h2 id="tramo-name"></h2>
                     <h3 id="user-name"></h3>
                     <p id="identification-number"></p>
@@ -60,6 +60,13 @@
                         </div>
                         <p class="helper" id="last-name-helper"></p>
                     </div>
+                    <div id="div-input-tramo-name">
+                        <div class="input">
+                            <label for="tramo-name">Nombre del tramo:</label>
+                            <input class="edit-input" type="text" id="input-tramo-name">
+                        </div>
+                        <p class="helper" id="input-tramo-name-helper"></p>
+                    </div>
                     <div>
                         <div class="input">
                             <label for="phone-number">Número de teléfono:</label>
@@ -73,6 +80,13 @@
                             <input class="edit-input" type="email" id="email">  
                         </div>
                         <p class="helper" id="email-helper"></p>
+                    </div>
+                    <div id="input-address">
+                        <div class="input">
+                            <label for="address">Dirección:</label>
+                            <input class="edit-input" type="text" id="address">
+                        </div>
+                        <p class="helper" id="address-helper"></p>
                     </div>
                     <div id="edit-button">
                         <button>Guardar</button>    
@@ -89,5 +103,6 @@
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>
-<script src="../js/AdminProfile.js"></script>
+<script src="../js/UserProfile.js"></script>
+
 </html>
