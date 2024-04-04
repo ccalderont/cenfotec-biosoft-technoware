@@ -1,0 +1,364 @@
+@font-face{
+    font-family: "Poppins-Bold";
+    src: url(/resources/fonts/Poppins-Bold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Extrabold";
+    src: url(/resources/fonts/Poppins-ExtraBold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(/resources/fonts/Poppins-Medium.ttf);
+}
+
+
+
+/*body*/
+body{
+    margin: 0;
+}
+
+/*main*/
+main h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+}
+
+main h3{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 33px;
+}
+
+/*header*/
+header{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px 2rem 15px 2rem;
+}
+
+/**/
+header li{
+    display: inline;
+}
+
+#logo-cnp{
+    height: 80px;
+    width: 125px;
+}
+
+.logo-and-nav{
+    display: flex;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    padding: 0 15px;  
+    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    color: #005b4d;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#current-page{
+    color: #fa7d35;
+}
+
+nav input{
+    outline: none;
+    box-sizing: border-box;
+    height: 30px;
+    width: 0;
+    padding: 0 15px;
+    color: #000;
+    border-radius: 50px;
+    font-size: 15px;
+    border: 1px solid #fa7d35;
+    transition: all .7s ease;
+}
+
+::placeholder{
+    color: #818181;
+    font-family: "Poppins-Medium";
+}
+
+header li{
+    position: relative;
+}
+.search-bar-and-second-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.extra-menu-options{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+}
+
+.extra-menu-options li{
+    background-color: #005b4d;
+    color: white;
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+
+
+.extra-menu-options a{
+    color: white;
+}
+
+header a:hover{
+    color: #fa7d35;
+}
+
+header a{
+    cursor: pointer;
+}
+
+
+.extra-menu-options-hidden{
+    display: none;
+}
+
+/*container search bar*/
+/*adapted from https://www.youtube.com/watch?v=bBZVb_r_enY&t=11s*/
+.container-search-bar{
+    transform:  translate(0, 0);
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container-search-bar:hover input{
+    width: 300px;
+}
+
+.container-search-bar:hover i{
+    transform: rotate(-360deg);
+}
+
+.btn-search{
+    position: absolute;
+    right: 0;
+    top: 2;
+    width: 50px;
+    height: 50px;
+    background: #005b4d;
+    line-height: -20px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn-search i{
+    font-size: 25px;
+    color: #fa7d35;
+    line-height: 55px;
+    transition: all .7s ease;
+}
+
+
+/*footer*/
+footer{
+    background-color: white;
+    display: flex;
+    justify-content: right;
+    font-family: "Poppins-Bold";
+    padding-right: 50px;
+    align-items: center;
+    gap: 2rem;
+    letter-spacing: 1;
+    text-transform: uppercase; 
+    color: #005b4d;
+}
+
+footer i{
+    color: #005b4d;
+}
+
+footer i:hover{
+    color: #fa7d35;
+}
+
+/*responsiveness*/
+@media(max-width: 991px) { 
+    header{
+        gap: 5rem;
+    }
+    
+    header li{
+        display: list-item;
+    }
+    
+    header li::marker{
+        color: #fa7d35;
+    }
+
+    .container-search-bar:hover input{
+        width: 210px;
+    }
+    .container{
+        flex-direction: column;
+        text-align: center;
+        gap: 0;
+    }
+    
+    .subcontainer-left{
+        width: auto;
+        padding: 0 70px 0 70px;
+    }
+
+    footer{
+        justify-content: center;
+    }
+
+}
+
+
+.signin-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins-Medium"; 
+    color: #005b4d;
+  }
+
+  .registry-container { 
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    gap: 1rem;
+    width: 40%;
+    padding: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+  }
+  
+  .input-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    font-family: "Poppins-Medium"; 
+    color: #005b4d;
+
+  }
+  
+
+  .checkbox-form {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .line-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #id-type {
+    font-family: "Poppins-Medium"; 
+    color: #818181;
+  }
+
+  .signin-form button { 
+    display: flex;
+    justify-content:center;
+    align-self: self-end;
+    width: 25%;
+    font-family: "Poppins-Medium"; 
+  }
+
+
+  .error-message {
+    font-family: "Poppins-Medium"; 
+    color: #bb1414;
+  }
+
+  #form-background {
+    background-image: url(/resources/images/home/back.svg);
+  }
+
+  #form-background h2 {
+    color: white;
+    letter-spacing: 0.5;
+  }
+
+  /*tooltip style
+
+  /* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width:90%;
+    height:auto ;
+    background-color: #818181 ;
+    color: #fafafa;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  /*Modal config*/
+
+  #modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+
+#modal-content {
+    font-family: "Poppins-Medium";
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; 
+    text-align: center;
+    border-radius: 6px;
+}
+
+#modal-info{
+    margin-bottom: 1rem;
+}

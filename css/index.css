@@ -53,6 +53,7 @@
 
 .container-left-section{
     width: 1000px;
+    padding: 1rem;
 
 }
 
@@ -95,4 +96,3 @@
 #category-button{
     background-color: #005b4d;
 }
-

@@ -1,0 +1,156 @@
+/*carrousel*/
+/*adapted from https://www.youtube.com/watch?v=XE0uQthmIuw*/
+.slider-box{
+    width: auto;
+    height: auto;
+    margin: 10px auto 0;
+    overflow: hidden;
+}
+
+.slider-box ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.slider-box li{
+    width: 400%;
+    list-style: none;
+}
+
+.slider-box img{
+    width: 100%;
+    height: 500px;
+}
+
+@keyframes slide {
+    0% { margin-left: 0;}
+    20% { margin-left: 0;}
+
+    25% { margin-left: -100%;}
+    45% { margin-left: -100%;}
+
+    50% { margin-left: -200%;}
+    70% { margin-left: -200%;}
+
+    75% { margin-left: -300%;}
+    100% { margin-left: -300%;}
+}
+/*after carrousel*/
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    padding: 0 0 60px 0;
+}
+
+.container-search-bar:hover input{
+    width: 300px;
+}
+
+.container-left-section{
+    width: 1000px;
+
+}
+
+.subcontainer-left{
+    width: 72%;
+}
+
+.subcontainer-left p{
+    font-family: "Poppins-Medium";
+    font-size: 24.8px;
+    color: #818181;
+    text-align: justify;
+}
+
+.container-left-section h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+}
+
+#logo-cnp{
+    height: 80px;
+    width: 125px;
+}
+
+.logo-and-nav{
+    display: flex;
+    align-items: center;
+}
+
+
+#logo-technoware-container{
+    text-align: center;
+}
+
+
+#logo-technoware{
+    height: 430px;
+    width: 420px;
+    border-radius: 10px;
+    min-height: 430px;
+    min-width: 420px;
+    margin-bottom: 40px;
+
+}
+
+#meet-the-team img{
+    display: flex;
+    padding: 15px 2rem 15px 2rem;
+    height: 70%;
+    width: 70%;
+}
+
+#meet-the-team h3{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 30px;
+    padding: 0 15px; 
+    margin-bottom: 0px;
+}
+
+#meet-the-team p{
+    font-family: "Poppins-Medium";
+    font-size: 24.8px ;
+    color: #818181;
+    text-align: center; 
+}
+
+#img-meet-the-team {
+    display: flex;
+    justify-content: center;
+}
+
+#about-us-tech {
+    padding: 0 15px;  
+}
+
+#about-us-tech h1 {
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+    padding: 0 15px;  
+}
+
+#about-us-tech-container h2{
+    font-family: "Poppins-Bold";
+    color: #818181;
+    font-size: 23px;
+    padding: 0 15px;  
+}
+
+#about-us-tech-container p{
+    padding: 0 15px;  
+    font-family: "Poppins-Regular";
+    color: #818181;
+    letter-spacing: 0;
+    font-size: 24.8px;
+    text-align: justify;
+}
