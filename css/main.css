@@ -13,6 +13,11 @@
     src: url(/resources/fonts/Poppins-Medium.ttf);
 }
 
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(/resources/fonts/Poppins-Regular.ttf);
+}
+
 
 
 /*body*/
@@ -77,19 +82,6 @@ a{
 
 #current-page{
     color: #fa7d35;
-}
-
-.container-search-bar input{
-    outline: none;
-    box-sizing: border-box;
-    height: 30px;
-    width: 0;
-    padding: 0 15px;
-    color: #000;
-    border-radius: 50px;
-    font-size: 15px;
-    border: 1px solid #fa7d35;
-    transition: all .7s ease;
 }
 
 ::placeholder{
