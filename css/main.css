@@ -1,4 +1,4 @@
-@font-face{
+@font-face {
     font-family: "Poppins-Bold";
     src: url(/resources/fonts/Poppins-Bold.ttf) format(truetype);
 }
@@ -21,7 +21,7 @@
 
 
 /*body*/
-body{
+body {
     margin: 0;
     position: relative;
     min-height: 100vh;
@@ -32,21 +32,21 @@ main{
 }
 
 /*main*/
-main h1{
+main h1 {
     font-family: "Poppins-Bold";
     font-size: 93;
     color: #005b4d;
     line-height: 1;
 }
 
-main h3{
+main h3 {
     font-family: "Poppins-Extrabold";
     color: #fa7d35;
     font-size: 33px;
 }
 
 /*header*/
-header{
+header {
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -56,38 +56,36 @@ header{
 }
 
 /**/
-header li{
+header li {
     display: inline;
 }
 
-#logo-cnp{
+#logo-cnp {
     height: 80px;
     width: 125px;
 }
 
-.logo-and-nav{
+.logo-and-nav {
     display: flex;
     align-items: center;
 }
 
-a{
+a {
     text-decoration: none;
-    padding: 0 15px;  
-    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    padding: 0 15px;
+    font-family: "Poppins-Bold";
+    /*¿tipografia correcta?*/
     color: #005b4d;
     letter-spacing: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-#current-page{
+#current-page {
     color: #fa7d35;
 }
 
-header li{
-    position: relative;
-}
-.search-bar-and-second-nav{
+.search-bar-and-second-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -95,7 +93,7 @@ header li{
     gap: 1rem;
 }
 
-.extra-menu-options{
+.extra-menu-options {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
@@ -104,7 +102,7 @@ header li{
     left: 0;
 }
 
-.extra-menu-options li{
+.extra-menu-options li {
     background-color: #005b4d;
     color: white;
     padding: 1rem;
@@ -113,41 +111,41 @@ header li{
 
 
 
-.extra-menu-options a{
+.extra-menu-options a {
     color: white;
 }
 
-header a:hover{
+header a:hover {
     color: #fa7d35;
 }
 
-header a{
+header a {
     cursor: pointer;
 }
 
 
-.extra-menu-options-hidden{
+.extra-menu-options-hidden {
     display: none;
 }
 
 /*container search bar*/
 /*adapted from https://www.youtube.com/watch?v=bBZVb_r_enY&t=11s*/
-.container-search-bar{
-    transform:  translate(0, 0);
+.container-search-bar {
+    transform: translate(0, 0);
     padding: 10px;
     display: flex;
     justify-content: flex-end;
 }
 
-.container-search-bar:hover input{
+.container-search-bar:hover input {
     width: 300px;
 }
 
-.container-search-bar:hover i{
+.container-search-bar:hover i {
     transform: rotate(-360deg);
 }
 
-.btn-search{
+.btn-search {
     position: absolute;
     right: 0;
     top: 2;
@@ -161,7 +159,7 @@ header a{
     transition: .5s;
 }
 
-.btn-search i{
+.btn-search i {
     font-size: 25px;
     color: #fa7d35;
     line-height: 55px;
@@ -174,7 +172,7 @@ header a{
 
 
 /*footer*/
-footer{
+footer {
     background-color: white;
     display: flex;
     justify-content: right;
@@ -182,7 +180,7 @@ footer{
     align-items: center;
     gap: 2rem;
     letter-spacing: 1;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     color: #005b4d;
     position: absolute;
     bottom: 0;
@@ -191,11 +189,11 @@ footer{
     margin-bottom: 1rem;
 }
 
-footer i{
+footer i {
     color: #005b4d;
 }
 
-footer i:hover{
+footer i:hover {
     color: #fa7d35;
 }
 
@@ -204,34 +202,35 @@ footer i:hover{
 }
 
 /*responsiveness*/
-@media(max-width: 991px) { 
-    header{
+@media(max-width: 991px) {
+    header {
         gap: 5rem;
     }
-    
-    header li{
+
+    header li {
         display: list-item;
     }
-    
-    header li::marker{
+
+    header li::marker {
         color: #fa7d35;
     }
 
-    .container-search-bar:hover input{
+    .container-search-bar:hover input {
         width: 210px;
     }
-    .container{
+
+    .container {
         flex-direction: column;
         text-align: center;
         gap: 0;
     }
-    
-    .subcontainer-left{
+
+    .subcontainer-left {
         width: auto;
         padding: 0 70px 0 70px;
     }
 
-    footer{
+    footer {
         justify-content: center;
     }
 
