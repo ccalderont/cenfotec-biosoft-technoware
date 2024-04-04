@@ -31,6 +31,64 @@
     </header>
     <main>
         <!-- Aqui va el código -->
+        <div class="main-container">
+            <div class="filtros">
+                <form class="filter-form">
+                    <H2>Filtros</H2>
+                    <div class="filter-info">
+                        <div>
+                            <label for="product">Producto:</label>
+                            <input type="text" name="producto" id="producto" class="product-input">
+                        </div>
+                        <div>
+                            <label for="Tram">Tramo:</label>
+                            <input type="text" name="tramo" id="tramo" class="product-input">
+                        </div>
+                        <div>
+                            <label for="category">Categoria</label>
+                            <select name= "categoria" id="categoria" required>
+                                <option value="option1">Opción1</option>
+                                <option value="option2">opción2</option>
+                                <option value="option3">opción3</option>
+                            </select>
+                        </div>
+                        <div id="filter-button">
+                            <button type="submit">Filtrar</button>
+                        </div>
+    
+                    </div>
+                </form>        
+            </div>
+            <div class="tabla">
+                <h2>Reporte de productos</h2>   
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Tramo</th>
+                            <th>Producto</th>
+                            <th>Detalle</th>
+                            <th>Cantidad</th>
+                            <th>Precio sin impuestos</th>
+                            <th> Precio con impuestos</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody id="tablereport">
+    
+                    </tbody>
+                </table>
+ 
+            </div>
+        </div>
+            <div class="container-filter">
+                
+            </div>
+            <div class="container-table">
+                
+            </div>
+        
+        
     </main>
     <footer>
         <p>Seguinos en</p>

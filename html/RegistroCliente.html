@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en linea</title>
+    <script defer src="/js/registroCliente.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/RegistroUsuarios.css">
+</head>
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+                
+            </nav>
+        </div>
+       
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+      <section id="form-background">
+        <form onSubmit={handleSubmit(onSubmit)} noValidate id= "signin-form" class="signin-form">
+            <h2>Creá una cuenta</h2>
+
+            <div class="registry-container">
+
+                <div class="input-form">
+                    <label for="user-picture">Agregar Foto</label>
+                    <input
+                      name="user-picture"
+                      id="user-picture"
+                      type="file"
+                    />
+                  </div>
+                  
+                  <div class="input-form">
+                    <label for="id-type">Tipo de identificación</label>
+                    <select name="id-type" id="id-type">
+                        <option value="cr-id">Cédula</option>
+                        <option value="passport">Pasaporte</option>
+                        <option value="dimex">DIMEX</option>
+                    </select>
+                  </div>
+      
+                  <div class="input-form">
+                    <label for="id-number">Número de identificación*</label>
+                    <input
+                      name="id-number"
+                      id="id-number"
+                      type="text"
+                      placeholder="000000000"
+                      required
+                    />
+                  </div>
+
+            <div class="input-form">
+              <label for="first-name">Nombre*</label>
+              <input
+                name="first-name"
+                id="first-name"
+                type="text"
+                placeholder="Juan"
+                required
+              />
+            </div>
+
+            <div class="input-form">
+                <label for="last-name1">Apellido(s)*</label>
+                <input
+                  name="last-name1"
+                  id="last-name1"
+                  type="text"
+                  placeholder="Perez"
+                  required
+                />
+              </div>
+
+              <div class="input-form">
+                <label for="phone-number">Número de teléfono*</label>
+                <input
+                  name="phone-number"
+                  id="phone-number"
+                  type="text"
+                  placeholder="88776655"
+                  required
+                />
+              </div>
+
+                <div class="input-form">
+                  <label for="e-mail">Correo electrónico*</label>
+                  <input
+                    name="e-mail"
+                    id="e-mail"
+                    type="email"
+                    placeholder="juan.perez@laferia.com"
+                    required
+                  />
+                </div>
+                
+                    <div class="input-form">
+                      <label for="password-main">Contraseña*</label>
+                      <input
+                        title="password-title"
+                        name="password-main"
+                        id="password-main"
+                        type="password"
+                        placeholder="********"
+                        required
+                      />                 
+                    </div>
+
+                    <div class="tooltip"> Criterio para la creación de contraseña
+                      <span class="tooltiptext">
+                        Debe contener:<br>
+                        <li>Un mínimo de 8 caracteres</li>
+                        <li>Al menos un carácter especial</li>
+                        <li>Al menos un número</li>
+                        <li style=color:#191919>Importante: No debe contener vocales</li>
+                      </span>
+                    </div>
+
+        
+                    <div class="input-form">
+                      <label for="password-confirmation">Confirmar Contraseña*</label>
+                      <input
+                      name="password-confirmation"
+                      id="password-confirmation"
+                      type="password"
+                      placeholder="********"
+                      required
+                      />
+                    </div>
+
+
+                  
+                    <div class="checkbox-form">
+                      <input
+                        name="terms-conditions"
+                        id="terms-conditions"
+                        type="checkbox"
+                        required
+                      />
+                      <label for="terms-conditions">Acepto términos y condiciones*</label>
+                    </div>
+                
+        <button id="test">Crear cuenta</button>
+
+          <section id="modal" class="" onclick="closeModal(event)">
+                     <section id="modal-content">
+                             <p>La cuenta ha sido creada exitosamente</p>
+                     </section>
+            </section>
+    </main>
+    <footer>
+        <p>Seguinos en</p>
+        <i class="fa-brands fa-facebook fa-xl"></i>
+        <i class="fa-brands fa-square-instagram fa-xl"></i>
+    </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+</html>

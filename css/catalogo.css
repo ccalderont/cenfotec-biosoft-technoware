@@ -1,0 +1,214 @@
+#main-catalogue{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-right: 1rem;
+}
+
+#filter-and-catalogue-section{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+
+#filter-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 1rem;
+    min-width: 200px;
+}
+
+
+#catalogue-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    min-width: 1080px
+}
+
+
+
+#filter-form h2{
+    margin-top: 0;
+    
+}
+
+#filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    border: #000 1px solid;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+
+#filter-form-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#filter-form-info section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+
+#next-page{
+    margin-right: 5rem;
+}
+
+#previous-page{
+    margin-left: 5.5rem;
+}
+#filter-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+}
+
+#modal {
+    display: none; /* By default the modal is not displayed */
+    position: fixed; /* This will position the modal relative to the viewport */
+    z-index: 1000; /* This will make sure the modal is on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* This will make the modal take the full width of the viewport */
+    height: 100%; /* This will make the modal take the full height of the viewport */
+    overflow: auto; /* This will add scrollbars if the content is larger than the modal */
+    background-color: rgba(0,0,0,0.4); /* This will give the modal a semi-transparent gray background */
+}
+
+/* The actual modal content */
+#modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* This will center the modal vertically */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* This will make the modal content take 80% of the viewport's width */
+}
+
+#price-and-button-modal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+#modal-info{
+    margin-bottom: 1rem;
+}
+
+#cart-button-modal{
+    margin-right: 1.5rem;
+}
+
+
+main i:hover{
+    color:#005b4d;
+}
+
+.pagination-button{
+    position: fixed;
+    top: 45%;
+}
+
+
+.catalogue-item{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    white-space: wrap;
+    max-width: 315px;
+}
+
+.catalogue-item p{
+   word-wrap: break-word;
+   padding-bottom: 0;
+}
+
+.catalogue-item h2{
+    margin: 0;
+    padding: 0;
+}
+
+.image-divider{
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin: 0;
+}
+
+.product-img{
+    width: 100%;
+    height: 13rem;
+    object-fit: cover;
+}
+
+.catalogue-item-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.price-and-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.add-to-cart-catalogue{
+    margin-right: 1.5rem;
+}
+
+
+.store-and-rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 80px;
+}
+
+
+.hidden-element{
+    display: none;
+}

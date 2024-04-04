@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en linea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script defer src="/js/RegistroVendedor.js"></script>
+    <link rel="stylesheet" href="../css/RegistroUsuarios.css">
+</head>
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+                
+            </nav>
+        </div>
+       
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+      <section id="form-background">
+        <form onSubmit={handleSubmit(onSubmit)} noValidate id= "signin-form" class="signin-form">
+            <h2>Solicitud de registro de vendedor</h2>
+
+            <div class="registry-container">
+
+                <div class="input-form">
+                    <label for="user-picture"> Agregar Foto</label>
+                    <input
+                      name="user-picture"
+                      id="user-picture"
+                      type="file"
+                    />
+                  </div>
+                  
+                  <div class="input-form">
+                    <label for="id-type">Tipo de identificación</label>
+                    <select name="id-type" id="id-type">
+                        <option value="cr-id">Cédula</option>
+                        <option value="passport">Pasaporte</option>
+                        <option value="dimex">DIMEX</option>
+                    </select>
+                  </div>
+      
+                  <div class="input-form">
+                    <label for="id-number">Número de identificación*</label>
+                    <input
+                      name="id-number"
+                      id="id-number"
+                      type="text"
+                      placeholder="000000000"
+                      required
+                    />
+                  </div>
+
+
+            <div class="input-form">
+              <label for="first-name">Nombre*</label>
+              <input
+                name="first-name"
+                id="first-name"
+                type="text"
+                placeholder="Juan"
+                required
+              />
+            </div>
+
+            <div class="input-form">
+                <label for="last-name1">Apellido(s)*</label>
+                <input
+                  name="last-name1"
+                  id="last-name1"
+                  type="text"
+                  placeholder="Perez"
+                  required
+                />
+              </div>
+
+              <div class="input-form">
+                <label for="phone-number">Número de teléfono*</label>
+                <input
+                  name="phone-number"
+                  id="phone-number"
+                  type="text"
+                  placeholder="88776655"
+                  required
+                />
+              </div>
+
+                <div class="input-form">
+                  <label for="e-mail">Correo electrónico*</label>
+                  <input
+                    name="e-mail"
+                    id="e-mail"
+                    type="email"
+                    placeholder="juan.perez@laferia.com"
+                    required
+                  />
+                </div>
+
+                <div class="input-form">
+                  <label for="store-name">Nombre del Tramo*</label>
+                  <input
+                    name="store-name"
+                    id="store-name"
+                    type="text"
+                    placeholder="Tramo Las Rosas"
+                    required
+                  />
+                </div>
+
+                <div class="input-form">
+                  <label for="gov-permit">Permisos Municipales*</label>
+                  <input
+                    name="gov-permit"
+                    id="gov-permit"
+                    type="file"
+                    required
+                  />
+                </div>
+                
+                
+                    <div class="checkbox-form">
+                      <input
+                        name="terms-conditions"
+                        id="terms-conditions"
+                        type="checkbox"
+                        required
+                      />
+                      <label for="terms-conditions">Acepto términos y condiciones*</label>
+                    </div>
+                
+        <button id="test">Enviar Solicitud</button>
+
+        <section id="modal" class="" onclick="closeModal(event)">
+          <section id="modal-content">
+                  <p>La solicitud de registro de vendedor ha sido enviada exitosamente.<br>
+                  Si su solicitud es aprobada, recibirá un correo electrónico con instrucciones para ingresar a su cuenta.
+                  </p>
+          </section>
+        </section>
+
+    </main>
+    <footer>
+        <p>Seguinos en</p>
+        <i class="fa-brands fa-facebook fa-xl"></i>
+        <i class="fa-brands fa-square-instagram fa-xl"></i>
+    </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+<!-- <script src="../js/yourOwn.js"></script> -->
+</html>

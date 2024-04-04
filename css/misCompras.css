@@ -1,0 +1,295 @@
+
+
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    gap: 2rem;
+    margin-left: 1rem;
+    width: 80%;
+}
+
+h2{
+    margin-top: 0;
+}
+
+main i:hover{
+    color: #005b4d;
+}
+
+table{
+    
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #005b4d;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+td{
+    padding: 0.5rem;
+    border: 1px solid #000;
+}
+
+#filter-form h2{
+    margin-top: 0;
+    
+}
+
+#filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: #000 1px solid;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+
+#filter-form-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#filter-form-info section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+
+#table-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 5rem;
+    width: 80%;
+}
+
+#header-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+#main-table{
+    width: 100%;
+}
+
+
+#modal {
+    display: none; /* By default the modal is not displayed */
+    position: fixed; /* This will position the modal relative to the viewport */
+    z-index: 1000; /* This will make sure the modal is on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* This will make the modal take the full width of the viewport */
+    height: 100%; /* This will make the modal take the full height of the viewport */
+    overflow: auto; /* This will add scrollbars if the content is larger than the modal */
+    background-color: rgba(0,0,0,0.4); /* This will give the modal a semi-transparent gray background */
+}
+
+/* The actual modal content */
+#modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* This will center the modal vertically */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* This will make the modal content take 80% of the viewport's width */
+}
+
+
+#comment-section{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    
+}
+
+#evaluation-section{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+#modal-info p{
+    margin: 0;
+}
+
+#modal-info h2{
+    margin: 0;
+}
+
+#modal-info{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#cart-button-modal{
+    margin-right: 1.5rem;
+}
+
+#submit-comment-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+
+}
+
+#review-comment{
+    margin-left: 0.5rem;
+}
+
+#stars-select{
+    margin-left: 0.5rem;
+}
+
+
+
+#submitted-evaluation-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+
+#delete-review-button{
+    background-color: #FF204E;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+
+
+#delete-review-button:hover{
+    background-color: #A0153E;
+}
+
+#add-review-button{
+    background-color: #005b4d;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#add-review-button:hover{
+    background-color: #00453a;
+}
+
+.first-column{
+    width: 10%;
+}
+
+.third-column{
+    width: 15%;
+}
+
+.centered-td{
+    text-align: center;
+}
+
+.general-section{
+    width:100%;
+}
+
+.details-table{
+    width: 100%;
+}
+
+.details-section{
+    width: 100%;
+}
+
+
+.general-info-table{
+    width: 100%;
+    height: 100%;
+}
+
+.main-table-center-td{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.details-button{
+    width: 100%;
+    background-color: #fa7d35;
+    color: white;
+    border: 0;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.details-button:hover{
+    color: #005b4d;
+}
+
+.star{
+    color: gold;
+}
+
+.star-selected{
+    color: gold;
+}
+
+.star-selected::before{
+    content: "★";
+}
+
+.star-unselected::before{
+    content: "☆";
+}
+
+.review-filled{
+    color: #fa7d35;
+}
+
+.modal-submitted-evaluation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.modal-pending-evaluation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.hidden-element{
+    display: none;
+}
