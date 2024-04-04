@@ -10,6 +10,25 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMessage.remove();
         });
 
+        //Validacion del formato de foto
+        const userPicture = form.querySelector('#user-picture');
+        const allowedExtensions = ['jpg'];
+
+        // Check if a file is selected
+        if (userPicture.files.length > 0) {
+            const fileExtension = userPicture.value.split('.').pop().toLowerCase();
+
+        if (!allowedExtensions.includes(fileExtension)) {
+            displayErrorMessage(userPicture, 'La foto debe ser formato jpg.');
+        } else {
+        // Borrar mensage anterior si el formato es correcto
+        clearErrorMessage(userPicture);
+        }
+        } else {
+        // Borrar mensage anterior si no se elige un archivo
+        clearErrorMessage(userPicture);
+        }
+
         // Validacion de identificacion
         const idNumber = form.querySelector('#id-number');
         if (idNumber.value.trim() === '') {
@@ -18,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         else if (idNumber.value.trim() < 9) {
                 displayErrorMessage(idNumber, 'El número de identificación debe tener al menos 9 dígitos.')
-        }
+        }        
 
         // Validacion del nombre
         const firstName = form.querySelector('#first-name');
@@ -55,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //Validacion del documento de permisos municipales
         const permitFile = form.querySelector('#gov-permit');
         if (permitFile.value.trim() === '') {
-        displayErrorMessage(permitFile, 'Por favor, agregue un archivo en formato PDF con los permisos municipales.');
+        displayErrorMessage(permitFile, 'El documento de permisos municipales debe ser formato PDF.');
         } else {
         const allowedExtensions = ['pdf'];
         const fileExtension = permitFile.value.split('.').pop().toLowerCase();
@@ -70,9 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
             displayErrorMessage(termsConditions, 'Debe aceptar los términos y condiciones.');
         }
 
-        // Cuando si no hay errores, mandar el form
+        // Si no hay errores, mandar el form y mostrar modal
         if (form.querySelectorAll('.error-message').length === 0) {
-            form.submit();
+            showModal()
+            document.getElementById('signin-form').reset(); //esto borra la info previa del form
         }
     });
 
@@ -83,4 +103,28 @@ document.addEventListener('DOMContentLoaded', function () {
         errorElement.textContent = message;
         inputElement.parentNode.appendChild(errorElement);
     }
+
+    //funcion para borrar error en campos no requeridos
+    function clearErrorMessage(inputElement) {
+        const errorElement = inputElement.parentElement.querySelector('.error-message');
+    
+        if (errorElement) {
+            errorElement.remove();
+        }
+    }
 });
+
+//Funcion para el modal
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+}

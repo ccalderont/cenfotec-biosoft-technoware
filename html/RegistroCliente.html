@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en linea</title>
-    <script defer src="/js/RegistroCliente.js"></script>
+    <script defer src="/js/registroCliente.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/RegistroUsuarios.css">
 </head>
@@ -44,7 +44,6 @@
                     />
                   </div>
                   
-                <div class="line-form">
                   <div class="input-form">
                     <label for="id-type">Tipo de identificación</label>
                     <select name="id-type" id="id-type">
@@ -65,8 +64,6 @@
                     />
                   </div>
 
-                </div>
-
             <div class="input-form">
               <label for="first-name">Nombre*</label>
               <input
@@ -78,9 +75,8 @@
               />
             </div>
 
-        <div class="line-form">
             <div class="input-form">
-                <label for="last-name1">Primer Apellido*</label>
+                <label for="last-name1">Apellido(s)*</label>
                 <input
                   name="last-name1"
                   id="last-name1"
@@ -89,17 +85,6 @@
                   required
                 />
               </div>
-
-              <div class="input-form">
-                <label for="last-name2">Segundo Apellido</label>
-                <input
-                  name="last-name2"
-                  id="last-name2"
-                  type="text"
-                  placeholder="Mora"
-                />
-              </div>
-        </div>
 
               <div class="input-form">
                 <label for="phone-number">Número de teléfono*</label>
@@ -123,7 +108,6 @@
                   />
                 </div>
                 
-            <div class="line-form">
                     <div class="input-form">
                       <label for="password-main">Contraseña*</label>
                       <input
@@ -135,6 +119,17 @@
                         required
                       />                 
                     </div>
+
+                    <div class="tooltip"> Criterio para la creación de contraseña
+                      <span class="tooltiptext">
+                        Debe contener:<br>
+                        <li>Un mínimo de 8 caracteres</li>
+                        <li>Al menos un carácter especial</li>
+                        <li>Al menos un número</li>
+                        <li style=color:#191919>Importante: No debe contener vocales</li>
+                      </span>
+                    </div>
+
         
                     <div class="input-form">
                       <label for="password-confirmation">Confirmar Contraseña*</label>
@@ -146,17 +141,8 @@
                       required
                       />
                     </div>
-                  </div>  
 
-                  <div class="tooltip"> Criterio para la creación de contraseña:
-                    <span class="tooltiptext">
-                      Debe contener:<br>
-                      <li>Un mínimo de 8 caracteres</li>
-                      <li>Al menos un carácter especial</li>
-                      <li>Al menos un número</li>
-                      <li style=color:#dd0f0f>Importante: No debe contener vocales</li>
-                    </span>
-                  </div>
+
                   
                     <div class="checkbox-form">
                       <input
@@ -170,7 +156,11 @@
                 
         <button id="test">Crear cuenta</button>
 
-          </div>
+          <section id="modal" class="" onclick="closeModal(event)">
+                     <section id="modal-content">
+                             <p>La cuenta ha sido creada exitosamente</p>
+                     </section>
+            </section>
     </main>
     <footer>
         <p>Seguinos en</p>
@@ -180,5 +170,4 @@
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>
-<!-- <script src="../js/yourOwn.js"></script> -->
 </html>

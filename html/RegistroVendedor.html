@@ -44,7 +44,6 @@
                     />
                   </div>
                   
-                <div class="line-form">
                   <div class="input-form">
                     <label for="id-type">Tipo de identificación</label>
                     <select name="id-type" id="id-type">
@@ -65,7 +64,6 @@
                     />
                   </div>
 
-                </div>
 
             <div class="input-form">
               <label for="first-name">Nombre*</label>
@@ -78,9 +76,8 @@
               />
             </div>
 
-        <div class="line-form">
             <div class="input-form">
-                <label for="last-name1">Primer Apellido*</label>
+                <label for="last-name1">Apellido(s)*</label>
                 <input
                   name="last-name1"
                   id="last-name1"
@@ -89,17 +86,6 @@
                   required
                 />
               </div>
-
-              <div class="input-form">
-                <label for="last-name2">Segundo Apellido</label>
-                <input
-                  name="last-name2"
-                  id="last-name2"
-                  type="text"
-                  placeholder="Mora"
-                />
-              </div>
-        </div>
 
               <div class="input-form">
                 <label for="phone-number">Número de teléfono*</label>
@@ -156,6 +142,14 @@
                     </div>
                 
         <button id="test">Enviar Solicitud</button>
+
+        <section id="modal" class="" onclick="closeModal(event)">
+          <section id="modal-content">
+                  <p>La solicitud de registro de vendedor ha sido enviada exitosamente.<br>
+                  Si su solicitud es aprobada, recibirá un correo electrónico con instrucciones para ingresar a su cuenta.
+                  </p>
+          </section>
+        </section>
 
     </main>
     <footer>

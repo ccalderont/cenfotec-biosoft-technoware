@@ -84,19 +84,6 @@
     align-items: center;
 }
 
-.about-us h3{
-    font-family: "Poppins-Extrabold";
-    font-size: 24.8px;
-    color: #fa7d35;
-    text-align: justify;
-}
-
-.about-us p{
-    font-family: "Poppins-Regular";
-    font-size: 24.8px;
-    color: #818181;
-    text-align: justify;
-}
 
 #logo-technoware-container{
     text-align: center;
@@ -104,11 +91,13 @@
 
 
 #logo-technoware{
-    padding: 15px 2rem 15px 2rem;
     height: 430px;
     width: 420px;
+    border-radius: 10px;
     min-height: 430px;
     min-width: 420px;
+    margin-bottom: 40px;
+
 }
 
 #meet-the-team img{
@@ -128,6 +117,7 @@
 
 #meet-the-team p{
     font-family: "Poppins-Medium";
+    font-size: 24.8px ;
     color: #818181;
     text-align: center; 
 }
@@ -152,7 +142,7 @@
 #about-us-tech-container h2{
     font-family: "Poppins-Bold";
     color: #818181;
-    font-size: 20px;
+    font-size: 23px;
     padding: 0 15px;  
 }
 

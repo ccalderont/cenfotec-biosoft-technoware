@@ -54,6 +54,16 @@ header li{
     display: inline;
 }
 
+#logo-cnp{
+    height: 80px;
+    width: 125px;
+}
+
+.logo-and-nav{
+    display: flex;
+    align-items: center;
+}
+
 a{
     text-decoration: none;
     padding: 0 15px;  
@@ -68,7 +78,7 @@ a{
     color: #fa7d35;
 }
 
-.container-search-bar input{
+input main{
     outline: none;
     box-sizing: border-box;
     height: 30px;

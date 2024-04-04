@@ -10,6 +10,25 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMessage.remove();
         });
 
+        //Validacion del formato de foto
+        const userPicture = form.querySelector('#user-picture');
+        const allowedExtensions = ['jpg'];
+
+        // Check if a file is selected
+        if (userPicture.files.length > 0) {
+            const fileExtension = userPicture.value.split('.').pop().toLowerCase();
+
+        if (!allowedExtensions.includes(fileExtension)) {
+            displayErrorMessage(userPicture, 'La foto debe ser formato jpg.');
+        } else {
+        // Borrar mensage anterior si el formato es correcto
+        clearErrorMessage(userPicture);
+        }
+        } else {
+        // Borrar mensage anterior si no se elige un archivo
+        clearErrorMessage(userPicture);
+        }
+
         // Validacion de identificacion
         const idNumber = form.querySelector('#id-number');
         if (idNumber.value.trim() === '') {
@@ -29,12 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Validacion del apellido
         const lastName1 = form.querySelector('#last-name1');
         if (lastName1.value.trim() === '') {
-            displayErrorMessage(lastName1, 'Por favor, ingrese su primer apellido.');
+            displayErrorMessage(lastName1, 'Por favor, ingrese al menos un apellido.');
         }
 
         // Validacion del numero de telefono
         const phoneNumber = form.querySelector('#phone-number');
-        const phoneNumberRegex = /^\d{8}$/; // Assuming 8-digit phone numbers
+        const phoneNumberRegex = /^\d{8}$/; // Numero de telefono de 8 digitos.
         if (!phoneNumberRegex.test(phoneNumber.value.trim())) {
             displayErrorMessage(phoneNumber, 'Por favor, ingrese un número de teléfono válido.');
         }
@@ -45,22 +64,28 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!emailRegex.test(email.value.trim())) {
             displayErrorMessage(email, 'Por favor, ingrese un correo electrónico válido.');
         }
-                
 
         // Validacion de contraseña y confirmacion
         const passwordMain = form.querySelector('#password-main');
         const passwordConfirmation = form.querySelector('#password-confirmation');
+
+        // Regex para vocales
+        const vowelRegex = /[aeiouAEIOU]/;
+
         if (passwordMain.value.trim() === '') {
             displayErrorMessage(passwordMain, 'Por favor, ingrese una contraseña.');
+        } else if (vowelRegex.test(passwordMain.value)) {
+            displayErrorMessage(passwordMain, 'La contraseña no debe contener vocales.');
         } else if (passwordMain.value !== passwordConfirmation.value) {
             displayErrorMessage(passwordConfirmation, 'Las contraseñas no coinciden.');
         }
 
+
         // Validacion del criterio de la contraseña
-        const passwordMainRegex = /^(?=.*[0-9])(?=.*[^aeiou])(?=.*\W)(?!.* ).{8}$/;
+        const passwordMainRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>])(?![aeiouAEIOU]).{8,}$/;
         if (!passwordMainRegex.test(passwordMain.value.trim())) {
             displayErrorMessage(passwordMain, 'Verifique el criterio para la creación de contraseña.');
-        }       
+        }
 
         // Validacion de terminos y condiciones
         const termsConditions = form.querySelector('#terms-conditions');
@@ -70,8 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Cuando si no hay errores, mandar el form
         if (form.querySelectorAll('.error-message').length === 0) {
-            form.submit();
+            showModal()
+            document.getElementById('signin-form').reset(); //esto borra la info previa del form
         }
+
     });
 
     // Funcion para errores
@@ -81,4 +108,32 @@ document.addEventListener('DOMContentLoaded', function () {
         errorElement.textContent = message;
         inputElement.parentNode.appendChild(errorElement);
     }
+
+    //funcion para borrar error en campos no requeridos
+    function clearErrorMessage(inputElement) {
+        const errorElement = inputElement.parentElement.querySelector('.error-message');
+    
+        if (errorElement) {
+            errorElement.remove();
+        }
+    }
+
 });
+
+//Funcion para el modal
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+}
+
+
+
