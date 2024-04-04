@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en linea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/solicitudesPendientes.css">
+</head>
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+                
+            </nav>
+        </div>
+       
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+        <section id="table-section">
+            <section id="header-section">
+                <h2>Registros pendientes de tramos</h2>
+            </section>
+            <table>
+                <thead>
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Usuario</th>
+                    <th>Ubicación</th>
+                    <th>Permisos</th>
+                    <th>Acción</th>
+                </thead>
+                <tbody id="stores-tbody">
+                    
+                    
+                </tbody>
+            </table>
+        </section>
+        <section id="modal" class="" onclick="closeModal(event)">
+            <section id="modal-content">
+                <section>
+                    <img id="modal-product-image" class="product-img">
+                </section>
+                <section id="modal-info">
+                    <h2 id="modal-product-name"></h2>
+                    <section class="modal-submitted-evaluation">
+                        <section id="submitted-evaluation-section">
+                            <p>Calificación: 
+                                <span id="stars-submitted"></span>
+                            </p>
+                        </section>
+                        
+                        <p id="review-comment-submitted"></p>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>Seguinos en</p>
+        <i class="fa-brands fa-facebook fa-xl"></i>
+        <i class="fa-brands fa-square-instagram fa-xl"></i>
+    </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+<script src="../js/solicitudesPendientes.js"></script>
+</html>
