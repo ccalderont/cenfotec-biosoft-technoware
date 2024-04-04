@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en linea</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/reporteTramoAdmin.css">
+    <link rel="stylesheet" href="../css/reporteUsuariosAdmin.css">
 </head>
 <body>
     <header>
@@ -35,27 +35,34 @@
                     <H2>Filtro</H2>
                     <div class="filter-info">
                         <div>
-                            <label for="Tram">Tramo:</label>
-                            <input type="text" name="tramo" id="tramo" class="product-input">
+                            <label for="name-user">Nombre de usuario</label>
+                            <input type="text" name="Nombre de usuario" id="name-user" class="product-input">
+                        </div>
+                        <div>
+                            <label for="tipo-de-user">Tipo de usuario:</label>
+                            <select name="Tipo de usuario" id="tipo-de-user" required>
+                                <option value="Vendedor">Vendedor</option>
+                                <option value="Cliente">Cliente</option>
+                            </select>
+
                         </div>
                         <div id="filter-button">
                             <button type="submit">Filtrar</button>
                         </div>
-    
                     </div>
                 </form>        
             </div>
             <div class="tabla">
-                <h2>Reporte de tramos</h2>   
+                <h2>Reporte de Usuarios</h2>   
                 <table>
                     <thead>
                         <tr>
+                            <th>Tipo de usuario</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Id de Usuario</th>
                             <th>Tramo</th>
-                            <th>Ubicación</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Descripción</th>
-                            <th>Calificación</th>
+                            <th>Correo electronico</th>
+                            <th>teléfono</th>
                         </tr>
                     </thead>
     
@@ -66,12 +73,6 @@
  
             </div>
         </div>
-            <div class="container-filter">
-                
-            </div>
-            <div class="container-table">
-                
-            </div>
         
         
     </main>
@@ -83,5 +84,5 @@
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>
-<script src="../js/reporteTramoAdmin.js"></script>
+<script src="../js/reporteUsuariosAdmin.js"></script>
 </html>
