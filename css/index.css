@@ -44,8 +44,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+    gap: 4rem;
     padding: 0 0 60px 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .container-search-bar:hover input{
@@ -58,11 +60,11 @@
 }
 
 .subcontainer-left{
-    width: 72%;
+    width: 85%;
 }
 
 .subcontainer-left p{
-    font-family: "Poppins medium";
+    font-family: "Poppins-Medium";
     font-size: 24.8px;
     color: #818181;
     text-align: justify;
@@ -95,4 +97,13 @@
 
 #category-button{
     background-color: #005b4d;
+}
+
+#supplier-button:hover{
+    cursor: pointer;
+}
+
+#category-button:hover{
+    background-color: #005b4d;
+    cursor: pointer;
 }

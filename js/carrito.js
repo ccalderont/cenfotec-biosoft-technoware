@@ -39,25 +39,49 @@ function generaTabla() {
 
 generaTabla();
 
-let openModal = document.getElementById("complete")
-let cardModal = document.getElementById("modal")
-let closeModal = document.getElementById("close")
-
-// open modal
-
-openModal.onclick = function () {
-
-    cardModal.style.visibility = "visible";
+/**
+ * Closes the modal to add to the cart
+ */
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
 }
 
-// close modal
-
-closeModal.onclick = function () {
-    cardModal.style.visibility = "hidden";
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
 }
 
-// close window modal
-
-cardModal.onclick = function () {
-    cardModal.style.visibility = "hidden";
+function proceedBuy(){
+    window.location.href = '../html/misCompras.html';
 }
+
+function goToRegisterCards(){
+    window.location.href = '../html/registroTarjeta.html';
+}
+
+// let openModal = document.getElementById("complete")
+// let cardModal = document.getElementById("modal")
+// let closeModal = document.getElementById("close")
+
+// // open modal
+
+// openModal.onclick = function () {
+
+//     cardModal.style.visibility = "visible";
+// }
+
+// // close modal
+
+// closeModal.onclick = function () {
+//     cardModal.style.visibility = "hidden";
+// }
+
+// // close window modal
+
+// cardModal.onclick = function () {
+//     cardModal.style.visibility = "hidden";
+// }

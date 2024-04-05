@@ -22,6 +22,7 @@
 .slider-box img{
     width: 100%;
     height: 500px;
+    object-fit: contain;
 }
 
 @keyframes slide {
@@ -148,9 +149,11 @@
 
 #about-us-tech-container p{
     padding: 0 15px;  
-    font-family: "Poppins-Regular";
+    font-family: "Poppins-Medium";
     color: #818181;
     letter-spacing: 0;
     font-size: 24.8px;
     text-align: justify;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }

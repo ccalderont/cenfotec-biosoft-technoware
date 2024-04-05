@@ -14,7 +14,7 @@ function loadPage(){
 function setUpTotalNetPriceWithAdminTaxes(){
     const totalPrice = document.getElementById('total-net-with-admin-taxes');
     const total = getTotalNetExpenseWithAdminTaxes();
-    totalPrice.innerText = `Total con impuestos de admin: ₡${total}`
+    totalPrice.innerHTML = `<strong>Total con impuestos de admin:</strong> ₡${total}`
 }
 
 /**
@@ -31,7 +31,7 @@ function getTotalNetExpenseWithAdminTaxes(){
 function setUpTotalNetPriceWithVendorTaxes(){
     const totalPrice = document.getElementById('total-net-with-my-taxes');
     const total = getTotalNetExpenseWithVendorTaxes();
-    totalPrice.innerText = `Total con mis impuestos: ₡${total}`
+    totalPrice.innerHTML = `<strong>Total con mis impuestos:</strong> ₡${total}`
 }
 
 /**
@@ -48,7 +48,7 @@ function getTotalNetExpenseWithVendorTaxes(){
 function setUpTotalBrutePrice(){
     const totalPrice = document.getElementById('total-brute-price');
     const total = getTotalBruteExpense();
-    totalPrice.innerText = `Total bruto: ₡${total}`;
+    totalPrice.innerHTML = `<strong>Total bruto:</strong> ₡${total}`;
 }
 
 /**

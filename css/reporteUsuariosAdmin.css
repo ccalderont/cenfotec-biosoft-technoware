@@ -1,10 +1,14 @@
 
-.filtros{
-/*margin-left: auto;
-margin-right: 0;*/
-float: right;
-    
+main p{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
 }
+
+label{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
 .tabla{
     margin-left: 0px;
     width: 80%;
@@ -17,65 +21,62 @@ float: right;
 
 }
 
-.filter-form{
-    border: medium solid black;
-    width: 300px;
-    height: 200px;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 75px;
-    justify-content: center;
+#filter-section{
     display: flex;
-    text-align: center;
-    gap: 0.5rem;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 0.5rem;
+    min-width: 200px;
+    margin-top: 2.5rem;
 }
+
+#filter-form h2{
+    margin-top: 0;
     
-.filter-info{
+}
+
+#filter-form{
     display: flex;
-    width: 100%;
     flex-direction: column;
-    gap: 0.6rem;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    padding: 1rem;
+    gap: 1.5rem;
+    background-color: #E8F8F5;
+    border-radius: 20px;
+}
+
+
+#filter-form-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#filter-form-info section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
 
 }
+
+#filter-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+}
+
 .product-input{
     width: 100px;
     border-radius: 0;
 }
 
-
-table{
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
-}
-td, th{
-    padding: 10px;
-
-}
-
-thead{
-    background-color: gray;
-    border-bottom: solid 5px black;
-    color: white;
-}
-
-tr:nth-child(even){
-    background-color: beige;
-
-}
-
-tr{
-    transition: all ease 300ms;
-}
-
-tr:hover td{
-    background-color: #17705d;
-    color: white;
-}
-#filter-button{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem;
-}

@@ -119,12 +119,11 @@ function createProductItem(product, pageClass){
     article.classList.add(pageClass);
     article.innerHTML = `
         <img class="product-img" src="${product.imagen}" alt="${product.nombre}">
-        <hr class="image-divider">
         <section class="catalogue-item-info">
             <h2>${product.nombre}</h2>
             <p>${product.descripcion}</p>
             <section class="store-and-rating">
-                <p>${product.tramo}</p>
+                <p><strong>${product.tramo}</strong></p>
                 <p>${getStarsCalification(product.calificacion)}</p>
             </section>
             <section class="price-and-button">

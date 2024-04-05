@@ -12,7 +12,7 @@ function loadPage(){
 function setUpTotalPrice(){
     const totalPrice = document.getElementById('total-price');
     const total = getTotalExpense();
-    totalPrice.innerText = `Total expense for timeframe provided: ₡${total}`;
+    totalPrice.innerHTML = `<strong>Total pagado:</strong> ₡${total}`;
 }
 
 /**
@@ -374,56 +374,56 @@ const purchases= [
             }
         ]
     },
-    {
-        id: 2,
-        date: '2021-10-12',
-        total: 750,
-        products: [
-            {
-                id: 3,
-                name: 'Manzanas',
-                store: 'Mi Tierra',
-                quantity: 3,
-                unit: 'kg',
-                net_price: 50,
-                brute_price: 45
-            },
-            {
-                id: 2,
-                name: 'Leche',
-                store: 'Tienda Don Pepe',
-                quantity: 2,
-                unit: 'caja',
-                net_price: 500,
-                brute_price: 450
-            }
-        ]
-    },
-    {
-        id: 3,
-        date: '2021-10-14',
-        total: 950,
-        products: [
-            {
-                id: 4,
-                name: 'Manzanas',
-                store: 'Mi Tierra',
-                quantity: 4,
-                unit: 'kg',
-                net_price: 50,
-                brute_price: 45
-            },
-            {
-                id: 2,
-                name: 'Leche',
-                store: 'Tienda Don Pepe',
-                quantity: 3,
-                unit: 'caja',
-                net_price: 500,
-                brute_price: 450
-            }
-        ]
-    }
+    // {
+    //     id: 2,
+    //     date: '2021-10-12',
+    //     total: 750,
+    //     products: [
+    //         {
+    //             id: 3,
+    //             name: 'Manzanas',
+    //             store: 'Mi Tierra',
+    //             quantity: 3,
+    //             unit: 'kg',
+    //             net_price: 50,
+    //             brute_price: 45
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Leche',
+    //             store: 'Tienda Don Pepe',
+    //             quantity: 2,
+    //             unit: 'caja',
+    //             net_price: 500,
+    //             brute_price: 450
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: 3,
+    //     date: '2021-10-14',
+    //     total: 950,
+    //     products: [
+    //         {
+    //             id: 4,
+    //             name: 'Manzanas',
+    //             store: 'Mi Tierra',
+    //             quantity: 4,
+    //             unit: 'kg',
+    //             net_price: 50,
+    //             brute_price: 45
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Leche',
+    //             store: 'Tienda Don Pepe',
+    //             quantity: 3,
+    //             unit: 'caja',
+    //             net_price: 500,
+    //             brute_price: 450
+    //         }
+    //     ]
+    // }
 ];
 
 loadPage();

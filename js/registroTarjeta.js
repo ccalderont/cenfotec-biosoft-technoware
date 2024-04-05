@@ -4,9 +4,9 @@ const cvc = document.getElementById("security-code")
 const expDate = document.getElementById("expiration-date")
 const form = document.getElementById("form")
 //const msj = document.getElementById("button-enviar")
-let openModal = document.getElementById("button-enviar")
-let cardModal = document.getElementById("modal")
-let closeModal = document.getElementById("close")
+// let openModal = document.getElementById("button-enviar")
+// let cardModal = document.getElementById("modal")
+// let closeModal = document.getElementById("close")
 
 
 
@@ -75,21 +75,21 @@ function expirationDateVerification() {
 
 // open modal
 
-openModal.onclick = function () {
-    cardModal.style.visibility = "visible";
-}
+// openModal.onclick = function () {
+//     cardModal.style.visibility = "visible";
+// }
 
-// close modal
+// // close modal
 
-closeModal.onclick = function () {
-    cardModal.style.visibility = "hidden";
-}
+// closeModal.onclick = function () {
+//     cardModal.style.visibility = "hidden";
+// }
 
-// close window modal
+// // close window modal
 
-cardModal.onclick = function () {
-    cardModal.style.visibility = "hidden";
-}
+// cardModal.onclick = function () {
+//     cardModal.style.visibility = "hidden";
+// }
 
 
 
@@ -105,17 +105,37 @@ form.addEventListener('submit', function (event) {
 
     // Si todas las validaciones son correctas, muestra el modal
     if (isCardHolderValid && isCardNumberValid && isCvcValid && isExpDateValid) {
-        cardModal.style.display = 'block';
+        // cardModal.style.display = 'block';
+        showModal();
     }
 });
 
 // Para cerrar el modal
-closeModal.addEventListener('click', function () {
-    cardModal.style.display = 'none';
-    form.reset();
-});
+// closeModal.addEventListener('click', function () {
+//     cardModal.style.display = 'none';
+//     form.reset();
+// });
 
 
+/**
+ * Closes the modal to add to the cart
+ */
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+}
+
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+function goToCard(){
+    window.location.href = '../html/carrito.html';
+}
 
 
 

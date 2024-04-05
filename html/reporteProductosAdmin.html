@@ -32,32 +32,31 @@
     <main>
         <!-- Aqui va el código -->
         <div class="main-container">
-            <div class="filtros">
-                <form class="filter-form">
-                    <H2>Filtros</H2>
-                    <div class="filter-info">
-                        <div>
-                            <label for="product">Producto:</label>
-                            <input type="text" name="producto" id="producto" class="product-input">
-                        </div>
-                        <div>
-                            <label for="Tram">Tramo:</label>
-                            <input type="text" name="tramo" id="tramo" class="product-input">
-                        </div>
-                        <div>
-                            <label for="category">Categoria</label>
-                            <select name= "categoria" id="categoria" required>
-                                <option value="option1">Opción1</option>
-                                <option value="option2">opción2</option>
-                                <option value="option3">opción3</option>
+            <div id="filter-section">
+                <form action="" id="filter-form">
+                    <h3>Filtros</h3>
+                    <section id="filter-form-info">
+                        <section>
+                            <label for="product-name-filter">Producto</label>
+                            <label for="store-name-filter">Tramo</label>
+                            <label for="category">Categoría</label>
+                        </section>
+                        <section>
+                            <input type="text" name="search" id="product-name-filter">
+                            <input type="text" name="search" id="store-name-filter">
+                            <select name="category" id="category">
+                                <option value="1">Categoría 1</option>
+                                <option value="2">Categoría 2</option>
+                                <option value="3">Categoría 3</option>
                             </select>
-                        </div>
-                        <div id="filter-button">
-                            <button type="submit">Filtrar</button>
-                        </div>
-    
-                    </div>
-                </form>        
+                        </section>
+                    </section>
+                    <section id="filter-buttons">
+                        <button type="submit">Filtrar</button>
+                        <i class="fa-solid fa-eraser fa-xl"></i>
+                    </section>
+                    
+                </form>
             </div>
             <div class="tabla">
                 <h2>Reporte de productos</h2>   
@@ -69,8 +68,8 @@
                             <th>Producto</th>
                             <th>Detalle</th>
                             <th>Cantidad</th>
-                            <th>Precio sin impuestos</th>
-                            <th> Precio con impuestos</th>
+                            <th class="text-cell">Precio sin impuestos</th>
+                            <th class="text-cell"> Precio con impuestos</th>
                         </tr>
                     </thead>
     
@@ -91,10 +90,15 @@
         
     </main>
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>

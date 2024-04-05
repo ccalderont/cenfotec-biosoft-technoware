@@ -46,6 +46,10 @@ function loadAdminMenu(){
             href: 'index.html'
         },
         {
+            text: 'Catálogo',
+            href: 'catalogo.html'
+        },
+        {
             text: 'Configuración',
             extraOptions:[
                 {
@@ -121,6 +125,10 @@ function loadSellerMenu(){
         {
             text: 'Inicio',
             href: 'index.html'
+        },
+        {
+            text: 'Catálogo',
+            href: 'catalogo.html'
         },
         {
             text: 'Mi tramo',

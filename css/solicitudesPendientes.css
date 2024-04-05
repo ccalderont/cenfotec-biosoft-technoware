@@ -21,53 +21,24 @@ main i:hover{
 }
 
 table{
-    
-    border-collapse: collapse;
+    width: 95%
 }
 
-th{
-    background-color: #005b4d;
-    color: #fff;
-    padding: 0.5rem;
+main p{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
 }
 
-td{
-    padding: 0.5rem;
-    border: 1px solid #000;
+main span{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
 }
 
-#filter-form h2{
-    margin-top: 0;
-    
+label{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
 }
 
-#filter-form{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border: #000 1px solid;
-    padding: 1rem;
-    gap: 1.5rem;
-}
-
-
-#filter-form-info{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.5rem;
-}
-
-#filter-form-info section{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 1rem;
-
-}
 
 #table-section{
     display: flex;
@@ -98,11 +69,17 @@ td{
     flex-wrap: wrap;
     margin-left: 2rem;
     gap: 2rem;
-
+    width: 100%;
 }
 
+#stores-table-section{
+    width: 100%;
+}
 
+#products-table-section{
+    width: 100%;
 
+}
 
 #modal {
     display: none; /* By default the modal is not displayed */
@@ -130,7 +107,6 @@ td{
     width: 20%; /* This will make the modal content take 80% of the viewport's width */
 }
 
-
 #comment-section{
     display: flex;
     flex-direction: row;
@@ -140,11 +116,13 @@ td{
     
 }
 
+#modal-content{
+    width: 22%;
+}
 
 #modal h2{
     margin: 0;
 }
-
 
 .centered-td{
     text-align: center;

@@ -132,7 +132,7 @@ function loadAcceptModal(target){
     let modalContent = document.getElementById('modal-content');
     modalContent.innerHTML = `
         <div class="modal-header">
-            <h2>¿Está seguro de aceptar esta solicitud?</h2>
+            <h3>¿Está seguro de aceptar esta solicitud?</h3>
         </div>
         <div class="modal-body">
             <p>Al aceptar esta solicitud, se realizarán los cambios correspondientes en la base de datos</p>
@@ -148,15 +148,15 @@ function loadRejectModal(target){
     let modalContent = document.getElementById('modal-content');
     modalContent.innerHTML = `
         <div class="modal-header">
-            <h2>¿Está seguro de rechazar esta solicitud?</h2>
+            <h3>¿Está seguro de rechazar esta solicitud?</h3>
         </div>
         <div class="modal-body">
             <p>Al rechazar esta solicitud, se realizarán los cambios correspondientes en la base de datos</p>
-            <textarea id="rejection-reason" cols=35 rows=8 placeholder="Razón de rechazo"></textarea>
+            <textarea id="rejection-reason" cols=40 rows=8 placeholder="Razón de rechazo"></textarea>
         </div>
         <div class="modal-footer">
             <button class="accept-button" onclick=rejectRequest(this) data-table=${target.dataset.table}>Aceptar</button>
-            <button class="reject-button" onclick=closeModal(event)>Cancelar</button>
+            <button class="add-category-button" onclick=closeModal(event)>Cancelar</button>
         </div>
     `
 }
@@ -181,11 +181,59 @@ const stores= [
         address: 'San Ramón, Alajuela',
         permission: '../resources/extra/permission.pdf',
     },
+    {
+        id: 2,
+        date: '2021-10-10',
+        name: 'Las Manzanitas de Doña Rosa',
+        description: 'El lugar con las manzanas más frescas y deliciosas',
+        id_user: 'Jose Fernandez',
+        address: 'San Ramón, Alajuela',
+        permission: '../resources/extra/permission.pdf',
+    },
+    {
+        id: 3,
+        date: '2021-10-10',
+        name: 'Las Manzanitas de Doña Rosa',
+        description: 'El lugar con las manzanas más frescas y deliciosas',
+        id_user: 'Jose Fernandez',
+        address: 'San Ramón, Alajuela',
+        permission: '../resources/extra/permission.pdf',
+    },
 ];
 
 const products= [
     {
         id: 1,
+        date: '2021-10-10',
+        name: 'Manzanas',
+        picture: 'https://i0.wp.com/www.buenmercadoacasa.com/blog/wp-content/uploads/2018/05/variedades-de-manzanas-buenmercadoacasa-portada.jpg?fit=2880%2C1800&ssl=1',
+        description: 'Las manzanas rojas mas deliciosas de alajuela que no se comparan con ninguna otra que hayas probado nunca jamas de los jamases es que en serio son demasiado ricas, y demasiado rojas y dulces',
+        category: 'Frutas',
+        unit: 'kgs',
+        store_id: 'Mi Tierra Linda',
+        user_id: 'Jose Fernandez',
+        brute_price: 500,
+        store_tax: 10,
+        price_with_store_tax: 550,
+        price_with_admin_tax: 600,
+    },
+    {
+        id: 2,
+        date: '2021-10-10',
+        name: 'Peras',
+        picture: 'https://farmaciaribera.es/blog/wp-content/uploads/2020/01/Beneficios-de-comer-peras.jpg',
+        description: 'Las peras mas deliciosas de alajuela que no se comparan con ninguna otra que hayas probado nunca jamas de los jamases es que en serio son demasiado ricas, y demasiado rojas y dulces',
+        category: 'Frutas',
+        unit: 'kgs',
+        store_id: 'Mi Tierra Linda',
+        user_id: 'Jose Fernandez',
+        brute_price: 500,
+        store_tax: 10,
+        price_with_store_tax: 550,
+        price_with_admin_tax: 600,
+    },
+    {
+        id: 3,
         date: '2021-10-10',
         name: 'Manzanas',
         picture: 'https://i0.wp.com/www.buenmercadoacasa.com/blog/wp-content/uploads/2018/05/variedades-de-manzanas-buenmercadoacasa-portada.jpg?fit=2880%2C1800&ssl=1',

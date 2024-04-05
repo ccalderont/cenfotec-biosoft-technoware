@@ -30,26 +30,26 @@
     <main>
         <!-- Aqui va el código -->
         <div class="main-container">
-            <div class="filtros">
-                <form class="filter-form">
-                    <H2>Filtro</H2>
-                    <div class="filter-info">
-                        <div>
-                            <label for="name-user">Nombre de usuario</label>
+            <div id="filter-section">
+                <form id="filter-form">
+                    <h3>Filtro</h3>
+                    <div id="filter-form-info">
+                        <section>
+                            <label for="name-user">Nombre usuario:</label>
+                            <label for="tipo-de-user">Tipo usuario:</label>
+                        </section>
+                        <section>
                             <input type="text" name="Nombre de usuario" id="name-user" class="product-input">
-                        </div>
-                        <div>
-                            <label for="tipo-de-user">Tipo de usuario:</label>
                             <select name="Tipo de usuario" id="tipo-de-user" required>
                                 <option value="Vendedor">Vendedor</option>
                                 <option value="Cliente">Cliente</option>
                             </select>
-
-                        </div>
-                        <div id="filter-button">
-                            <button type="submit">Filtrar</button>
-                        </div>
+                        </section>
                     </div>
+                    <section id="filter-buttons">
+                        <button type="submit">Filtrar</button>
+                        <i class="fa-solid fa-eraser fa-xl"></i>
+                    </section>
                 </form>        
             </div>
             <div class="tabla">
@@ -61,8 +61,8 @@
                             <th>Nombre de Usuario</th>
                             <th>Id de Usuario</th>
                             <th>Tramo</th>
-                            <th>Correo electronico</th>
-                            <th>teléfono</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono</th>
                         </tr>
                     </thead>
     
@@ -77,10 +77,15 @@
         
     </main>
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>

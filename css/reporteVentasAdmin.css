@@ -1,18 +1,3 @@
-
-/* .filtros{
-/*margin-left: auto;
-margin-right: 0;*/
-/* float: right;
-    
-} */
-
-
-
-.tabla{
-    margin-left: 0px;
-    width: 80%;
-}
-
 main p{
     font-family: "Poppins-Medium";
     font-size: 14px;
@@ -23,6 +8,10 @@ label{
     font-size: 14px;
 }
 
+.tabla{
+    margin-left: 0px;
+    width: 80%;
+}
 .main-container{
     display: flex;
     justify-content: flex-start;
@@ -30,12 +19,8 @@ label{
     padding: 0 30px 0 30px;
 
 }
-
-.product-input{
-    width: 100px;
-    border-radius: 0;
-}
-
+    
+   
 #filter-section{
     display: flex;
     flex-direction: column;
@@ -90,31 +75,10 @@ label{
     gap: 1rem;
 }
 
-
-
-td, th{
-    padding: 10px;
-
+.product-input{
+    width: 100px;
+    border-radius: 0;
 }
-
-/* thead{
-    background-color: gray;
-    border-bottom: solid 5px black;
-    color: white;
-} */
-
-
-
-/* tr{
-    transition: all ease 300ms;
-} */
-/* 
-tr:hover td{
-    background-color: #17705d;
-    color: white;
-} */
-#filter-button{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem;
-}
+    
+    
+  

@@ -32,12 +32,12 @@
     <main>
         <section id="table-section">
             <section id="header-section">
-                <h2>Confirmación método de pago y compra</h2>
-                <div>
+                <h2>Mi carrito</h2>
+                <div id="selected-card">
                     <table>
                         <thead>
                             <tr>
-                                <th>
+                                <th id="card-button" onclick="goToRegisterCards()">
                                     BAC Credomatic 551234 ******** 1234
                                 </th>
                             </tr>
@@ -65,27 +65,32 @@
                         </tr>
                     </tfoot>
                 </table>
-                <div>
-                    <button type="submit" id="complete"> Completar </button>
+                <div id="action-buttons">
+                    <button type="submit" id="complete" onclick="showModal()"> Completar </button>
                     <button type="submit" id="edit"> Editar </button>
                     <button type="submit" id="delete"> Eliminar </button>
                 </div>
-                <div id="modal" class="modal-container">
-                    <div class="modal-content">
+                <div id="modal" class="modal-container" onclick="closeModal()">
+                    <div id="modal-content">
                         <h2>Confirmación de compra</h2>
                         <p>La compra se ha completado de manera exitosa!</p>
                         <div id="close" class="close">
-                            <p>Aceptar</p>
+                            <button onclick="proceedBuy()">Aceptar</button>
                         </div>
                     </div>
                 </div>
 
     </main>
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>

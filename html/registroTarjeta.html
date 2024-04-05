@@ -32,7 +32,7 @@
     <main>
         <form action="" method="" id="form">
             <section class="form-card-register" id="form-card-register">
-                <h3>Registro de tarjeta</h3>
+                <h2>Registro de tarjeta</h2>
                 <!--<img src="/resources/images/cardRegister/cardRegisterUserPicture.jpg">-->
                 <p>Nombre tarjetahabiente</p>
                 <input class="controls" type="text" id="card-holder" placeholder="nombre - apellidos" required>
@@ -41,8 +41,11 @@
                 <p>Código de seguridad (CVC)</p>
                 <input class="controls" type="text" id="security-code" placeholder="xxx" required>
                 <p>Fecha de expiración</p>
-                <input class="controls" type="datetime" id="expiration-date" placeholder="MM / YYYY" required>
-                <button type="submit" id="button-enviar"> Enviar </button>
+                <input class="controls" type="datetime" id="expiration-date" placeholder="MM / YY" required>
+                <section id="section-button-enviar">
+                    <button type="submit" id="button-enviar">Enviar</button>
+                </section>
+                
             </section>
             <!--<div> -->
             <!--<span id="button-enviar">Enviar</span> -->
@@ -53,21 +56,26 @@
         </form>
 
 
-        <div id="modal" class="modal-container">
+        <div id="modal" class="modal-container" onclick="closeModal()">
             <div class="modal-content">
                 <h2>Confirmación</h2>
-                <p>La tarjeta ha sido registrada exitosamente!</p>
+                <p>¡La tarjeta ha sido registrada exitosamente!</p>
                 <div id="close" class="close">
-                    <p>Aceptar</p>
+                    <button onclick="goToCard()">Aceptar</button>
                 </div>
             </div>
         </div>
     </main>
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>

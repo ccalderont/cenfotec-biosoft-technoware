@@ -8,7 +8,17 @@ main{
     margin-top: 1rem;
     gap: 2rem;
     margin-left: 1rem;
-    width: 80%;
+    width: 100%;
+}
+
+main p{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
+label{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
 }
 
 h2{
@@ -18,26 +28,12 @@ h2{
 main i:hover{
     color: #005b4d;
 }
-
-table{
-    
-    border-collapse: collapse;
-}
-
-th{
-    background-color: #005b4d;
-    color: #fff;
-    padding: 0.5rem;
-}
-
-td{
-    padding: 0.5rem;
-    border: 1px solid #000;
+table tr:hover{
+    background-color: initial;
 }
 
 #filter-form h2{
-    margin-top: 0;
-    
+    margin-top: 0; 
 }
 
 #filter-form{
@@ -45,9 +41,11 @@ td{
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    border: #000 1px solid;
+    
     padding: 1rem;
     gap: 1.5rem;
+    background-color: #E8F8F5;
+    border-radius: 20px;
 }
 
 
@@ -71,11 +69,10 @@ td{
 #table-section{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-left: 5rem;
-    width: 80%;
+    width: 100%;
 }
 
 #header-section{
@@ -83,10 +80,6 @@ td{
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 100%;
-}
-
-#main-table{
     width: 100%;
 }
 
@@ -179,9 +172,6 @@ td{
 
 #delete-review-button{
     background-color: #FF204E;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
 }
 
 
@@ -199,6 +189,15 @@ td{
 
 #add-review-button:hover{
     background-color: #00453a;
+}
+
+#filter-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
 }
 
 .first-column{
@@ -219,6 +218,12 @@ td{
 
 .details-table{
     width: 100%;
+    border-collapse: collapse;
+}
+
+.details-table td{
+    border: black 1px solid;
+    
 }
 
 .details-section{
@@ -229,6 +234,17 @@ td{
 .general-info-table{
     width: 100%;
     height: 100%;
+    
+    border-collapse: collapse;
+}
+
+.general-info-table td {
+    border: black 1px solid;
+}
+
+tr:nth-child(odd){
+    background-color: #E8F8F5;
+
 }
 
 .main-table-center-td{
@@ -246,12 +262,16 @@ td{
     background-color: #fa7d35;
     color: white;
     border: 0;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .details-button:hover{
-    color: #005b4d;
+    background-color: #005b4d;
+    border-color: #005b4d;
+    border: 1px solid;
 }
 
 .star{

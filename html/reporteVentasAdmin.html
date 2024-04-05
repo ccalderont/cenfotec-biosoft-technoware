@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en linea</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/reporteTramosAdmin.css">
+    <link rel="stylesheet" href="../css/reporteVentasAdmin.css">
 </head>
 <body>
     <header>
@@ -28,17 +28,21 @@
         </nav>
     </header>
     <main>
-        <!-- Aqui va el código -->
+        <!-- Aqui va el cÃ³digo -->
         <div class="main-container">
             <div id="filter-section">
                 <form id="filter-form">
                     <h3>Filtros</h3>
                     <div id="filter-form-info">
                         <section>
-                            <label for="Tram">Tramo:</label>
+                            <label for="date-filter-from">Desde:</label>
+                            <label for="date-filter-to">Hasta:</label>
+                            <label for="Tramo">Tramo</label>
                         </section>
                         <section>
-                            <input type="text" name="tramo" id="tramo" class="product-input">
+                            <input type="date" name="date-filter-from" id="date-filter-from" class="product-input">
+                            <input type="date" name="date-filter-to" id="date-filter-to" class="product-input">
+                            <input type="search" name="tramo" id="tramo" class="product-input">
                         </section>
                     </div>
                     <section id="filter-buttons">
@@ -48,16 +52,17 @@
                 </form>        
             </div>
             <div class="tabla">
-                <h2>Reporte de tramos</h2>   
+                <h2>Reporte de Ventas</h2>  
+                <p id="balance">Ganancias totales:</p> 
                 <table>
                     <thead>
                         <tr>
+                            <th>Fecha</th>
                             <th>Tramo</th>
-                            <th>Ubicación</th>
                             <th>Producto</th>
                             <th>Cantidad</th>
-                            <th>Descripción</th>
-                            <th>Calificación</th>
+                            <th>Precio total</th>
+                            <th>Ganancias de administrador</th>
                         </tr>
                     </thead>
     
@@ -68,12 +73,6 @@
  
             </div>
         </div>
-            <div class="container-filter">
-                
-            </div>
-            <div class="container-table">
-                
-            </div>
         
         
     </main>
@@ -90,5 +89,5 @@
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/mainMenu.js"></script>
-<script src="../js/reporteTramosAdmin.js"></script>
+<script src="../js/reporteVentasAdmin.js"></script>
 </html>
