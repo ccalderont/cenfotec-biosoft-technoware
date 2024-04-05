@@ -21,27 +21,34 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar" id="nav-search">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
             </nav>
         </nav>
     </header>
-    <main style="padding: 200px 0;">
-        <div class="popup">
-            <h2>OLVIDÉ LA CONTRASEÑA</h2>
-            <p class="reset-text">Favor ingrese el correo electrónico para restablecer su contraseña.</p>
-            <p class="email-label">Correo Electrónico</p>
-            <input type="email" class="email-input" id="email" placeholder="correo@gmail.com">
-            <button class="send-button" onclick="validarCorreo()">Enviar</button>
-        </div>
+    <main>
+        <section id="form-background">
+            <div class="popup">
+                <h2>OLVIDÉ LA CONTRASEÑA</h2>
+                <p class="reset-text">Favor ingrese el correo electrónico para restablecer su contraseña.</p>
+                <p class="email-label">Correo Electrónico</p>
+                <input type="email" class="email-input" id="email" placeholder="correo@gmail.com">
+                <button class="send-button" onclick="validarCorreo()">Enviar</button>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/formularioLogin.js"></script>

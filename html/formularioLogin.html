@@ -21,14 +21,14 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar" id="nav-search">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
             </nav>
         </nav>
     </header>
-    <main style="padding: 200px 0;">
+    <main>
         <!--login container-->
         <div class="main-container">
             <img src="/resources/images/home/logoCNP.png" alt="Logo CNP">
@@ -43,17 +43,31 @@
             </div>      
             <span id="button-continue">Continuar</span>
             <div class="reminder">
-                <p><a href="../html/contrasenarest.html">¿Olvidaste tu contraseña?</a></p>
-                <p onclick="createAccount()">Crear una cuenta</p>
-            <div class="radio-label">
+                <a href="../html/contrasenarest.html"><p>¿Olvidaste tu contraseña?</p></a>
+                <p onclick="showModal()">Crear una cuenta</p>
+            <!-- <div class="radio-label">
                 <input type="radio" name="accountType" value="vendedor" id="account-type">
                 <label>Cliente</label>
             </div>
             <div class="radio-label">
                 <input type="radio" name="accountType" value="comprador" id="account-type">
                 <label>Vendedor</label>
+            </div> -->
+            <div id="modal" class="modal-container" onclick="closeModal(event)">
+                <div id="modal-content">
+                    <h3>Selecciona el tipo de cuenta</h3>
+                    <div class="radio-label">
+                        <input type="radio" name="accountType" value="cliente" checked>
+                        <label>Cliente</label>
+                    </div>
+                    <div class="radio-label">
+                        <input type="radio" name="accountType" value="vendedor">
+                        <label>Vendedor</label>
+                    </div>
+                    <button onclick="goToNewAccount()">Crear cuenta</button>
+                </div>
             </div>
-
+        </div>
     </main>
     <!-- <footer>
         <p>Seguinos en</p>

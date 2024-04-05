@@ -28,3 +28,20 @@ function checkLogin(){
 function clearLoginData(){
     localStorage.removeItem('user');
 }
+
+
+/**
+ * Closes the modal to add to the cart
+ */
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+}
+
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}

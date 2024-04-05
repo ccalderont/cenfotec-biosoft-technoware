@@ -135,5 +135,14 @@ function closeModal(event){
     }
 }
 
+function showPassword() {
+    var x = document.getElementById("password-main");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
 
 

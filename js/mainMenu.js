@@ -93,7 +93,7 @@ function loadAdminMenu(){
         }
     ];
 
-    const showSearchBar = false;
+    const showSearchBar = true;
     
     const secondNavoptions = [
         {
@@ -138,6 +138,10 @@ function loadSellerMenu(){
                     href: 'misProductos.html'
                 },
                 {
+                    text: 'Registrar producto',
+                    href: 'registrarprod.html'
+                },
+                {
                     text: 'Mis ventas',
                     href: 'misVentas.html'
                 }
@@ -149,7 +153,7 @@ function loadSellerMenu(){
         }
     ];
 
-    const showSearchBar = false;
+    const showSearchBar = true;
 
     const secondNavoptions = [
         {

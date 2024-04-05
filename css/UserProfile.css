@@ -1,14 +1,25 @@
-main{
-    display: flex;
-    justify-content: center;
+
+
+main label{
+    font-family: "Poppins-Medium";
+    font-size: 16px;
+    color: #818181;
+
+}
+
+main p{
+    font-family: "Poppins-Medium";
+    font-size: 16px;
+    color: #818181;
+
 }
 
 .main-container{
-    margin: 50px 0 50px 0;
-    padding: 50px;
+    margin: 4rem 0;
+    padding: 0 50px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
     /* height: 70vh; */
     display: flex;
     flex-direction: column;
@@ -26,11 +37,11 @@ main{
 
 .photo-section{
     text-align: center;
-    margin-top: 0;
+    margin-top: 2rem;
 }
 
 .edit-box-section{
-    margin: 50px 0 0 0;
+    margin: 1rem 0 2rem 0;
     padding: 0 25px 0 25px;
     width: 500px; 
     text-align: left;
@@ -57,4 +68,12 @@ main{
 
 #edit-button{
     text-align: right;
+}
+#form-background{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #005b4d;
+    width: 100%;
 }

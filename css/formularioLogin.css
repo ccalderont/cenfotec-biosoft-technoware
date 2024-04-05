@@ -9,15 +9,16 @@ main{
     width: 100vw; */
     align-items: center;
     background-image: url(../resources/back-01.png);
-    background-size: 1920px;
-
+    background-size: cover;
+    padding-top: 3rem;
+    padding-bottom: 3.3rem;
 }
 .main-container{
     background-color: white;
     border-radius: 20px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     /* height: 70vh; */
-    width: 50vw;
+    width: 28vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,14 +28,27 @@ main{
     max-width: 484px;
 }
 
+.main-container p{
+    font-family: "Poppins-Bold";
+    color: #818181;
+    text-transform: none;
+    line-height: 0.5;
+    margin-top: 0;
+}
+
+.main-container p:hover{
+    color: #fa7d35;
+}
+
 .main-container h1{
     font-family: "Poppins-Extrabold";
     color: #fa7d35;
-    font-size: 33px;
+    font-size: 25px;
+    margin-top: 1rem;
 }
 
 .main-container img{
-    width: 300px;
+    width: 15rem;
 
 }
 
@@ -82,7 +96,7 @@ main{
     border-radius: 20px;
     background-color: #005b4d;
     color: white;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 #button-continue:hover{
@@ -91,7 +105,7 @@ main{
 }
 
 .reminder{
-    margin-top: 25px;
+    margin-top: 1rem;
     margin-bottom: 10px
 }
 
@@ -141,4 +155,33 @@ main{
 .radio-container {
     display: flex;
     justify-content: center; 
+}
+
+
+#modal {
+    display: none; /* By default the modal is not displayed */
+    position: fixed; /* This will position the modal relative to the viewport */
+    z-index: 1000; /* This will make sure the modal is on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* This will make the modal take the full width of the viewport */
+    height: 100%; /* This will make the modal take the full height of the viewport */
+    overflow: auto; /* This will add scrollbars if the content is larger than the modal */
+    background-color: rgba(0,0,0,0.4); /* This will give the modal a semi-transparent gray background */
+}
+
+/* The actual modal content */
+#modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* This will center the modal vertically */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* This will make the modal content take 80% of the viewport's width */
+}
+#modal-content h3{
+    margin-bottom: 1rem;
+}
+
+#modal-content button{
+    margin-top: 1rem;
 }

@@ -1,11 +1,5 @@
 
-main{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #005b4d;
-}
+
 
 .impuestoadmin {
     background-color: white;
@@ -84,4 +78,15 @@ h2 {
     right: 10px;
     font-size: 24px;
     cursor: pointer;
+}*/
+
+
+#form-background{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #005b4d;
+    width: 100%;
+    height: 78%;
 }

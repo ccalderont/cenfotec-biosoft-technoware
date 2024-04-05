@@ -33,3 +33,29 @@ function createAccount(){
     const accountType = document.getElementById('account-type').value;
     
 }
+
+
+/**
+ * Closes the modal to add to the cart
+ */
+function closeModal(event){
+    if (event.target.id === "modal") {
+        let modal = document.getElementById('modal');
+        // If it was, hide the modal
+        modal.style.display = 'none';
+    }
+}
+
+function showModal() {
+    let modal = document.getElementById('modal');
+    modal.style.display = 'block';
+}
+
+function goToNewAccount(){
+    const accountType = document.querySelector('input[name="accountType"]:checked').value;
+    if(accountType === 'cliente'){
+        window.location.href = '../html/registroCliente.html';
+    }else{
+        window.location.href = '../html/registroVendedor.html';
+    }
+}

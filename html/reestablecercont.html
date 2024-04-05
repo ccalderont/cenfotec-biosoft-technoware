@@ -21,42 +21,49 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar" id="nav-search">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
             </nav>
         </nav>
     </header>
-    <main style="padding: 200px 0;">
-        <div class="popup">
-            <h2>RESTABLECER CONTRASEÑA</h2>
-            <form id="password-form">
-                <ul>
-                    <li>
-                        <label for="current-password" class="reset-text">Contraseña temporal</label>
-                        <input type="password" id="current-password" name="current-password" required>
-                    </li>
-                    <li>
-                        <label for="new-password" class="reset-text">Contraseña nueva</label>
-                        <input type="password" id="new-password" name="new-password" required>
-                    </li>
-                    <li>
-                        <label for="confirm-password" class="reset-text">Confirmar contraseña</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required>
-                    </li>
-                </ul>
-            
-                <button type="submit" class="send-button">Guardar</button>
-            </form>
-        </div>
+    <main>
+        <section id="form-background">
+            <div class="popup">
+                <h2>RESTABLECER CONTRASEÑA</h2>
+                <form id="password-form">
+                    <ul>
+                        <li>
+                            <label for="current-password" class="reset-text">Contraseña temporal</label>
+                            <input type="password" id="current-password" name="current-password" required>
+                        </li>
+                        <li>
+                            <label for="new-password" class="reset-text">Contraseña nueva</label>
+                            <input type="password" id="new-password" name="new-password" required>
+                        </li>
+                        <li>
+                            <label for="confirm-password" class="reset-text">Confirmar contraseña</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required>
+                        </li>
+                    </ul>
+                
+                    <button type="submit" class="send-button">Guardar</button>
+                </form>
+            </div>
+        </section>
     </main>
     
     <footer>
-        <p>Seguinos en</p>
-        <i class="fa-brands fa-facebook fa-xl"></i>
-        <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/formularioLogin.js"></script>
