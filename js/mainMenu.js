@@ -54,7 +54,7 @@ function loadAdminMenu(){
             extraOptions:[
                 {
                     text: 'Categorías',
-                    href: 'categorias.html'
+                    href: 'registroCategoria.html'
                 },
                 {
                     text: 'Impuesto de Administrador',

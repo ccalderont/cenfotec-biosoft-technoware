@@ -28,8 +28,3 @@ function checkLogin(){
 function clearLoginData(){
     localStorage.removeItem('user');
 }
-
-function createAccount(){
-    const accountType = document.getElementById('account-type').value;
-    
-}

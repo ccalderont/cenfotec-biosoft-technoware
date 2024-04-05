@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en línea</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/formularioLogin.css">
+    <link rel="stylesheet" href="../css/contrasenarest.css">
     
 </head>
 <body>
@@ -29,43 +29,26 @@
         </nav>
     </header>
     <main style="padding: 200px 0;">
-        <!--login container-->
-        <div class="main-container">
-            <img src="/resources/images/home/logoCNP.png" alt="Logo CNP">
-            <div>
-                <h1>Iniciar sesión</h1>
-            </div>
-            <div class="main-container-inputs">
-                <label for="input-id">Número de identificación</label>
-                <input type="text" placeholder="000000000" id="input-id">
-                <label for="input-password">Contraseña</label>
-                <input type="text" placeholder="XXXXXXXX" id="input-password">
-            </div>      
-            <span id="button-continue">Continuar</span>
-            <div class="reminder">
-                <p><a href="../html/contrasenarest.html">¿Olvidaste tu contraseña?</a></p>
-                <p onclick="createAccount()">Crear una cuenta</p>
-            <div class="radio-label">
-                <input type="radio" name="accountType" value="vendedor" id="account-type">
-                <label>Cliente</label>
-            </div>
-            <div class="radio-label">
-                <input type="radio" name="accountType" value="comprador" id="account-type">
-                <label>Vendedor</label>
-            </div>
-
+        <div class="popup">
+            <h2>OLVIDÉ LA CONTRASEÑA</h2>
+            <p class="reset-text">Favor ingrese el correo electrónico para restablecer su contraseña.</p>
+            <p class="email-label">Correo Electrónico</p>
+            <input type="email" class="email-input" id="email" placeholder="correo@gmail.com">
+            <button class="send-button" onclick="validarCorreo()">Enviar</button>
+        </div>
     </main>
-    <!-- <footer>
+    <footer>
         <p>Seguinos en</p>
         <i class="fa-brands fa-facebook fa-xl"></i>
         <i class="fa-brands fa-square-instagram fa-xl"></i>
-    </footer> -->
+    </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
 <script src="../js/formularioLogin.js"></script>
 <script src="../js/mainMenu.js"></script>
-   
-</script>
+<script src="../js/contrasenarest.js"></script>
+<script src="../js/registrarprod.js"></script>
+</html> 
 
 </html>
 

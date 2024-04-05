@@ -8,10 +8,10 @@ main{
     /* height: 100vh;
     width: 100vw; */
     align-items: center;
-    background-image: url(../resources/back-01.png);
-    background-size: 1920px;
+    background-color: #005b4d;
 
 }
+
 .main-container{
     background-color: white;
     border-radius: 20px;
@@ -35,7 +35,7 @@ main{
 
 .main-container img{
     width: 300px;
-
+    height: 150px;
 }
 
 .main-container-inputs{
@@ -57,13 +57,14 @@ main{
     padding: 0 15px;
     font-size: 15px;
     border: 1px solid #005b4d;
-    background-color: #cfdbd8;
-    color: 005b4d;
+    background-color: #005b4d;
+    color: white;
+    opacity: 0.22;/*este atributo afecta tambien placeholder y color*/
 
 }
 
 .main-container input::placeholder{
-    color: 005b4d;
+    color: white;
 }
 
 .main-container a{
@@ -71,7 +72,6 @@ main{
     color: #818181;
     text-transform: none;
     line-height: 0.5;
-
 }
 
 #button-continue{
@@ -82,7 +82,6 @@ main{
     border-radius: 20px;
     background-color: #005b4d;
     color: white;
-    margin-top: 2rem;
 }
 
 #button-continue:hover{
@@ -93,52 +92,4 @@ main{
 .reminder{
     margin-top: 25px;
     margin-bottom: 10px
-}
-
-
-.radio-label {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    margin-bottom: 0.1rem; 
-    margin-left: -1.8rem;
-    
-}
-
-.radio-label input[type="radio"] {
-    margin-right: 0.003rem;  
-}
-
-.radio-label label {
-    font-size: 14px;  
-    font-family: "Poppins-Medium";
-}
-
-.radio-label input[type="radio"] {
-    margin-right: 0.003rem;  
-    vertical-align: center;  
-}
-
-.radio-label label {
-    font-size: 16px;  
-    vertical-align: center;  
-    color: #818181;
-}
-
-.radio-label input[type="radio"] {
-    /* transform: scale(0.4);   */
-    margin-right: -7rem;  
-
-}
-
-
-.main-container-inputs {
-    display: flex;
-    justify-content: center; 
-}
-
-.radio-container {
-    display: flex;
-    justify-content: center; 
 }
