@@ -1,0 +1,110 @@
+.popup {
+    margin-left: 4rem;
+    background-color: white;
+    border-radius: 10px;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem; 
+    padding: 1rem;
+    max-width: 484px;
+    position: center;
+}
+
+.popup h2 {
+    font-family: "Poppins-Medium", sans-serif;
+    font-size: 24px;
+    margin-top: 1rem;
+    color: #005b4d;
+    margin-bottom: 1rem;
+}
+
+.popup .reset-text,
+.popup .email-label,
+.popup .confirm-label {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #818181;
+    margin-top: 0;
+    margin-bottom: 0; 
+    margin-left: 2rem;
+}
+
+.popup input {
+    outline: none;
+    box-sizing: border-box;
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 14px;
+    border: 1px solid #818181;
+    border-radius: 10px;
+    color: #818181;
+   margin-left: 2rem;
+}
+
+.popup input::placeholder {
+    color: #818181; 
+    opacity: 1; 
+}
+
+.popup button {
+    padding: 0.75rem 1.25rem; 
+    font-size: 14px; 
+    border: none;
+    border-radius: 30px;
+    background-color: #005b4d;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.popup button:hover {
+    background-color: #fa7d35;
+    border: 1px solid #fa7d35;
+    color: #fff;
+}
+
+ 
+.popup ul li {
+    margin-bottom: 1rem;
+}
+
+ 
+ul {
+    padding: 0;
+    list-style-type: none;  
+    margin: 0;
+
+}
+
+
+
+
+.popup ul {
+    width: 100%; 
+    text-align: left;  
+}
+
+.popup button {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+#form-background{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #005b4d;
+    width: 100%;
+    height: 78%;
+}

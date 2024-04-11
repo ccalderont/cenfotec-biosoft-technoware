@@ -1,0 +1,382 @@
+@font-face{
+    font-family: "Poppins-Bold";
+    src: url(/resources/fonts/Poppins-Bold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Extrabold";
+    src: url(/resources/fonts/Poppins-ExtraBold.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(/resources/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: "Poppins-Light";
+    src: url(/resources/fonts/Poppins-Light.ttf);
+}
+
+
+
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+
+/*body*/
+body{
+    margin: 0;
+}
+
+/*main*/
+main h1{
+    font-family: "Poppins-Bold";
+    font-size: 93;
+    color: #005b4d;
+    line-height: 1;
+    margin-top: 2rem;
+}
+
+main h2{
+    font-family: "Poppins-Extrabold";
+    color: #fa7d35;
+    font-size: 33px;
+    margin-bottom: 1rem;
+}
+
+main h3{
+    font-family: "Poppins-Bold";
+    color: #005b4d;
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+/*header*/
+header{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px 2rem 15px 2rem;
+}
+
+/**/
+header li{
+    display: inline;
+}
+
+#logo-cnp{
+    height: 80px;
+    width: 125px;
+}
+
+.logo-and-nav{
+    display: flex;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    padding: 0 15px;  
+    font-family: "Poppins-Bold"; /*¿tipografia correcta?*/
+    color: #005b4d;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#current-page{
+    color: #fa7d35;
+}
+
+
+
+.extra-menu-options{
+    background-color: #E8F8F5;;
+}
+
+::placeholder{
+    color: #818181;
+}
+
+header li{
+    position: relative;
+}
+.search-bar-and-second-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.extra-menu-options{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    padding: 0;
+    background-color: #8de9d8;
+}
+
+.extra-menu-options li{
+    background-color: #005b4d;
+    color: white;
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.extra-menu-options a{
+    color: white;
+}
+
+header a:hover{
+    color: #fa7d35;
+}
+
+header a{
+    cursor: pointer;
+}
+
+
+.extra-menu-options-hidden{
+    display: none;
+}
+/*container search bar*/
+/*adapted from https://www.youtube.com/watch?v=bBZVb_r_enY&t=11s*/
+.container-search-bar{
+    transform:  translate(0, 0);
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container-search-bar:hover input{
+    width: 300px;
+}
+
+.container-search-bar:hover i{
+    transform: rotate(-360deg);
+}
+
+.btn-search{
+    position: absolute;
+    right: 0;
+    top: 2;
+    width: 50px;
+    height: 50px;
+    background: #005b4d;
+    line-height: -20px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn-search i{
+    font-size: 25px;
+    color: #fa7d35;
+    line-height: 55px;
+    transition: all .7s ease;
+}
+
+nav input{
+    outline: none;
+    box-sizing: border-box;
+    height: 30px;
+    width: 0;
+    padding: 0 15px;
+    color: #000;
+    border-radius: 50px;
+    font-size: 15px;
+    border: 1px solid #fa7d35;
+    transition: all .7s ease;
+    font-family: "Poppins-Light";
+}
+
+::placeholder{
+    color: #818181;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+main {
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
+/*footer*/
+footer{
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Poppins-Bold";
+    align-items: center;
+    letter-spacing: 1;
+    text-transform: uppercase; 
+    color: #005b4d;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 2.5rem; 
+}
+
+footer i{
+    color: #005b4d;
+    margin-right: 1rem;
+}
+
+footer i:hover{
+    color: #fa7d35;
+}
+
+#developed-by{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 83%;
+    margin-right: 1rem;
+}
+
+#developed-by a:hover{
+    color:#fa7d35
+}
+
+#follow-us{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 17%;
+}
+
+
+input:not([type='checkbox']):not(#nav-search) {
+    outline: none;
+    box-sizing: border-box;
+    width: 80%;
+    padding: 0.3rem;
+    font-size: 13px;
+    border: 1px solid #818181;
+    border-radius: 10px;
+    color: #818181;
+}
+
+button {
+    font-family: 'Poppins-Light';
+    padding: 0.75rem; 
+    font-size: 13px; 
+    border: none;
+    border-radius: 25px;
+    background-color: #005b4d;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fa7d35;
+    border: 1px solid #fa7d35;
+    color: #fff;
+}
+
+
+input::placeholder {
+    color: #818181; 
+    opacity: 1; 
+}
+
+select {
+    outline: none;
+    box-sizing: border-box;
+    width: 80%;
+    padding: 0.2rem;
+    font-size: 13px;
+    border: 1px solid #818181;
+    border-radius: 10px;
+    color: #818181;
+}
+
+#filter-form-info label{
+    margin-bottom: 0.4rem;
+}
+
+table th{
+    background-color: #005b4d;
+    color: white;
+    padding: 0.3rem;
+}
+
+table tr:hover{
+    background-color: #a0a0a0;
+}
+
+table{
+    color: black;
+    font: 14px "Poppins-Medium";
+    width: 90%;
+}
+
+table td{
+    padding: 0.5rem;
+
+}
+
+tr:nth-child(even){
+    background-color: #E8F8F5;
+
+}
+
+.text-cell{
+    max-width: 6rem;
+}
+
+
+
+.centered-td{
+    text-align: center;
+}
+
+/*responsiveness*/
+@media(max-width: 991px) { 
+    header{
+        gap: 5rem;
+    }
+    
+    header li{
+        display: list-item;
+    }
+    
+    header li::marker{
+        color: #fa7d35;
+    }
+
+    #nav-search{
+        width: 210px;
+    }
+    .container{
+        flex-direction: column;
+        text-align: center;
+        gap: 0;
+    }
+    
+    .subcontainer-left{
+        width: auto;
+        padding: 0 70px 0 70px;
+    }
+
+    footer{
+        justify-content: center;
+    }
+
+}

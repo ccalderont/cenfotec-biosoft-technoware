@@ -1,0 +1,82 @@
+
+main p{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
+label{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
+.tabla{
+    margin-left: 0px;
+    width: 80%;
+}
+.main-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0 30px 0 30px;
+
+}
+
+#filter-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 0.5rem;
+    min-width: 200px;
+    margin-top: 2.5rem;
+}
+
+#filter-form h2{
+    margin-top: 0;
+    
+}
+
+#filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    padding: 1rem;
+    gap: 1.5rem;
+    background-color: #E8F8F5;
+    border-radius: 20px;
+}
+
+
+#filter-form-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#filter-form-info section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+
+#filter-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+}
+
+.product-input{
+    width: 100px;
+    border-radius: 0;
+}
+

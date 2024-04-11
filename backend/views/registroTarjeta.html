@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en línea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/registroTarjeta.css">
+</head>
+
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP" href="index.html">
+            <nav id="first-nav">
+
+            </nav>
+        </div>
+
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+            <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar" id="nav-search">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+        <form action="" method="" id="form">
+            <section class="form-card-register" id="form-card-register">
+                <h2>Registro de tarjeta</h2>
+                <!--<img src="/resources/images/cardRegister/cardRegisterUserPicture.jpg">-->
+                <p>Nombre tarjetahabiente</p>
+                <input class="controls" type="text" id="card-holder" placeholder="nombre - apellidos" required>
+                <p>Número de tarjeta</p>
+                <input class="controls" type="text" id="card-number" placeholder="xxxx - xxxx - xxxx- xxxx" required>
+                <p>Código de seguridad (CVC)</p>
+                <input class="controls" type="text" id="security-code" placeholder="xxx" required>
+                <p>Fecha de expiración</p>
+                <input class="controls" type="datetime" id="expiration-date" placeholder="MM / YY" required>
+                <section id="section-button-enviar">
+                    <button type="submit" id="button-enviar">Enviar</button>
+                </section>
+                
+            </section>
+            <!--<div> -->
+            <!--<span id="button-enviar">Enviar</span> -->
+            <!--<button onclick="showConfirm()" type="submit" id="button-enviar">Enviar</button>-->
+
+            <!-- </div> -->
+            <!--<input class="button" id="button-enviar" type="submit" value="Enviar"> -->
+        </form>
+
+
+        <div id="modal" class="modal-container" onclick="closeModal()">
+            <div class="modal-content">
+                <h2>Confirmación</h2>
+                <p>¡La tarjeta ha sido registrada exitosamente!</p>
+                <div id="close" class="close">
+                    <button onclick="goToCard()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <section id="developed-by">
+          <p><a href="sobreNosotrosTechnoware.html">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+<script src="../js/registroTarjeta.js"></script>
+
+</html>

@@ -1,0 +1,98 @@
+
+
+.popup {
+    background-color: white;
+    width: 40vw; 
+    max-width: 484px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 3rem 0;
+}
+
+
+.popup h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #005b4d;
+    padding-top: 10px;
+    font-family: "Poppins-Medium";
+    max-width: 90%; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+.popup .input-label {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    text-align: start;
+    margin-left: 1rem; 
+    color: #818181;
+    padding-top: 20px;
+    padding-bottom: 3px;
+    max-width: 90%; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+.popup input,
+.popup textarea,
+.popup button {
+    width: 90%; 
+    max-width: 400px; 
+    padding: 0.5rem;
+    font-size: 14px;
+    border: 1px solid #818181;
+    border-radius: 10px; 
+    color: #818181;
+    box-sizing: border-box; 
+    align-self: center;
+    font-family: "Poppins-medium";
+}
+
+.popup textarea {
+    resize: vertical;
+}
+
+.popup input[type="file"] {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.popup button {
+    padding: 0.75rem 1.25rem; 
+    font-size: 14px; 
+    border: none;
+    border-radius: 30px;
+    background-color: #005b4d;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.popup button:hover {
+    background-color: #fa7d35;
+}
+
+
+#image {
+    max-width: 18rem;
+}
+
+
+#form-background{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #005b4d;
+    width: 100%;
+}
