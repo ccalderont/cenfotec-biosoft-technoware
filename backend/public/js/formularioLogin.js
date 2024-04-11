@@ -20,7 +20,7 @@ function checkLogin(){
             break;
     }
 
-    window.location = 'index.html';
+    window.location = '/';
 }
 
 

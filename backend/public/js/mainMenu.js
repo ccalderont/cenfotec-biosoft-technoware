@@ -47,7 +47,7 @@ function loadAdminMenu(){
         },
         {
             text: 'Catálogo',
-            href: 'catalogo.html'
+            href: '/catalogo'
         },
         {
             text: 'Configuración',
@@ -58,7 +58,7 @@ function loadAdminMenu(){
                 },
                 {
                     text: 'Impuesto de Administrador',
-                    href: 'impuestAdmin.html'
+                    href: '/admin/ImpuestoAdmin'
                 },
                 {
                     text: 'Solicitudes Pendientes',
@@ -128,7 +128,7 @@ function loadSellerMenu(){
         },
         {
             text: 'Catálogo',
-            href: 'catalogo.html'
+            href: '/catalogo'
         },
         {
             text: 'Mi tramo',
@@ -143,7 +143,7 @@ function loadSellerMenu(){
                 },
                 {
                     text: 'Mis ventas',
-                    href: 'misVentas.html'
+                    href: '/vendedor/misVentas'
                 }
             ]
         },
@@ -188,11 +188,11 @@ function loadClientMenu(){
         },
         {
             text: 'Catálogo',
-            href: 'catalogo.html'
+            href: '/catalogo'
         },
         {
             text: 'Mis compras',
-            href: 'misCompras.html'
+            href: '/cliente/misCompras'
         },
         {
             text: 'Sobre Nosotros',
@@ -240,7 +240,7 @@ function loadDefaultMenu(){
         },
         {
             text: 'Catálogo',
-            href: 'catalogo.html'
+            href: '/catalogo'
         },
         {
             text: 'Sobre Nosotros',
