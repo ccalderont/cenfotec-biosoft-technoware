@@ -14,3 +14,14 @@ exports.getImpuestoAdmin = (req, res) => {
         }
     });
 }
+
+exports.getRegistrarCategoria = (req, res) => {
+    const fileName = 'registroCategoria.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.error('Error sending file:', err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+}

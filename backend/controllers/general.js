@@ -14,3 +14,29 @@ exports.getIndex = (req, res) => {
         }
     });
 }
+
+
+//Sobre Nosotros CNP
+exports.getAboutUsCNP = (req, res) => {
+    const fileName = 'SobreNosotros.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.error('Error sending file:', err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+}
+
+//Sobre Nosotros Technoware
+exports.getAboutUsTech = (req, res) => {
+    const fileName = 'sobreNosotrosTechnoware.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.error('Error sending file:', err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+}
+

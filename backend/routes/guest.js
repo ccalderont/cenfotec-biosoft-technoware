@@ -10,5 +10,12 @@ router.get("/", generalController.getIndex);
 // Login page route.
 router.get('/login', userController.getLogin);
 
+// Sobre Nosotros CNP
+router.get('/sobreNosotros', generalController.getAboutUsCNP);
+
+// Sobre Nosotros Technoware
+router.get('/sobreNosotrosTech', generalController.getAboutUsTech);
+
+
 
 module.exports = router;

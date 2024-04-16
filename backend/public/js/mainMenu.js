@@ -89,7 +89,7 @@ function loadAdminMenu(){
         },
         {
             text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            href: '/sobrenosotros'
         }
     ];
 
@@ -149,7 +149,7 @@ function loadSellerMenu(){
         },
         {
             text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            href: '/sobreNosotros'
         }
     ];
 
@@ -196,7 +196,7 @@ function loadClientMenu(){
         },
         {
             text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            href: '/sobreNosotros'
         }
     ];
 
@@ -244,7 +244,7 @@ function loadDefaultMenu(){
         },
         {
             text: 'Sobre Nosotros',
-            href: 'sobrenosotros.html'
+            href: '/sobreNosotros'
         }
     ];
 
