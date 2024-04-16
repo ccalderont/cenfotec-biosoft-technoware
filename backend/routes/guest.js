@@ -4,8 +4,7 @@ const generalController = require('../controllers/general.js');
 const userController = require('../controllers/user.js');
 
 
-// Home page route.
-router.get("/", generalController.getIndex);
+router.get('/restaurarContrasena', userController.getRestaurarContrasena);
 
 // Login page route.
 router.get('/login', userController.getLogin);

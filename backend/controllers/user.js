@@ -14,3 +14,14 @@ exports.getLogin = (req, res) => {
         }
     });
 }
+
+exports.getRestaurarContrasena = (req, res) => {
+    const fileName = 'contrasenarest.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.error('Error sending file:', err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+}
