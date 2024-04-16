@@ -31,7 +31,7 @@ function changePasswordView(){
     document.getElementById("btn-change-password").addEventListener("click", function(evento){
         evento.preventDefault();
 
-        window.location.href = "restablecercont.html";
+        window.location.href = "/restaurarContrasena";
     })
 }
 
