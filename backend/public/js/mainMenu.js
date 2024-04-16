@@ -139,7 +139,7 @@ function loadSellerMenu(){
                 },
                 {
                     text: 'Registrar producto',
-                    href: 'registrarprod.html'
+                    href: "/vendedor/registrarproducto"
                 },
                 {
                     text: 'Mis ventas',
