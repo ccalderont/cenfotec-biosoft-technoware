@@ -42,7 +42,7 @@ generaTabla();
 /**
  * Closes the modal to add to the cart
  */
-function closeModal(event){
+function closeModal(event) {
     if (event.target.id === "modal") {
         let modal = document.getElementById('modal');
         // If it was, hide the modal
@@ -55,12 +55,12 @@ function showModal() {
     modal.style.display = 'block';
 }
 
-function proceedBuy(){
+function proceedBuy() {
     window.location.href = '../html/misCompras.html';
 }
 
-function goToRegisterCards(){
-    window.location.href = '../html/registroTarjeta.html';
+function goToRegisterCards() {
+    window.location.href = '/cliente/registroTarjeta';
 }
 
 // let openModal = document.getElementById("complete")

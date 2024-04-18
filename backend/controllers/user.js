@@ -5,6 +5,7 @@ const options = {
 };
 
 exports.getLogin = (req, res) => {
+
     const fileName = 'formularioLogin.html';
     res.sendFile(fileName, options, function (err) {
         if (err) {
@@ -14,6 +15,7 @@ exports.getLogin = (req, res) => {
         }
     });
 }
+
 
 /**
  * Retrieve the administrator´s profile
@@ -39,7 +41,7 @@ exports.getAdminProfile = (req, res) => {
  * @param {*} res view of the venfor´s profile
  */
 exports.getVendorProfile = (req, res) => {
-    const fileName = 'UserProfile.html';
+  const fileName = 'UserProfile.html';
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.error('Error sending file:', err);
@@ -47,7 +49,20 @@ exports.getVendorProfile = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
-};
+}
+
+
+exports.getReportUserAdmin = (req, res) => {
+
+    const fileName = 'reporteProductosAdmin.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.error('Error sending file:', err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+}
 
 /**
  * Retrieve the client's profile
@@ -64,4 +79,5 @@ exports.getClientProfile = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
-};
+
+}
