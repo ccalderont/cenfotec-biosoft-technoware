@@ -6,8 +6,8 @@ const path = require('path');
 
 // Routes
 const adminRoutes = require('./routes/admin.js');
-// const clientRoutes = require('./routes/client.js');
-// const vendorRoutes = require('./routes/vendor.js');
+const clientRoutes = require('./routes/clients.js');
+const vendorRoutes = require('./routes/vendors.js');
 const guestRoutes = require('./routes/guest.js');
 
 
@@ -28,8 +28,8 @@ const port = 3000;
 
 
 app.use('/admin', adminRoutes);
-// app.use('/vendedor', vendorRoutes);
-// app.use('/cliente', clientRoutes);
+app.use('/vendedor', vendorRoutes);
+app.use('/cliente', clientRoutes);
 app.use('/', guestRoutes);
 
 
