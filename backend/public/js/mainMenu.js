@@ -98,7 +98,7 @@ function loadAdminMenu() {
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'UserProfile.html'
+            href: '/admin/perfilAdministrador'
         },
         {
             text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
@@ -158,7 +158,7 @@ function loadSellerMenu() {
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'UserProfile.html'
+            href: '/vendedor/perfilVendedor'
         },
         {
             text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
@@ -205,7 +205,7 @@ function loadClientMenu() {
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
-            href: 'UserProfile.html'
+            href: '/cliente/perfilCliente'
         },
 
         {

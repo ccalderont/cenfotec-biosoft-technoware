@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require('../controllers/admin.js');
+
+
 const productsController = require('../controllers/products.js');
 const tramosController = require('../controllers/tramos.js');
 const userController = require('../controllers/user.js');
 const ventasController = require('../controllers/ventas.js');
+
 
 
 // Home page route.
@@ -21,5 +24,10 @@ router.get("/reporteUsuarios", userController.getReportUserAdmin);
 
 //Sales report manager route
 router.get("/reporteVentas", ventasController.getReportSalesAdmin);
+
+/**
+ * Set the route for the administrator´s profile
+ */
+router.get("/perfilAdministrador", userController.getAdminProfile);
 
 module.exports = router;
