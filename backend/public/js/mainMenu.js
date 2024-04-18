@@ -71,19 +71,19 @@ function loadAdminMenu() {
             extraOptions: [
                 {
                     text: 'Ventas',
-                    href: 'reporteVentasAdmin.html'
+                    href: '/admin/reporteventas'
                 },
                 {
                     text: 'Productos',
-                    href: 'reporteProductosAdmin.html'
+                    href: '/admin/reporteProductos'
                 },
                 {
                     text: 'Tramos',
-                    href: 'reporteTramosAdmin.html'
+                    href: '/admin/reporteTramos'
                 },
                 {
                     text: 'Usuarios',
-                    href: 'reporteUsuariosAdmin.html'
+                    href: '/admin/reporteUsuarios'
                 }
             ]
         },
