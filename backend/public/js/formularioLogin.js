@@ -54,8 +54,8 @@ function showModal() {
 function goToNewAccount(){
     const accountType = document.querySelector('input[name="accountType"]:checked').value;
     if(accountType === 'cliente'){
-        window.location.href = '../html/registroCliente.html';
+        window.location.href = '/cliente/RegistroCliente';
     }else{
-        window.location.href = '../html/registroVendedor.html';
+        window.location.href = '/vendedor/RegistroVendedor';
     }
 }
