@@ -7,7 +7,7 @@ function loadMainMenu() {
     const user = localStorage.getItem('user');
 
     const menuOptions = getMenuOptions(user);
-    
+
     loadMenuOptions(menuOptions);
 }
 
@@ -16,9 +16,9 @@ function loadMainMenu() {
  * @param {string} user - Type of user logged in
  * @returns {Object} - Organized object of menu options
  * */
-function getMenuOptions(user){
+function getMenuOptions(user) {
     let menuOptions = null;
-    switch(user){
+    switch (user) {
         case 'admin':
             menuOptions = loadAdminMenu();
             break;
@@ -39,7 +39,7 @@ function getMenuOptions(user){
  * Returns the menu options for the admin
  * @returns {Object} - Organized object of menu options for the admin
  */
-function loadAdminMenu(){
+function loadAdminMenu() {
     const firstNavoptions = [
         {
             text: 'Inicio',
@@ -51,7 +51,7 @@ function loadAdminMenu(){
         },
         {
             text: 'Configuración',
-            extraOptions:[
+            extraOptions: [
                 {
                     text: 'Categorías',
                     href: 'registroCategoria.html'
@@ -68,7 +68,7 @@ function loadAdminMenu(){
         },
         {
             text: 'Reportes',
-            extraOptions:[
+            extraOptions: [
                 {
                     text: 'Ventas',
                     href: 'reporteVentasAdmin.html'
@@ -94,7 +94,7 @@ function loadAdminMenu(){
     ];
 
     const showSearchBar = true;
-    
+
     const secondNavoptions = [
         {
             text: '<i class="fa-solid fa-user fa-xl"></i>',
@@ -120,7 +120,7 @@ function loadAdminMenu(){
  * Returns the menu options for the seller
  * @returns {Object} - Organized object of menu options for the seller
  */
-function loadSellerMenu(){
+function loadSellerMenu() {
     const firstNavoptions = [
         {
             text: 'Inicio',
@@ -132,7 +132,7 @@ function loadSellerMenu(){
         },
         {
             text: 'Mi tramo',
-            extraOptions:[
+            extraOptions: [
                 {
                     text: 'Mis productos',
                     href: 'misProductos.html'
@@ -180,7 +180,7 @@ function loadSellerMenu(){
  * Returns the menu options for the client
  * @returns {Object} - Organized object of menu options for the client
  */
-function loadClientMenu(){
+function loadClientMenu() {
     const firstNavoptions = [
         {
             text: 'Inicio',
@@ -207,10 +207,10 @@ function loadClientMenu(){
             text: '<i class="fa-solid fa-user fa-xl"></i>',
             href: 'UserProfile.html'
         },
-        
+
         {
             text: '<i class="fa-solid fa-cart-shopping fa-xl"></i>',
-            href: 'carrito.html'
+            href: '/cliente/carrito'
         },
         {
             text: '<i class="fa-solid fa-right-from-bracket fa-xl"></i>',
@@ -232,7 +232,7 @@ function loadClientMenu(){
  * Returns the menu options when not logged in
  * @returns {Object} - Organized object of menu options when the user is not logged in
  */
-function loadDefaultMenu(){
+function loadDefaultMenu() {
     const firstNavoptions = [
         {
             text: 'Inicio',
@@ -270,7 +270,7 @@ function loadDefaultMenu(){
  * Configures the corresponding parts of the menu options (navs and search bar)
  * @param {Object} menuOptions 
  */
-function loadMenuOptions(menuOptions){
+function loadMenuOptions(menuOptions) {
     loadNavOptions(menuOptions.firstNavoptions, 'first-nav');
     loadNavOptions(menuOptions.secondNavoptions, 'second-nav');
     loadSearchBarOptions(menuOptions.showSearchBar);
@@ -281,12 +281,12 @@ function loadMenuOptions(menuOptions){
  * @param {Object[]} options - Organized array of menu options
  * @param {string} navName - Id of the nav to be configured 
  */
-function loadNavOptions(options, navName){
+function loadNavOptions(options, navName) {
     const firstNav = document.getElementById(navName);
     const ul = document.createElement('ul');
-    for(const option of options){
+    for (const option of options) {
         addMenuOption(ul, option);
-    } 
+    }
     firstNav.appendChild(ul);
 }
 
@@ -295,8 +295,8 @@ function loadNavOptions(options, navName){
  * @param {boolean} showSearchBar - Informs if the search box in the bar should show or not
  * @returns 
  */
-function loadSearchBarOptions(showSearchBar){
-    if(showSearchBar) return; // La barra de búsqueda ya se encuentra en el código HTML
+function loadSearchBarOptions(showSearchBar) {
+    if (showSearchBar) return; // La barra de búsqueda ya se encuentra en el código HTML
     const searchBar = document.getElementById('menu-search-bar');
     searchBar.style.display = 'none';
 }
@@ -307,16 +307,16 @@ function loadSearchBarOptions(showSearchBar){
  * @param {Object} option - Option name and name of html file it references
  * @returns 
  */
-function addMenuOption(ul, option){
+function addMenuOption(ul, option) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.innerHTML = option.text;
-    if(option.href){
+    if (option.href) {
         a.href = option.href;
     }
     li.appendChild(a);
     ul.appendChild(li);
-    if(!option.extraOptions) return;
+    if (!option.extraOptions) return;
     addExtraOptions(li, option);
 }
 
@@ -325,14 +325,14 @@ function addMenuOption(ul, option){
  * @param {HTMLElement} li - Main menu option that contains the suboptions
  * @param {Object} option - Option name and name of html file it references
  */
-function addExtraOptions(li, option){
+function addExtraOptions(li, option) {
     const ulExtra = document.createElement('ul');
     ulExtra.classList.add('extra-menu-options-hidden'); // Se ocultan las opciones extra por defecto con CSS
     ulExtra.classList.add('extra-menu-options');
-    for(const extraOption of option.extraOptions){
-        
+    for (const extraOption of option.extraOptions) {
+
         addMenuOption(ulExtra, extraOption);
-        
+
     }
     li.appendChild(ulExtra);
     li.classList.add('extra-menu');
@@ -345,25 +345,25 @@ function addExtraOptions(li, option){
  * @param {HTMLElement} li - Target menu option that is clicked
  * @returns 
  */
-function showExtraOptions(li){
+function showExtraOptions(li) {
     const ulExtras = document.getElementsByClassName('extra-menu-options');
     const currentUlExtra = li.getElementsByClassName('extra-menu-options-hidden')[0];
-    for(const ulExtra of ulExtras){
+    for (const ulExtra of ulExtras) {
         ulExtra.classList.add('extra-menu-options-hidden');
     }
 
-    if(!currentUlExtra) return;
+    if (!currentUlExtra) return;
     currentUlExtra.classList.remove('extra-menu-options-hidden');
-    
+
 }
 
 /**
  * Click event to the document - hides any suboptions showing when clicking anything outside of them
  */
-document.addEventListener('click', function(event) {
-    if(event.target.parentElement.classList.contains('extra-menu')) return; // If an extra option is clicked, this one does not hide
+document.addEventListener('click', function (event) {
+    if (event.target.parentElement.classList.contains('extra-menu')) return; // If an extra option is clicked, this one does not hide
     var extraOptions = document.getElementsByClassName('extra-menu-options');
-    for(const option of extraOptions){
+    for (const option of extraOptions) {
         option.classList.add('extra-menu-options-hidden');
     }
 });
