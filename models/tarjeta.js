@@ -24,7 +24,7 @@ const tarjetaSchema = new mongoose.Schema(
             required: true,
         },
         usuario: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Usuario",
             required: true,
         },

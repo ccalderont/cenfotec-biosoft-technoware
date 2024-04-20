@@ -14,6 +14,17 @@ const guestRoutes = require('./routes/guest.js');
 
 // Importar modelos
 const modeloUsuario = require("./models/usuario.js");
+const modeloProducto = require("./models/producto.js");
+const modeloTramo = require("./models/tramo.js");
+const modeloTarjeta = require("./models/tarjeta.js");
+const modeloVenta = require("./models/venta.js");
+const modeloResena = require("./models/resena.js");
+const modeloCategoria = require("./models/categoria.js");
+const modeloProvincia = require("./models/provincia.js");
+const modeloCanton = require("./models/canton.js");
+const modeloDistrito = require("./models/distrito.js");
+const modeloImpuesto = require("./models/impuesto.js");
+
 
 const app = express();
 
