@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
 const tramoSchema = new mongoose.Schema(
   {
@@ -16,7 +15,7 @@ const tramoSchema = new mongoose.Schema(
         required: true
     },
     usuario: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Usuario",
         required: true,
     }
