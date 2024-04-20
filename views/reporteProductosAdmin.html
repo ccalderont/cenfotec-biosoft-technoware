@@ -1,0 +1,109 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en línea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/reporteProductosAdmin.css">
+</head>
+
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <a href="/"><img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP"></a>
+
+            <nav id="first-nav">
+
+            </nav>
+        </div>
+
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+            <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar" id="nav-search">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+        <!-- Aqui va el código -->
+        <div class="main-container">
+            <div id="filter-section">
+                <form action="" id="filter-form">
+                    <h3>Filtros</h3>
+                    <section id="filter-form-info">
+                        <section>
+                            <label for="product-name-filter">Producto</label>
+                            <label for="store-name-filter">Tramo</label>
+                            <label for="category">Categoría</label>
+                        </section>
+                        <section>
+                            <input type="text" name="search" id="product-name-filter">
+                            <input type="text" name="search" id="store-name-filter">
+                            <select name="category" id="category">
+                                <option value="1">Categoría 1</option>
+                                <option value="2">Categoría 2</option>
+                                <option value="3">Categoría 3</option>
+                            </select>
+                        </section>
+                    </section>
+                    <section id="filter-buttons">
+                        <button type="submit">Filtrar</button>
+                        <i class="fa-solid fa-eraser fa-xl"></i>
+                    </section>
+                    
+                </form>
+            </div>
+            <div class="tabla">
+                <h2>Reporte de productos</h2>   
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Tramo</th>
+                            <th>Producto</th>
+                            <th>Detalle</th>
+                            <th>Cantidad</th>
+                            <th>Calificación</th>
+                            <th class="text-cell">Precio sin impuestos</th>
+                            <th class="text-cell"> Precio con impuestos</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody id="tablereport">
+    
+                    </tbody>
+                </table>
+ 
+            </div>
+        </div>
+            <div class="container-filter">
+                
+            </div>
+            <div class="container-table">
+                
+            </div>
+        
+        
+    </main>
+    <footer>
+        <section id="developed-by">
+          <p><a href="/sobreNosotrosTech">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/mainMenu.js"></script>
+<script src="../js/reporteProductosAdmin.js"></script>
+
+</html>
