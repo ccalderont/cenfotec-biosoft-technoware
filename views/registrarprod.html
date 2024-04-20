@@ -1,0 +1,77 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP - La Feria en línea</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/registrarprod.css">
+    
+</head>
+<body>
+    <header>
+        <!--logo and nav-->
+        <div class="logo-and-nav">
+            <a href="/"><img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP"></a>
+
+            <nav id="first-nav">
+                
+            </nav>
+        </div>
+       
+        <!--account and cart-->
+        <nav id="second-nav" class="search-bar-and-second-nav">
+             <!--search bar-->
+            <nav class="container-search-bar" id="menu-search-bar">
+                <input type="text" placeholder="Buscar" id="nav-search">
+                <div class="btn-search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </nav>
+        </nav>
+    </header>
+    <main>
+        <section id="form-background">
+            <div class="popup">
+                <h2>REGISTRAR PRODUCTO</h2>
+                <form id="product-form" enctype="multipart/form-data">
+                    <p class="input-label">Imagen (JPG o PNG)</p>
+                    <input type="file" accept=".jpg, .png" id="image" name="image" required>
+                    <p class="input-label">Nombre</p>
+                    <input type="text" id="name" name="name" placeholder="Nombre del producto" required>
+                    <p class="input-label">Descripción</p>
+                    <textarea id="description" name="description" placeholder="Descripción del producto" required></textarea>
+                    <div class="price-unit">
+                        <div>
+                            <p class="input-label">Precio ¢</p>
+                            <input type="number" id="price" name="price" placeholder="Precio del producto" required>
+                        </div>
+                        <div>
+                            <p class="input-label">Unidad (Ej: kg)</p>
+                            <input type="text" id="unit" name="unit" placeholder="unidad" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="send-button">Registrar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section id="developed-by">
+          <p><a href="/sobreNosotrosTech">Desarrollado por Technoware</a></p>
+        </section>
+        <section id="follow-us">
+          <p>Seguinos en</p>
+          <i class="fa-brands fa-facebook fa-xl"></i>
+          <i class="fa-brands fa-square-instagram fa-xl"></i>
+        </section>
+      </footer>
+</body>
+<script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
+<script src="../js/formularioLogin.js"></script>
+<script src="../js/mainMenu.js"></script>
+
+
+</html>
+
+
