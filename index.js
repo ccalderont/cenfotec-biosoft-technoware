@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const path = require('path');
 
 
@@ -12,7 +13,7 @@ const guestRoutes = require('./routes/guest.js');
 
 
 // Importar modelos
-// const modeloUsuario = require("./models/users");
+const modeloUsuario = require("./models/usuario.js");
 
 const app = express();
 
@@ -20,19 +21,15 @@ app.use(cors());
 
 app.use(express.static('public'))
 
-// mongoose.connect(
-//   "mongodb+srv://cdcalderontenorio:F5kfeMbrZOE9AcZ4@cluster0.62x01dd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-// );
-
-const port = 3000;
+mongoose.connect(
+  process.env.MONGO_URI
+);
 
 
 app.use('/admin', adminRoutes);
 app.use('/vendedor', vendorRoutes);
 app.use('/cliente', clientRoutes);
 app.use('/', guestRoutes);
-
-
 
 
 // app.get("/usuarios/:id", function (req, res) {
@@ -45,6 +42,6 @@ app.use('/', guestRoutes);
 //   res.send(usuario);
 // });
 
-app.listen(port, function () {
-  console.log("El servidor está escuchando en el puerto", port);
+app.listen(process.env.PORT, function () {
+  console.log("El servidor está escuchando en el puerto", process.env.PORT);
 });
