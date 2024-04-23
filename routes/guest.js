@@ -2,15 +2,21 @@ const express = require("express");
 const router = express.Router();
 const generalController = require('../controllers/general.js');
 const userController = require('../controllers/user.js');
+const storeController = require('../controllers/tramos.js');
 
 
 // Home page route.
 router.get("/", generalController.getIndex);
 
-// Login page route.
+// Login page routes
+// Get login page
 router.get('/login', userController.getLogin);
+// Post login
+router.post('/login', userController.postLogin);
 
 router.get('/catalogo', generalController.getCatalogue);
+router.get('/getAllProducts', generalController.getAllProducts);
+router.get('/getAllStores', storeController.getActiveStores);
 
 router.get('/sobreNosotros', generalController.getAboutUsCNP);
 
@@ -23,6 +29,10 @@ router.get('/restaurarContrasena', userController.getRestaurarContrasena);
 router.get('/registroCliente', userController.getRegistroCliente);
 
 router.get('/registroVendedor', userController.getRegistroVendedor);
+
+router.get('/getImpuestoAdmin', generalController.getImpuestoAdmin);
+
+router.get('/getActiveCategories', generalController.getActiveCategories);
 
 
 module.exports = router;

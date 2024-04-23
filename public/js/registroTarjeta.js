@@ -108,6 +108,9 @@ form.addEventListener('submit', function (event) {
         // cardModal.style.display = 'block';
         showModal();
     }
+
+    const idUser = localStorage.getItem('idUsuario');
+    
 });
 
 // Para cerrar el modal

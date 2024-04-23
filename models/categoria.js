@@ -7,6 +7,10 @@ const categoriaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    estado:{
+      type: Boolean,
+      required: true,
+    }
   },
   {
     timestamps: true,

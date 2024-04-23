@@ -1,14 +1,74 @@
 let currentPage = 0; // Global variable that stores the current page number
 let numberOfPages = 0; // Global variable that stores the number of pages
-
+let impuestoAdmin = 0; // Global variable that stores the admin tax
 /**
  * Run when loading the page. Sets up the page accordingly
  */
-window.onload = function() {
-    numberOfPages = addProductsToCatalogue();
+window.onload = async function() {
+    impuestoAdmin = await getImpuestoAdmin();
+    numberOfPages = await addProductsToCatalogue(false);
+    await setCategories();
+    await setStores();
     showPage(); // At the start it will show the first page
     activatePaginationButtons();
     removeCartButtons();
+}
+
+async function setCategories(){
+    const categories = await getCategories();
+    const categoriesSelect = document.getElementById("category");
+    categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.nombre;
+        categoriesSelect.appendChild(option);
+    });
+}
+
+async function getCategories(){
+    const response = await fetch('/getActiveCategories', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.categorias;
+}
+
+
+async function setStores(){
+    const stores = await getStores();
+    const storesSelect = document.getElementById("store-name-filter");
+    stores.forEach((store) => {
+        const option = document.createElement("option");
+        option.value = store.id;
+        option.text = store.nombre;
+        storesSelect.appendChild(option);
+    });
+}
+
+async function getStores(){
+    const response = await fetch('/getAllStores', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.stores;
+}
+
+
+async function getImpuestoAdmin(){
+    const response = await fetch('/getImpuestoAdmin', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.impuesto;
 }
 
 /**
@@ -16,7 +76,7 @@ window.onload = function() {
  * @returns {boolean} - True if the user is logged in as a client, false otherwise
  * */
 function clientUserIsLoggedIn(){
-    return localStorage.getItem('user') === 'cliente';
+    return localStorage.getItem('tipoUsuario') === 'cliente';
 }
 
 /**
@@ -84,12 +144,47 @@ function changePage(target){
     showPage();
 }
 
+async function getProducts(filter){
+    let response = null;
+    
+    if(!filter) {
+        response = await fetch('/getAllProducts', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+    } else {
+        // const filtersSelected = {
+        //     categoria: document.getElementById("category").value,
+        //     tramo: document.getElementById("product-name-filter").value,
+        //     nombre: document.getElementById("product-name-filter").value,
+        // };
+        // response = await fetch(`/getProductsByCategory/${filter}`, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(filtersSelected)
+        // });
+    }
+    const data = await response.json();
+    return data;
+}
+
 /** 
  * Adds the products to the catalogue section with their corresponding page class
  * @returns {int} - The number of pages created
 */
-function addProductsToCatalogue(){
+async function addProductsToCatalogue(filter){
+    const products = await getProducts(filter);
     const catalogue = document.getElementById("catalogue-section");
+    if(products.length === 0){
+        document.getElementById("no-product-message").classList.remove("hidden-element");
+        catalogue.classList.add("hidden-element");
+        return;
+    }
+    catalogue.innerHTML = ""; // Initialize the catalogue everytime
     let pageNumber = 0;
     let productsPerPage = 12;
     products.forEach((product) => {
@@ -113,29 +208,30 @@ function addProductsToCatalogue(){
  * @returns {HTMLElement} - The HTML element with the product information
  * */
 function createProductItem(product, pageClass){
+    const precioTotalProducto = getTotalPrice(product.precioBruto, product.impuesto);
     const article = document.createElement("article");
     article.classList.add("catalogue-item");
     article.classList.add("hidden-element");
     article.classList.add(pageClass);
     article.innerHTML = `
-        <img class="product-img" src="${product.imagen}" alt="${product.nombre}">
+        <img class="product-img" src="${product.foto}" alt="${product.nombre}">
         <section class="catalogue-item-info">
             <h2>${product.nombre}</h2>
             <p>${product.descripcion}</p>
             <section class="store-and-rating">
-                <p><strong>${product.tramo}</strong></p>
+                <p><strong>${product.tramo.nombre}</strong></p>
                 <p>${getStarsCalification(product.calificacion)}</p>
             </section>
             <section class="price-and-button">
-                <p>₡${parseFloat(product.precio).toFixed(2)}</p>
+                <p>₡${precioTotalProducto}</p>
                 <span class="add-to-cart-catalogue"
                     data-productid="${product.id}"
                     data-productname="${product.nombre}"
                     data-productdescription="${product.descripcion}"
-                    data-productprice="${product.precio}"
-                    data-productimage="${product.imagen}"
-                    data-productquantity="${product.cantidad}"
-                    data-productunit="${product.unidad}"
+                    data-productprice="${precioTotalProducto}"
+                    data-productimage="${product.foto}"
+                    data-productquantity="${product.cantidadDisponible}"
+                    data-productunit="${product.unidadMedida}"
                     onclick=showModal(this)><i class="fa-solid fa-cart-plus fa-lg"></i></span>
             </section>
         </section>
@@ -143,6 +239,10 @@ function createProductItem(product, pageClass){
     return article;
 }
 
+
+function getTotalPrice(precioBruto, impuestoVendedor){
+    return precioBruto + (precioBruto * (impuestoAdmin + impuestoVendedor) / 100);
+}
 
 
 /**
@@ -211,7 +311,7 @@ function addToCart(target){
 
 
 
-const products = [
+const oldProducts = [
     
     
     

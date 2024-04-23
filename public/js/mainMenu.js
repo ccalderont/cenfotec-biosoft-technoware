@@ -4,7 +4,7 @@ loadMainMenu();
  * Gets the type of logged in user and loads the options of the nav bar based on that
  * */
 function loadMainMenu() {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('tipoUsuario');
 
     const menuOptions = getMenuOptions(user);
 

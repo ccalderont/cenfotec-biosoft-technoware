@@ -56,16 +56,21 @@
             </div> -->
             <div id="modal" class="modal-container" onclick="closeModal(event)">
                 <div id="modal-content">
-                    <h3>Selecciona el tipo de cuenta</h3>
-                    <div class="radio-label">
-                        <input type="radio" name="accountType" value="cliente" checked>
-                        <label>Cliente</label>
+                    <div>
+                        <h3>Selecciona el tipo de cuenta</h3>
+                        <div class="radio-label">
+                            <input type="radio" name="accountType" value="cliente" checked>
+                            <label>Cliente</label>
+                        </div>
+                        <div class="radio-label">
+                            <input type="radio" name="accountType" value="vendedor">
+                            <label>Vendedor</label>
+                        </div>
+                        <button onclick="goToNewAccount()">Crear cuenta</button>
                     </div>
-                    <div class="radio-label">
-                        <input type="radio" name="accountType" value="vendedor">
-                        <label>Vendedor</label>
+                    <div>
+                        <span onclick="closeModal(event)" class="close-modal">X</span>
                     </div>
-                    <button onclick="goToNewAccount()">Crear cuenta</button>
                 </div>
             </div>
         </div>

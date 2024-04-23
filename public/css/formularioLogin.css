@@ -177,6 +177,10 @@ main{
     padding: 20px;
     border: 1px solid #888;
     width: 20%; /* This will make the modal content take 80% of the viewport's width */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 #modal-content h3{
     margin-bottom: 1rem;

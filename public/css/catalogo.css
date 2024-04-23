@@ -202,6 +202,7 @@ main i:hover{
     align-items: flex-start;
     justify-content: center;
     padding: 0.5rem;
+    width: 100%;
 }
 
 .catalogue-item-info p{
