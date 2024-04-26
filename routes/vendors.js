@@ -19,6 +19,7 @@ router.get('/login', userController.getLogin);
 router.get("/perfilVendedor", userController.getVendorProfile);
 
 router.get("/misVentas", ventasController.getMisVentas);
+router.post("/obtenerVentas", ventasController.getVentas);
 
 router.get("/misProductos", productsController.getMisProductos);
 

@@ -8,7 +8,7 @@ const tarjetaSchema = new mongoose.Schema(
         },
 
         numeroTarjeta: {
-            type: Number,
+            type: String,
             required: true,
         },
         mesExpiracion: {
@@ -16,10 +16,6 @@ const tarjetaSchema = new mongoose.Schema(
             required: true,
         },
         annoExpiracion: {
-            type: Number,
-            required: true,
-        },
-        cvc: {
             type: Number,
             required: true,
         },

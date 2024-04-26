@@ -21,6 +21,7 @@ router.get("/reporteTramos", tramosController.getReportTramosAdmin);
 
 //User report manager route
 router.get("/reporteUsuarios", userController.getReportUserAdmin);
+router.post("/getAllUsers", userController.getAllUsers);
 
 //Sales report manager route
 router.get("/reporteVentas", ventasController.getReportSalesAdmin);
@@ -33,5 +34,11 @@ router.get("/perfilAdministrador", userController.getAdminProfile);
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);
+
+router.get("/getAllClients", userController.getAllClients);
+router.get("/getAllVendors", userController.getAllVendors);
+router.get("/getAllProducts", productsController.getAllProducts);
+router.get("/getAllStores", tramosController.getAllStores);
+router.post("/getAllSales", ventasController.getAllSales);
 
 module.exports = router;

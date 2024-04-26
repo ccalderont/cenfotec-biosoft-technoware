@@ -80,3 +80,10 @@ label{
     border-radius: 0;
 }
 
+input:not([type='checkbox']):not(#nav-search){
+    width: 100%;
+}
+
+select{
+    width: 100%;
+}

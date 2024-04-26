@@ -89,7 +89,7 @@ exports.getVendorProfile = (req, res) => {
 
 exports.getReportUserAdmin = (req, res) => {
 
-    const fileName = 'reporteProductosAdmin.html';
+    const fileName = 'reporteUsuariosAdmin.html';
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.error('Error sending file:', err);
@@ -97,6 +97,20 @@ exports.getReportUserAdmin = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+exports.getAllUsers = async (req, res) => {
+    try{
+        const users = await User.find({
+            estado: req.body.estado !== '' ? req.body.estado : {$ne: null},
+            tipoUsuario: req.body.tipoUsuario !== '' ? req.body.tipoUsuario : {$ne: null}
+        }).populate('tramo');
+        res.status(200).send({users: users});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
 }
 
 /**
@@ -161,4 +175,26 @@ exports.getResetPassword = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+exports.getAllClients = async (req, res) => {
+    try{
+        const clients = await User.find({tipoUsuario: 'cliente'});
+        res.status(200).send({clients: clients});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+exports.getAllVendors = async (req, res) => {
+    try{
+        const vendors = await User.find({tipoUsuario: 'vendedor'});
+        res.status(200).send({vendors: vendors});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
 }

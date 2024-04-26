@@ -1,4 +1,4 @@
-const UsuarioReport = [
+const oldUsuarioReport = [
 {
     TipoDeUsuario : "vendedor",
     NombreDeUsuario : "Christian Calderon",
@@ -40,21 +40,49 @@ const UsuarioReport = [
     Telefono:"6666-6666",
 },
 ];
-buildTable(UsuarioReport);
 
-function buildTable(data) {
+loadPage()
+
+function loadPage(){
+    setFilters();
+    loadTable();
+}
+
+function setFilters(){
+    document.getElementById('estado-select').value = "";
+    document.getElementById('tipo-select').value = "";
+}
+
+async function loadTable() {
+    const usuarios = await getUsers();
     const table = document.getElementById("tablereport");
-
-    for (let i = 0; i < data.length; i++) {
+    table.innerHTML = '';
+    usuarios.forEach((usuario) => {
         const row = `<tr>
-                        <td>${data[i].TipoDeUsuario}</td>
-                        <td>${data[i].NombreDeUsuario}</td>
-                        <td>${data[i].IdDeUsuario}</td>
-                        <td>${data[i].Tramo}</td>
-                        <td>${data[i].CorreoElectronico}</td>
-                        <td>${data[i].Telefono}</td>
+                        <td>${usuario.tipoUsuario}</td>
+                        <td>${usuario.nombre} ${usuario.apellido}</td>
+                        <td>${usuario.cedula}</td>
+                        <td>${usuario.estado}</td>
+                        <td>${usuario.tramo ? usuario.tramo.nombre : "No aplica"}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.telefono}</td>
                     </tr>`;
         table.innerHTML += row;
-    }
+    });
+}
+
+async function getUsers(){
+    const result = await fetch('/admin/getAllUsers',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            estado: document.getElementById('estado-select').value,
+            tipoUsuario: document.getElementById('tipo-select').value
+        })
+    });
+    const data = await result.json();
+    return data.users;
 }
     

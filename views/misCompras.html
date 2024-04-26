@@ -43,15 +43,15 @@
                     </section>
                 </section>
                 <section id="filter-buttons">
-                    <button type="submit">Filtrar</button>
-                    <i class="fa-solid fa-eraser fa-xl"></i>
+                    <button type="button" onclick="loadTable()">Filtrar</button>
+                    <button type="button" onclick="loadPage()">Borrar</button>
                 </section>
             </form>
         </section>
         <section id="table-section">
             <section id="header-section">
                 <h2>Mis compras</h2>
-                <p id="total-price">Total: ₡1.000.000</p>
+                <p id="total-price">Total: ₡0</p>
             </section>
             <table id="main-table">
                 <thead>
@@ -66,9 +66,6 @@
         </section>
         <section id="modal" class="" onclick="closeModal(event)">
             <section id="modal-content">
-                <section>
-                    <img id="modal-product-image" class="product-img">
-                </section>
                 <section id="modal-info">
                     <h2 id="modal-product-name"></h2>
                     <p id="modal-product-store"></p>
@@ -108,7 +105,7 @@
                             <textarea id="review-comment" rows="5" cols="30"></textarea>
                         </section>
                         <section id="submit-comment-section">
-                            <span id="add-review-button" onclick="addReview()">Agregar reseña</span>
+                            <button id="add-review-button" onclick="addReview()">Agregar reseña</button>
                         </section>
                     </section>
                     <section class="modal-submitted-evaluation">
@@ -120,6 +117,11 @@
                         
                         <p id="review-comment-submitted"></p>
                         <button id="delete-review-button" onclick="deleteReview()">Eliminar reseña</button>
+                        <input type="hidden" id="hidden-review-id">
+                        <input type="hidden" id="hidden-product-id">
+                        <input type="hidden" id="hidden-purchase-id">
+                        <input type="hidden" id="hidden-store-id">
+                        <input type="hidden" id="hidden-sell-id">
                     </section>
                 </section>
             </section>

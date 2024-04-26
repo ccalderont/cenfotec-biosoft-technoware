@@ -1,87 +1,178 @@
-function generaTabla() {
-    const productos = [
-        { nombre: 'Manzanas', precio: 400, cantidad: 6 },
-        { nombre: 'Plátanos', precio: 100, cantidad: 10 },
-        { nombre: 'Camotes', precio: 150, cantidad: 4 },
-        { nombre: 'Cebollas', precio: 200, cantidad: 9 },
-        { nombre: 'Ajos', precio: 60, cantidad: 13 },
-        { nombre: 'Lechugas', precio: 550, cantidad: 2 },
-        // Agrega más productos aquí
-    ];
+initializePage();
 
-    const tablaBody = document.querySelector('tbody');
-    const totalElement = document.getElementById("total");
-    let total = 0;
-
-
-    productos.forEach(producto => {
-        const fila = document.createElement('tr');
-        const subTotal = producto.precio * producto.cantidad;
-        total += subTotal;
-
-
-        fila.innerHTML = `
-            <td>${producto.nombre}</td>
-            <td>${producto.precio.toFixed(2)}</td>
-            <td>${producto.cantidad}</td>
-            <td>${subTotal.toFixed(2)}</td>
-                    
-        `;
-
-        tablaBody.appendChild(fila);
-
+async function generarTabla() {
+    const response = await fetch('/cliente/obtenerCarrito', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario')
+        })
     });
 
-    totalElement.textContent = total.toFixed(2);
+    const data = await response.json();
+    if (data.message !== 'Carrito encontrado') {
+        return;
+    }
+
+    const productos = data.carrito.productos;
+    const tablaBody = document.querySelector('tbody');
+    const totalElement = document.getElementById("total");
 
 
+    productos.forEach(individualRequest => {
+        const fila = document.createElement('tr');
+        fila.dataset.id = individualRequest._id;
+        fila.addEventListener('click', selectRow(fila));
+        fila.innerHTML = `
+            <td>${individualRequest.producto.nombre}</td>
+            <td>₡${individualRequest.precioConImpuestoAdmin.toFixed(2)}</td>
+            <td>${individualRequest.cantidad}</td>
+            <td>₡${individualRequest.precioConImpuestoAdmin.toFixed(2)}</td>
+        `;
+        tablaBody.appendChild(fila);
+    });
+
+    totalElement.textContent = `₡${data.carrito.precioTotalConImpuestoAdmin.toFixed(2)}`;
 }
 
-generaTabla();
+function selectRow(row) {
+    return function () {
+        row.classList.toggle('selected-row');
+    }
+}
+
+async function deleteSelected(){
+    const selectedRows = document.querySelectorAll('.selected-row');
+    const selectedIds = [...selectedRows].map(row => row.dataset.id);
+    const result = await fetch('/cliente/eliminarProductoCarrito', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            productos: selectedIds
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Producto eliminado del carrito'){
+        location.reload();
+        return;
+    }
+    alert('No se pudo eliminar el producto del carrito');
+}
+
+async function initializePage(){
+    await generarTabla();
+    await rellenarTarjetas();
+}
+
+function addCard(){
+    window.location.href = '/cliente/registroTarjeta';
+}
+
+async function deleteCard(){
+    const cardSelected = document.getElementById('cards-select').value;
+    if(cardSelected === 'no-card'){
+        alert('Seleccione una tarjeta para eliminar');
+        return;
+    }
+    const result = await fetch('/cliente/eliminarTarjeta', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            tarjeta: cardSelected
+        })
+    });
+
+    const data = result.json();
+    if(data.message === 'Tarjeta eliminada'){
+        location.reload();
+        return;
+    }
+    alert('No se pudo eliminar la tarjeta');
+}
+
+async function rellenarTarjetas() {
+    const cardsSelect = document.getElementById('cards-select');
+    const response = await fetch('/cliente/obtenerTarjetas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario')
+        })
+    });
+
+    const data = await response.json();
+    cardsSelect.innerHTML = '<option value="no-card">-- Seleccione una tarjeta --</option>';
+    const cards = data.tarjetas;
+    if(!cards) return;
+    cards.forEach(card => {
+        const option = document.createElement('option');
+        option.value = card._id;
+        option.textContent = card.tarjetaHabiente + " - " +card.numeroTarjeta;
+        cardsSelect.appendChild(option);
+    });
+}
+
 
 /**
  * Closes the modal to add to the cart
  */
 function closeModal(event) {
     if (event.target.id === "modal") {
-        let modal = document.getElementById('modal');
-        // If it was, hide the modal
-        modal.style.display = 'none';
+        proceedBuy()
     }
 }
 
-function showModal() {
+async function showModal() {
+    const tarjetaSeleccionada = document.getElementById('cards-select').value;
+    if(!tarjetaSeleccionada || tarjetaSeleccionada === 'no-card') {
+        alert('Debe seleccionar una tarjeta para continuar');
+        return;
+    }
+    const cvc = prompt ("Ingrese el CVC de la tarjeta para completar la compra", "");
+    if (!cvc || cvc.length !== 3 || isNaN(cvc)) {
+        return;
+    }
+    
+    const sellWasSuccessful = await proceedBuy();
+    if(!sellWasSuccessful) {
+        alert('No se pudo completar la compra');
+        return;
+    }
     let modal = document.getElementById('modal');
     modal.style.display = 'block';
 }
 
-function proceedBuy() {
+async function proceedBuy() {
+    const tarjetaSeleccionada = document.getElementById('cards-select').value;
+    const response = await fetch('/cliente/realizarCompra', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            tarjeta: tarjetaSeleccionada
+        })
+    });
+
+    const data = await response.json();
+    return (data.message === 'Compra realizada');
+}
+
+function goToMisCompras() {
     window.location.href = '/cliente/misCompras';
 }
 
 function goToRegisterCards() {
     window.location.href = '/cliente/registroTarjeta';
 }
-
-// let openModal = document.getElementById("complete")
-// let cardModal = document.getElementById("modal")
-// let closeModal = document.getElementById("close")
-
-// // open modal
-
-// openModal.onclick = function () {
-
-//     cardModal.style.visibility = "visible";
-// }
-
-// // close modal
-
-// closeModal.onclick = function () {
-//     cardModal.style.visibility = "hidden";
-// }
-
-// // close window modal
-
-// cardModal.onclick = function () {
-//     cardModal.style.visibility = "hidden";
-// }

@@ -39,6 +39,7 @@ tfoot td {
     padding-bottom: 80px; */
     text-align: center;
     margin-top: 0.5rem;
+    
 }
 
 div th {
@@ -51,6 +52,12 @@ td {
     padding: 20px;
     text-align: center;
 
+}
+#header-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #header-section th {
@@ -157,6 +164,8 @@ div .modal-content {
     font-weight: 400;
     margin-bottom: 60px;
 }
+
+
 /* 
 .close {
     width: 100px;
@@ -182,8 +191,23 @@ div .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 50%;
     margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#card-buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-direction: row;
+    width: 80%
+}
+
+#card-buttons button{
+    padding: 0.3rem;
 }
 
 #card-button:hover{

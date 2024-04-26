@@ -8,7 +8,6 @@ const resenaSchema = new mongoose.Schema(
             ref: "Usuario",
             required: true,
         },
-
         tramo: {
             type: Schema.Types.ObjectId,
             ref: "Tramo",
@@ -18,6 +17,9 @@ const resenaSchema = new mongoose.Schema(
             type: Schema.Types.ObjectId,
             ref: "Producto",
             required: true,
+        },
+        compra:{
+            type: Schema.Types.ObjectId,
         },
         comentario: {
             type: String,

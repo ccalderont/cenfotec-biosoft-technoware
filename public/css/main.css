@@ -290,6 +290,16 @@ button:hover {
     color: #fff;
 }
 
+/* .erase-button{
+    background-color: #fa7d35;
+}
+
+.erase-button:hover{
+    background-color: #005b4d;
+    border-color: #005b4d;
+} */
+
+
 
 input::placeholder {
     color: #818181; 
@@ -304,7 +314,8 @@ select {
     font-size: 13px;
     border: 1px solid #818181;
     border-radius: 10px;
-    color: #818181;
+    color: black;
+    font-family: 'Poppins-Light';
 }
 
 #filter-form-info label{
@@ -337,6 +348,18 @@ tr:nth-child(even){
 
 }
 
+.selected-row{
+    background-color: gray;
+}
+
+tr:nth-child(even).selected-row{
+    background-color: gray;
+}
+
+tr:nth-child(even).selected-row:hover{
+    background-color: #a0a0a0;
+}
+
 .text-cell{
     max-width: 6rem;
 }
@@ -350,6 +373,8 @@ tr:nth-child(even){
 .centered-td{
     text-align: center;
 }
+
+.erase-button{}
 
 /*responsiveness*/
 @media(max-width: 991px) { 

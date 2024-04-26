@@ -28,3 +28,14 @@ exports.getActiveStores = async (req, res) => {
         res.status(500).send({message: 'Error en el servidor'});
     }
 }
+
+exports.getAllStores = async (req, res) => {
+    try{
+        const stores = await Tramo.find();
+        res.status(200).send({stores: stores});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
