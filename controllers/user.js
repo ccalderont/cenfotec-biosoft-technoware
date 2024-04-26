@@ -115,7 +115,20 @@ exports.getClientProfile = (req, res) => {
         }
     });
 
-}
+};
+
+exports.getUserData = async (req, res) =>{
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id).populate(`tramo`);
+
+        res.status(200).send(user);
+    } catch (error) {
+        console.error(error);
+        console.log("Usuario no encontrado");
+    }
+};
+
 
 exports.getRestaurarContrasena = (req, res) => {
     const fileName = 'contrasenarest.html';

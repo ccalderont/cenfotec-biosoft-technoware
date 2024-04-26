@@ -1,28 +1,8 @@
-/*According to the DB model/Version 2/Collection Usuarios the list was adapted to simulate the connection*/
-let users = {
-        id:1,
-        nombre:"Christian",
-        apellido:"Calderon",
-        cedula:1234,
-        telefono:12347845, 
-        correoElectronico:"c@gmail.com",
-        tipoUsuario:"Vendedor",
-        contraseña:1234,
-        foto:"../resources/images/home/lupa.png",
-        tramo:{
-            nombre:"Tramo de frutas",
-            estado:"Activo",
-            descripcion:"Venta de frutas frescas",
-            idDireccion:112,
-            calificacion:5 
-        } 
-    };
-
-const user = localStorage.getItem('user');
+const idUsuario = localStorage.getItem("idUsuario");
 
 changePasswordView();
-saveEditChanges(user);
-loadProfileFields(user);
+saveEditChanges();
+loadProfileFields();
 
 /**
  * Retrieve the change-password-view by clicking on the button "Cambiar contraseña". 
@@ -35,8 +15,12 @@ function changePasswordView(){
     })
 }
 
-function loadProfileFields(user){
-    switch(user){
+async function loadProfileFields(){
+    
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const userData = await response.json();
+
+    switch(userData.tipoUsuario){
         case 'admin':
             loadAdminProfile();
             break;
@@ -52,20 +36,21 @@ function loadProfileFields(user){
     }
 }
 
-function loadSellerProfile(){
-    let userType = document.querySelector("#user-type");
-    userType.innerHTML = "Vendedor";
-
-    let tramoName = document.querySelector("#tramo-name");
-    tramoName.innerHTML = users.tramo.nombre;
-
+async function loadSellerProfile(){
     loadMainProfileInfo();
-    
-    let inputTramoName = document.querySelector("#input-tramo-name");
-    inputTramoName.value = users.tramo.nombre;
 
+    const userType = document.querySelector("#user-type");   
+    let tramoName = document.querySelector("#tramo-name");
+    let inputTramoName = document.querySelector("#input-tramo-name");
     let inputAddress = document.querySelector("#address");
-    inputAddress.value = users.tramo.idDireccion;
+    
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const userData = await response.json();
+
+    userType.innerHTML = "Vendedor";
+    tramoName.innerHTML = userData.tramo.nombre;
+    inputTramoName.value = userData.tramo.nombre;
+    inputAddress.value = "Aun en ello";
 }
 
 function loadAdminProfile(){
@@ -77,31 +62,30 @@ function loadAdminProfile(){
 }
 
 function loadCustomerProfile(){
-    let userType = document.querySelector("#user-type");
+    const userType = document.querySelector("#user-type");
     userType.innerHTML = "Cliente";
 
     removeVendorOptions();
     loadMainProfileInfo();
 }
 
-function loadMainProfileInfo(){
+async function loadMainProfileInfo(){
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const userData = await response.json();
+
     let userName = document.querySelector("#user-name");
-    userName.innerHTML = users.nombre + " " + users.apellido;
-
     let identificationNumber = document.querySelector("#identification-number");
-    identificationNumber.innerHTML = users.cedula;
-    
     let inputName = document.querySelector("#name");
-    inputName.value = users.nombre;
-
     let inputLastName = document.querySelector("#last-name");
-    inputLastName.value = users.apellido;
-
     let inputPhone = document.querySelector("#phone-number");
-    inputPhone.value = users.telefono;
-
     let inputEmail = document.querySelector("#email");
-    inputEmail.value = users.correoElectronico;
+
+    userName.innerHTML = userData.nombre + " " + userData.apellido;
+    identificationNumber.innerHTML = userData.cedula;
+    inputName.value = userData.nombre;
+    inputLastName.value = userData.apellido;
+    inputPhone.value = userData.telefono;
+    inputEmail.value = userData.email;
 }
 
 function loadDefaultProfile(){
@@ -127,11 +111,14 @@ function removeVendorOptions(){
  * Display a message after clicking on the button located within the form. 
  * Creates two new elements, div and h2, which will be located at the bottom part of the form. The message is styled in red, centered and padded.
  */
-function saveEditChanges(user){
+async function saveEditChanges(){   
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const userData = await response.json();
+
     document.getElementById("edit-profile").addEventListener("submit", function(evento){
         evento.preventDefault();
 
-        switch(user){
+        switch(userData.tipoUsuario){
             case 'admin':
                 validateAdminInfo();
                 break;

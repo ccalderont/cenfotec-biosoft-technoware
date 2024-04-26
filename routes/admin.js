@@ -30,6 +30,8 @@ router.get("/reporteVentas", ventasController.getReportSalesAdmin);
  */
 router.get("/perfilAdministrador", userController.getAdminProfile);
 
+router.get("/perfilAdministrador/:id", userController.getUserData);
+
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);
