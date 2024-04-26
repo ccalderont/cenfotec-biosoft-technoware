@@ -341,7 +341,11 @@ tr:nth-child(even){
     max-width: 6rem;
 }
 
-
+.close-modal{
+    font: 14px "Poppins-Medium";
+    color: #818181;
+    cursor: pointer;
+}
 
 .centered-td{
     text-align: center;

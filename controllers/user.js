@@ -1,8 +1,9 @@
 const path = require('path');
-
 const options = {
     root: path.join(__dirname, '../views')
 };
+
+const User = require('../models/usuario');
 
 exports.getLogin = (req, res) => {
 
@@ -14,6 +15,40 @@ exports.getLogin = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+exports.postLogin = async (req, res) => {
+    const cedula = req.body.loginName;
+    const password = req.body.password;
+
+    try{
+        const user = await User.findOne({ 
+            cedula: cedula,
+            password: password,
+            estado: 'activo'
+        });
+        if(!user){
+            res.status(401).send({message: 'Usuario no encontrado'});
+            return;
+        }
+        res.status(200).send({
+            message: 'Usuario encontrado',
+            id: user.id,
+            cedula: user.cedula,
+            nombre: user.nombre,
+            apellido: user.apellidos,
+            email: user.email,
+            telefono: user.telefono,
+            tipoUsuario: user.tipoUsuario,
+            foto: user.foto
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+    
+
 }
 
 

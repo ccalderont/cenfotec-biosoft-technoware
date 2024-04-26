@@ -46,6 +46,7 @@ const TramoReport = [
     Calificacion:"3",
 },
 ];
+
 buildTable(TramoReport);
 
 function buildTable(data) {

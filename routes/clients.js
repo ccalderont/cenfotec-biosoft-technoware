@@ -22,6 +22,7 @@ router.get("/perfilCliente", userController.getClientProfile);
 
 // Home page route.
 router.get("/registroTarjeta", tarjetaController.getRegistroTarjeta);
+
 router.get("/carrito", ventasController.getCarrito);
 
 // Home page route.

@@ -40,26 +40,25 @@
                         </section>
                         <section>
                             <input type="text" name="search" id="product-name-filter">
-                            <input type="text" name="search" id="store-name-filter">
-                            <select name="category" id="category">
-                                <option value="1">Categoría 1</option>
-                                <option value="2">Categoría 2</option>
-                                <option value="3">Categoría 3</option>
+                            <select id="store-name-filter">
+                                <option value="*" default></option>
+                             </select>
+                            <select id="category">
+                               <option value="*" default></option>
                             </select>
                         </section>
                     </section>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
+                        <button type="button" onclick="addProductsToCatalogue(true)">Filtrar</button>
                         <i class="fa-solid fa-eraser fa-xl"></i>
                     </section>
-                    
                 </form>
             </section>
             <section class="page-button-section">
                 <span id="previous-page" class="pagination-button hidden-element" onclick="changePage(this)"><i class="fa-solid fa-circle-left fa-2xl"></i></span>
             </section>
             <section id="catalogue-section">
-            
+                <section id="no-product-message" class="hidden-element">No se encontró ningún producto</section>
             </section>
                 
             
