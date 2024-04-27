@@ -1,148 +1,155 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('signin-form');
+function submitForm() {
+  const form = document.getElementById("signin-form");
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
+  // Resetear errores
+  const errorMessages = form.querySelectorAll(".error-message");
+  errorMessages.forEach(function (errorMessage) {
+    errorMessage.remove();
+  });
 
-        // Resetear errores
-        const errorMessages = form.querySelectorAll('.error-message');
-        errorMessages.forEach(function (errorMessage) {
-            errorMessage.remove();
-        });
+  // Validacion de identificacion
+  const idNumber = form.querySelector("#id-number");
+  if (idNumber.value.trim() === "") {
+    displayErrorMessage(
+      idNumber,
+      "Por favor, ingrese el número de identificación."
+    );
+  } else if (idNumber.value.trim() < 9) {
+    displayErrorMessage(
+      idNumber,
+      "El número de identificación debe tener al menos 9 dígitos."
+    );
+  }
 
-        //Validacion del formato de foto
-        const userPicture = form.querySelector('#user-picture');
-        const allowedExtensions = ['jpg'];
+  // Validacion del nombre
+  const firstName = form.querySelector("#first-name");
+  if (firstName.value.trim() === "") {
+    displayErrorMessage(firstName, "Por favor, ingrese su nombre.");
+  }
 
-        // Check if a file is selected
-        if (userPicture.files.length > 0) {
-            const fileExtension = userPicture.value.split('.').pop().toLowerCase();
+  // Validacion del apellido
+  const lastName1 = form.querySelector("#last-name1");
+  if (lastName1.value.trim() === "") {
+    displayErrorMessage(lastName1, "Por favor, ingrese al menos un apellido.");
+  }
 
-        if (!allowedExtensions.includes(fileExtension)) {
-            displayErrorMessage(userPicture, 'La foto debe ser formato jpg.');
-        } else {
-        // Borrar mensage anterior si el formato es correcto
-        clearErrorMessage(userPicture);
-        }
-        } else {
-        // Borrar mensage anterior si no se elige un archivo
-        clearErrorMessage(userPicture);
-        }
+  // Validacion del numero de telefono
+  const phoneNumber = form.querySelector("#phone-number");
+  const phoneNumberRegex = /^\d{8}$/; // Numero de telefono de 8 digitos.
+  if (!phoneNumberRegex.test(phoneNumber.value.trim())) {
+    displayErrorMessage(
+      phoneNumber,
+      "Por favor, ingrese un número de teléfono válido."
+    );
+  }
 
-        // Validacion de identificacion
-        const idNumber = form.querySelector('#id-number');
-        if (idNumber.value.trim() === '') {
-            displayErrorMessage(idNumber, 'Por favor, ingrese el número de identificación.');
-        }
+  // Validacion del correo
+  const email = form.querySelector("#e-mail");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.value.trim())) {
+    displayErrorMessage(
+      email,
+      "Por favor, ingrese un correo electrónico válido."
+    );
+  }
 
-        else if (idNumber.value.trim() < 9) {
-                displayErrorMessage(idNumber, 'El número de identificación debe tener al menos 9 dígitos.')
-        }
+  // Validacion de contraseña y confirmacion
+  const passwordMain = form.querySelector("#password-main");
+  const passwordConfirmation = form.querySelector("#password-confirmation");
 
-        // Validacion del nombre
-        const firstName = form.querySelector('#first-name');
-        if (firstName.value.trim() === '') {
-            displayErrorMessage(firstName, 'Por favor, ingrese su nombre.');
-        }
+  // Regex para vocales
+  const vowelRegex = /[aeiouAEIOU]/;
 
-        // Validacion del apellido
-        const lastName1 = form.querySelector('#last-name1');
-        if (lastName1.value.trim() === '') {
-            displayErrorMessage(lastName1, 'Por favor, ingrese al menos un apellido.');
-        }
+  if (passwordMain.value.trim() === "") {
+    displayErrorMessage(passwordMain, "Por favor, ingrese una contraseña.");
+  } else if (vowelRegex.test(passwordMain.value)) {
+    displayErrorMessage(
+      passwordMain,
+      "La contraseña no debe contener vocales."
+    );
+  } else if (passwordMain.value !== passwordConfirmation.value) {
+    displayErrorMessage(passwordConfirmation, "Las contraseñas no coinciden.");
+  }
 
-        // Validacion del numero de telefono
-        const phoneNumber = form.querySelector('#phone-number');
-        const phoneNumberRegex = /^\d{8}$/; // Numero de telefono de 8 digitos.
-        if (!phoneNumberRegex.test(phoneNumber.value.trim())) {
-            displayErrorMessage(phoneNumber, 'Por favor, ingrese un número de teléfono válido.');
-        }
+  // Validacion del criterio de la contraseña
+  const passwordMainRegex =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>])(?![aeiouAEIOU]).{8,}$/;
+  if (!passwordMainRegex.test(passwordMain.value.trim())) {
+    displayErrorMessage(
+      passwordMain,
+      "Verifique el criterio para la creación de contraseña."
+    );
+  }
 
-        // Validacion del correo
-        const email = form.querySelector('#e-mail');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email.value.trim())) {
-            displayErrorMessage(email, 'Por favor, ingrese un correo electrónico válido.');
-        }
+  // Validacion de terminos y condiciones
+  const termsConditions = form.querySelector("#terms-conditions");
+  if (!termsConditions.checked) {
+    displayErrorMessage(
+      termsConditions,
+      "Debe aceptar los términos y condiciones."
+    );
+  }
 
-        // Validacion de contraseña y confirmacion
-        const passwordMain = form.querySelector('#password-main');
-        const passwordConfirmation = form.querySelector('#password-confirmation');
+  // Cuando si no hay errores, mandar el form
+  if (form.querySelectorAll(".error-message").length === 0) {
+    showModal();
+  }
+}
 
-        // Regex para vocales
-        const vowelRegex = /[aeiouAEIOU]/;
+// Funcion para errores
+function displayErrorMessage(inputElement, message) {
+  const errorElement = document.createElement("div");
+  errorElement.className = "error-message";
+  errorElement.textContent = message;
+  inputElement.parentNode.appendChild(errorElement);
+}
 
-        if (passwordMain.value.trim() === '') {
-            displayErrorMessage(passwordMain, 'Por favor, ingrese una contraseña.');
-        } else if (vowelRegex.test(passwordMain.value)) {
-            displayErrorMessage(passwordMain, 'La contraseña no debe contener vocales.');
-        } else if (passwordMain.value !== passwordConfirmation.value) {
-            displayErrorMessage(passwordConfirmation, 'Las contraseñas no coinciden.');
-        }
+//funcion para borrar error en campos no requeridos
+function clearErrorMessage(inputElement) {
+  const errorElement =
+    inputElement.parentElement.querySelector(".error-message");
 
-
-        // Validacion del criterio de la contraseña
-        const passwordMainRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>])(?![aeiouAEIOU]).{8,}$/;
-        if (!passwordMainRegex.test(passwordMain.value.trim())) {
-            displayErrorMessage(passwordMain, 'Verifique el criterio para la creación de contraseña.');
-        }
-
-        // Validacion de terminos y condiciones
-        const termsConditions = form.querySelector('#terms-conditions');
-        if (!termsConditions.checked) {
-            displayErrorMessage(termsConditions, 'Debe aceptar los términos y condiciones.');
-        }
-
-        // Cuando si no hay errores, mandar el form
-        if (form.querySelectorAll('.error-message').length === 0) {
-            showModal()
-            document.getElementById('signin-form').reset(); //esto borra la info previa del form
-        }
-
-    });
-
-    // Funcion para errores
-    function displayErrorMessage(inputElement, message) {
-        const errorElement = document.createElement('div');
-        errorElement.className = 'error-message';
-        errorElement.textContent = message;
-        inputElement.parentNode.appendChild(errorElement);
-    }
-
-    //funcion para borrar error en campos no requeridos
-    function clearErrorMessage(inputElement) {
-        const errorElement = inputElement.parentElement.querySelector('.error-message');
-    
-        if (errorElement) {
-            errorElement.remove();
-        }
-    }
-
-});
+  if (errorElement) {
+    errorElement.remove();
+  }
+}
 
 //Funcion para el modal
 function showModal() {
-    let modal = document.getElementById('modal');
-    modal.style.display = 'block';
+  let modal = document.getElementById("modal");
+  modal.style.display = "block";
 }
 
-
-function closeModal(event){
-    if (event.target.id === "modal") {
-        let modal = document.getElementById('modal');
-        // If it was, hide the modal
-        modal.style.display = 'none';
-    }
+function closeModal(event) {
+  if (event.target.id === "modal") {
+    window.location = "/login";
+  }
 }
 
 function showPassword() {
-    var x = document.getElementById("password-main");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
+  var x = document.getElementById("password-main");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+const boton = document.getElementById("user-picture");
+let fotoPerfil = "";
+let cloudinaryWidget = cloudinary.createUploadWidget(
+  {
+    cloudName: "dy0ldxijc",
+    uploadPreset: "cenfo_test",
+  },
+  function (error, result) {
+    if (!error && result && result.event === "success") {
+      fotoPerfil = result.info.url;
+      document.getElementById("foto_perfil").src = fotoPerfil;
     }
   }
+);
 
-
-
+function subirImagen() {
+  cloudinaryWidget.open();
+}
