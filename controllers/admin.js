@@ -4,6 +4,8 @@ const options = {
     root: path.join(__dirname, '../views')
 };
 
+const Categoria = require('../models/categoria');
+
 exports.getImpuestoAdmin = (req, res) => {
     const fileName = 'impuestAdmin.html';
     res.sendFile(fileName, options, function (err) {

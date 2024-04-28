@@ -151,6 +151,16 @@ exports.postRealizarCompra = async (req, res) => {
         if(!carrito){
             return res.status(404).send({message: 'Carrito vacío'});
         }
+        for (const compra of carrito.productos) {
+            const producto = await Producto.findById(compra.producto._id);
+            // Confirm if there is enough stock
+            if(producto.cantidadDisponible < compra.cantidad){
+                return res.status(400).send({message: 'No hay suficiente stock de ' + producto.nombre});
+            }
+            // Update stock
+            producto.cantidadDisponible -= compra.cantidad;
+            await producto.save();
+        }
         carrito.estado = 'completado';
         carrito.fecha = new Date();
         carrito.tarjeta = req.body.tarjeta;

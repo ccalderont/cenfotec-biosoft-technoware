@@ -22,6 +22,11 @@ router.get("/misVentas", ventasController.getMisVentas);
 router.post("/obtenerVentas", ventasController.getVentas);
 
 router.get("/misProductos", productsController.getMisProductos);
+router.post("/obtenerProductos", productsController.getUserProducts);
+router.post("/actualizarCantidad", productsController.updateProductQuantity);
+router.post("/actualizarPrecio", productsController.updateProductPrice);
+router.post("/actualizarImpuesto", productsController.updateProductTax);
+
 
 router.get("/registrarProducto", productsController.getRegistrarProducto);
 

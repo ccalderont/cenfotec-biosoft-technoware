@@ -1,66 +1,188 @@
-const ProductsReport = [
-{
-    Categoria : "verduras",
-    Producto : "Zanahoria",
-    Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Cantidad: "60",
-    Unidad:"kilos",
-    PrecioSinImpuesto: "600",
-    PrecioConImpuesto: "700",
+loadPage();
+let impuestoAdmin = 0;
 
-},
-{
-    Categoria : "verduras",
-    Producto : "Zanahoria unidades",
-    Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Cantidad: "90",
-    Unidad:"kilos",
-    PrecioSinImpuesto: "650",
-    PrecioConImpuesto: "750",
-},
-{
-    Categoria : "Fruta",
-    Producto : "Manzana mixta",
-    Detalle : "Manzanas mixtas importadas desde california EEUU",
-    Cantidad: "30",
-    Unidad:"kilos",
-    PrecioSinImpuesto: "1000",
-    PrecioConImpuesto: "1100",
-},
-{
-    Categoria : "Fruta",
-    Producto : "Manzana mixta",
-    Detalle : "frescas manzanas libres de quimicos",
-    Cantidad: "60",
-    Unidad:"kilos",
-    PrecioSinImpuesto: "900",
-    PrecioConImpuesto: "1000",
-},
-{
-    Categoria : "verduras",
-    Producto : "cebolla",
-    Detalle : "Sembrada en San Carlos, libre de pesticidas y  quimicos",
-    Cantidad: "70",
-    Unidad:"kilos",
-    PrecioSinImpuesto: "800",
-    PrecioConImpuesto: "825",
-},
-];
-buildTable(ProductsReport);
+async function loadPage(){
+    impuestoAdmin = await getAdminImpuesto();
+    await setFilters();
+    await loadTable();
+}
 
-function buildTable(data) {
+async function getAdminImpuesto(){
+    const result = await fetch('/getImpuestoAdmin',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await result.json();
+    return data.impuesto;
+}
+
+async function setFilters(){
+    const categories = await getCategories();
+    const select = document.getElementById('category-select');
+    select.innerHTML = '<option value=""></option>'
+    categories.forEach((category) => {
+        const option = document.createElement('option');
+        option.value = category.nombre;
+        option.innerText = category.nombre;
+        select.appendChild(option);
+    });
+}
+
+async function getCategories(){
+    const result = await fetch('/getActiveCategories',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await result.json();
+    return data.categorias;
+}
+
+async function getProducts(){
+    const result = await fetch('/vendedor/obtenerProductos',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            categoria: document.getElementById('category-select').value,
+            usuario: localStorage.getItem('idUsuario')
+        })
+    });
+    const data = await result.json();
+    return data.products;
+}
+
+async function loadTable() {
+    const data = await getProducts();
     const table = document.getElementById("tablereport");
 
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-                        <td>${data[i].Categoria}</td>
-                        <td>${data[i].Producto}</td>
-                        <td>${data[i].Detalle}</td>
-                        <td>${data[i].Cantidad} ${data[i].Unidad}</td>
-                        <td>${data[i].PrecioSinImpuesto}</td>
-                        <td>${data[i].PrecioConImpuesto}</td>
+                        <td>${data[i].nombre}</td>
+                        <td><img class='product-img' src='${data[i].foto}'></td>
+                        <td>${data[i].categoria.nombre}</td>
+                        <td>${data[i].descripcion}</td>
+                        <td class="editable-td">
+                            <div>
+                                <input style="width: 50%;"
+                                    type="number" 
+                                    min="0"
+                                    max="999999"
+                                    id="cantidad-${data[i]._id}"
+                                    value="${data[i].cantidadDisponible}"
+                                >
+                                ${data[i].unidadMedida}
+                            </div><br>
+                            <button style="padding: 0.2rem;"
+                                onclick="updateQuantity(this)" 
+                                data-productid="${data[i]._id}">Actualizar
+                            </button>
+                        </td>
+                        <td>${data[i].estado}</td>
+                        
+                        <td class="editable-td">
+                            <div>
+                                ₡<input style="width: 80%;"
+                                type="number" 
+                                min="0"
+                                max="999999"
+                                id="precio-${data[i]._id}"
+                                value="${data[i].precioBruto}"
+                                >
+                            </div><br>
+                            <button style="padding: 0.2rem;"
+                                onclick="updatePrice(this)" 
+                                data-productid="${data[i]._id}">Actualizar
+                            </button>
+                        </td>
+                        <td class="editable-td">
+                            <div>
+                                <input style="width: 80%;"
+                                type="number" 
+                                min="0"
+                                max="999999"
+                                id="impuesto-${data[i]._id}"
+                                value="${data[i].impuesto}"
+                                >%
+                            </div><br>
+                            <button style="padding: 0.2rem;"
+                                onclick="updateTax(this)" 
+                                data-productid="${data[i]._id}">Actualizar
+                            </button>
+                        </td>
+                        <td>₡${calculateFullPrice(data[i].precioBruto, data[i].impuesto)}</td>
+                        <td>${data[i].calificacion} ⭐</td>
                     </tr>`;
         table.innerHTML += row;
     }
 }
-    
+
+function calculateFullPrice(precioBruto, impuesto){
+    return precioBruto + (precioBruto * (impuesto+ impuestoAdmin))/100;
+}
+
+async function updateTax(target){
+    const result = await fetch('/vendedor/actualizarImpuesto',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            producto: target.dataset.productid,
+            impuesto: document.getElementById(`impuesto-${target.dataset.productid}`).value
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Producto actualizado'){
+        alert('Producto actualizado');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al actualizar el producto');
+    return;
+}
+
+async function updatePrice(target){
+    const result = await fetch('/vendedor/actualizarPrecio',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            producto: target.dataset.productid,
+            precio: document.getElementById(`precio-${target.dataset.productid}`).value
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Producto actualizado'){
+        alert('Producto actualizado');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al actualizar el producto');
+    return;
+}
+
+async function updateQuantity(target){
+    const result = await fetch('/vendedor/actualizarCantidad',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            producto: target.dataset.productid,
+            cantidad: document.getElementById(`cantidad-${target.dataset.productid}`).value
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Producto actualizado'){
+        alert('Producto actualizado');
+        return;
+    }
+    alert('Hubo un error al actualizar el producto');
+    return;
+}

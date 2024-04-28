@@ -270,7 +270,7 @@ input:not([type='checkbox']):not(#nav-search) {
     font-size: 13px;
     border: 1px solid #818181;
     border-radius: 10px;
-    color: #818181;
+    color: black;
 }
 
 button {

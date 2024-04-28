@@ -104,7 +104,7 @@ exports.getAllUsers = async (req, res) => {
         const users = await User.find({
             estado: req.body.estado !== '' ? req.body.estado : {$ne: null},
             tipoUsuario: req.body.tipoUsuario !== '' ? req.body.tipoUsuario : {$ne: null}
-        }).populate('tramo');
+        }).populate('tramo').sort({nombre: 1});
         res.status(200).send({users: users});
     }
     catch(error){

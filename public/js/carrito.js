@@ -166,7 +166,11 @@ async function proceedBuy() {
     });
 
     const data = await response.json();
-    return (data.message === 'Compra realizada');
+    if(data.message !== 'Compra realizada'){
+        alert(data.message)
+        return false;
+    }
+    return true;
 }
 
 function goToMisCompras() {
