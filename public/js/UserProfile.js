@@ -17,7 +17,7 @@ function changePasswordView(){
 
 async function loadProfileFields(){
     
-    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});    
     const userData = await response.json();
 
     switch(userData.tipoUsuario){
@@ -47,10 +47,10 @@ async function loadSellerProfile(){
     const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
     const userData = await response.json();
 
-    userType.innerHTML = "Vendedor";
+    userType.innerHTML = "Vendedor(a)";
     tramoName.innerHTML = userData.tramo.nombre;
     inputTramoName.value = userData.tramo.nombre;
-    inputAddress.value = "Aun en ello";
+    inputAddress.value = userData.tramo.direccion;
 }
 
 function loadAdminProfile(){
@@ -80,10 +80,10 @@ async function loadMainProfileInfo(){
     let inputPhone = document.querySelector("#phone-number");
     let inputEmail = document.querySelector("#email");
 
-    userName.innerHTML = userData.nombre + " " + userData.apellido;
+    userName.innerHTML = userData.nombre + " " + userData.apellidos;
     identificationNumber.innerHTML = userData.cedula;
     inputName.value = userData.nombre;
-    inputLastName.value = userData.apellido;
+    inputLastName.value = userData.apellidos;
     inputPhone.value = userData.telefono;
     inputEmail.value = userData.email;
 }
@@ -107,10 +107,6 @@ function removeVendorOptions(){
     inputAddress.remove();
 }
 
-/**
- * Display a message after clicking on the button located within the form. 
- * Creates two new elements, div and h2, which will be located at the bottom part of the form. The message is styled in red, centered and padded.
- */
 async function saveEditChanges(){   
     const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
     const userData = await response.json();
@@ -137,7 +133,7 @@ async function saveEditChanges(){
 }
 //Validations
 
-function validateVendorInfo(){
+async function validateVendorInfo(){
     let name = document.getElementById("name").value;
     let lastName = document.getElementById("last-name").value;
     let phone = document.getElementById("phone-number").value;
@@ -205,10 +201,22 @@ function validateVendorInfo(){
         addressHelper.style.display ="none";
     }
 
+    const response = await fetch("/admin/perfilAdministrador", {method:"PUT", headers:{
+        "Content-Type":"application/json",
+    },
+    body: JSON.stringify({
+        id: idUsuario,
+        nombre: name,
+        apellidos: lastName,
+        telefono: phone,
+        email: email,
+    })
+    });
+
     window.location.href = "/"; 
 }
 
-function validateCustomerInfo(){
+async function validateCustomerInfo(){
     let name = document.getElementById("name").value;
     let lastName = document.getElementById("last-name").value;
     let phone = document.getElementById("phone-number").value;
@@ -253,10 +261,25 @@ function validateCustomerInfo(){
         let emailHelper = document.getElementById("email-helper");
         emailHelper.style.display = "none"; 
     }
+
+
+    const response = await fetch(`/admin/perfilAdministrador`, {method:"PUT",
+    headers:{
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        id: idUsuario,
+        nombre: name,
+        apellidos: lastName,
+        telefono: phone,
+        email: email
+    })
+    });  
+
     window.location.href = "/"; 
 }
 
-function validateAdminInfo(){
+async function validateAdminInfo(){
     let name = document.getElementById("name").value;
     let lastName = document.getElementById("last-name").value;
     let phone = document.getElementById("phone-number").value;
@@ -301,8 +324,23 @@ function validateAdminInfo(){
         let emailHelper = document.getElementById("email-helper");
         emailHelper.style.display = "none"; 
     }
+
+
+    const response = await fetch(`/admin/perfilAdministrador`, {method:"PUT",
+    headers:{
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        id: idUsuario,
+        nombre: name,
+        apellidos: lastName,
+        telefono: phone,
+        email: email
+    })
+    });   
+
     window.location.href = "/"; 
-}
+};
 
 function mostrarHelper(helper){
     helper.style.color = "#fa7d35";

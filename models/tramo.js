@@ -18,6 +18,10 @@ const tramoSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Usuario",
         required: true,
+    },
+    direccion:{
+      type: String,
+      required: true
     }
   },
   {

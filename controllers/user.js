@@ -47,9 +47,7 @@ exports.postLogin = async (req, res) => {
         console.log(error);
         res.status(500).send({message: 'Error en el servidor'});
     }
-    
-
-}
+};
 
 
 /**
@@ -117,6 +115,16 @@ exports.getClientProfile = (req, res) => {
 
 };
 
+/**
+ * Retrieve the user´s info.
+ * According to the id obtained from <code>localstore.getitem(idUsuario)</code> the info for the user is retrieved.
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @see postLogin
+ * @see routes/admin.js
+ * @see public/js/formularioLogin.js
+ */
 exports.getUserData = async (req, res) =>{
     try {
         const id = req.params.id;
@@ -129,6 +137,28 @@ exports.getUserData = async (req, res) =>{
     }
 };
 
+exports.putUserData = async(req, res) =>{
+
+    if(!req.body){
+        console.log("No se envió el cuerpo del correo");
+        res.status(400).send("Falta el cuerpo de la solicitud");
+      }
+  
+    try {
+        const userUpdated = await User.findByIdAndUpdate(req.body.id, req.body, {new: true});
+
+        if(!userUpdated){
+            console.log("Usuario no encontrado");
+            return res.status(400).send("Usuario no encontrado")
+        }
+
+        console.log(`Usuario ${userUpdated.id} actualizado.`);
+        res.status(200).send(userUpdated);
+    } catch (error) {
+        console.error(error);
+        res.status(501).send("Hubo un error. No se pueden actualizar los datos");
+    }
+};
 
 exports.getRestaurarContrasena = (req, res) => {
     const fileName = 'contrasenarest.html';

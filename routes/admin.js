@@ -30,7 +30,12 @@ router.get("/reporteVentas", ventasController.getReportSalesAdmin);
  */
 router.get("/perfilAdministrador", userController.getAdminProfile);
 
+/**
+ * Set the route to get the current user's data
+ */
 router.get("/perfilAdministrador/:id", userController.getUserData);
+
+router.put("/perfilAdministrador", userController.putUserData);
 
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
 
