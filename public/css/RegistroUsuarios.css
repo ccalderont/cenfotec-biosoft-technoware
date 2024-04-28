@@ -360,3 +360,7 @@ footer i:hover{
 #modal-info{
     margin-bottom: 1rem;
 }
+
+#user-picture{
+    align-self: self-start;
+}

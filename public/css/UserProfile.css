@@ -23,7 +23,7 @@ main p{
     /* height: 70vh; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
     gap: 0.5rem;
 }
@@ -76,4 +76,9 @@ main p{
     align-items: center;
     background-color: #005b4d;
     width: 100%;
+}
+
+#user-picture{
+    align-self: self-start;
+
 }

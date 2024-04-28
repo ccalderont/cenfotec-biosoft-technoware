@@ -1,4 +1,39 @@
-function submitForm() {
+//Para Mongo
+async function createaccount() {
+  const clientPict = document.getElementById("foto_perfil").src;
+  const clientIdtype = document.getElementById("id-type").value;
+  const clientIdnumber = document.getElementById("id-number").value;
+  const clientName = document.getElementById("first-name").value;
+  const clientLastname = document.getElementById("last-name1").value;
+  const clientPhone = document.getElementById("phone-number").value;
+  const clientEmail = document.getElementById("e-mail").value;
+  const clientPassword = document.getElementById("password-main").value;
+
+  const response = await fetch("/registroCliente", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      foto: clientPict,
+      tipoId: clientIdtype,
+      numeroId: clientIdnumber,
+      nombre: clientName,
+      apellido: clientLastname,
+      telefono: clientPhone,
+      correo: clientEmail,
+      contrasena: clientPassword,
+    }),
+  });
+  const data = await response.json();
+  if (data.message !== "Usuario agregado exitosamente") {
+    alert("Hubo un error al agregar el usuario");
+    return false;
+  }
+  return true;
+}
+
+async function submitForm() {
   const form = document.getElementById("signin-form");
 
   // Resetear errores
@@ -90,9 +125,13 @@ function submitForm() {
     );
   }
 
-  // Cuando si no hay errores, mandar el form
+  // Cuando si no hay errores, mandar el for
+
   if (form.querySelectorAll(".error-message").length === 0) {
-    showModal();
+    const accountCreated = await createaccount();
+    if (accountCreated) {
+      showModal();
+    }
   }
 }
 
