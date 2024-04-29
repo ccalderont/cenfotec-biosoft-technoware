@@ -39,6 +39,7 @@ router.post("/aprobarTramo", tramosController.postApproveTramo);
 router.post("/rechazarTramo", tramosController.postRejectTramo);
 router.get("/getProductosPendientes", productsController.getPendingProducts);
 router.post("/aprobarProducto", productsController.postApproveProduct);
+router.post("/rechazarProducto", productsController.postRejectProduct);
 
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);

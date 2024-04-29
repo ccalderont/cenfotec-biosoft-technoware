@@ -9,6 +9,8 @@ const { ObjectId } = mongoose.Types;
 const Producto = require('../models/producto');
 const Usuario = require('../models/usuario');
 
+const mailController = require('./mail');
+
 exports.getReportProductsAdmin = (req, res) => {
     const fileName = 'reporteProductosAdmin.html';
     res.sendFile(fileName, options, function (err) {
@@ -163,10 +165,29 @@ exports.getPendingProducts = async (req, res) => {
 
 exports.postApproveProduct = async (req, res) => {
     try{
-        const producto = await Producto.findById(req.body.producto);
+        const producto = await Producto.findById(req.body.producto).populate('tramo');
         producto.estado = 'activo';
         await producto.save();
+
+        const usuario = await Usuario.findById(producto.tramo.usuario);
+        //send email to the vendor
+        mailController.sendApprovedProductEmail(producto, usuario);
         res.status(200).send({message: 'Producto aprobado con éxito'});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+
+exports.postRejectProduct = async (req, res) => {
+    try{
+        const producto = await Producto.findByIdAndDelete(req.body.producto).populate('tramo');
+        const usuario = await Usuario.findById(producto.tramo.usuario);
+        //send email to the vendor
+        mailController.sendRejectedProductEmail(producto, usuario, req.body.razon);
+        res.status(200).send({message: 'Producto rechazado con éxito'});
     }
     catch(error){
         console.log(error);
