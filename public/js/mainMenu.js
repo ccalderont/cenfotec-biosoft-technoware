@@ -367,3 +367,10 @@ document.addEventListener('click', function (event) {
         option.classList.add('extra-menu-options-hidden');
     }
 });
+
+function seachProductBar(event){
+    if(event.key === "Enter"){
+        const searchValue = document.getElementById('nav-search').value;
+        window.location.href = `/catalogo?producto=${searchValue}`;
+    }
+}

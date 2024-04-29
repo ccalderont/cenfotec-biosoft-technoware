@@ -12,6 +12,7 @@ const ventasController = require('../controllers/ventas.js');
 
 // Home page route.
 router.get("/impuestoAdmin", adminController.getImpuestoAdmin);
+router.post("/updateImpuestoAdmin", adminController.updateImpuestoAdmin);
 
 //product report manager route
 router.get("/reporteProductos", productsController.getReportProductsAdmin);
@@ -22,6 +23,7 @@ router.get("/reporteTramos", tramosController.getReportTramosAdmin);
 //User report manager route
 router.get("/reporteUsuarios", userController.getReportUserAdmin);
 router.post("/getAllUsers", userController.getAllUsers);
+router.post("/cambiarEstadoUsuario", userController.changeStatus);
 
 //Sales report manager route
 router.get("/reporteVentas", ventasController.getReportSalesAdmin);
@@ -32,8 +34,14 @@ router.get("/reporteVentas", ventasController.getReportSalesAdmin);
 router.get("/perfilAdministrador", userController.getAdminProfile);
 
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
+router.get("/getTramosPendientes", tramosController.getPendingTramos);
+router.post("/aprobarTramo", tramosController.postApproveTramo);
+router.get("/getProductosPendientes", productsController.getPendingProducts);
+router.post("/aprobarProducto", productsController.postApproveProduct);
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);
+router.get("/getAllCategorias", adminController.getAllCategorias);
+router.post("/saveCategories", adminController.saveCategories);
 
 router.get("/getAllClients", userController.getAllClients);
 router.get("/getAllVendors", userController.getAllVendors);

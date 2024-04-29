@@ -21,7 +21,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -44,7 +44,6 @@
                                 <option value=""></option>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
-                                <option value="pendiente">Pendiente</option>
                                 
                             </select>
                             <select name="Tipo de usuario" id="tipo-select">
@@ -69,10 +68,10 @@
                             <th>Nombre de Usuario</th>
                             <th>Tipo de usuario</th>
                             <th>Id de Usuario</th>
-                            <th>Estado</th>
                             <th>Tramo</th>
                             <th>Correo electrónico</th>
                             <th>Teléfono</th>
+                            <th>Activar</th>
                         </tr>
                     </thead>
     

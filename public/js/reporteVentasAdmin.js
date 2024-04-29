@@ -46,7 +46,7 @@ async function setClientFilter(){
     clients.forEach(client => {
         const option = document.createElement('option');
         option.value = client._id;
-        option.innerText = client.nombre + " " + client.apellido;
+        option.innerText = client.nombre + " " + client.apellidos;
         select.appendChild(option);
     });
 }
@@ -115,7 +115,7 @@ async function loadTable() {
             
             const row = `<tr>
                             <td>${formattedDate}</td>
-                            <td>${venta.usuario.nombre} ${venta.usuario.apellido}</td>
+                            <td>${venta.usuario.nombre} ${venta.usuario.apellidos}</td>
                             <td>${compra.tramo.nombre}</td>
                             <td>${compra.producto.nombre}</td>
                             <td>${compra.cantidad}</td>

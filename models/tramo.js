@@ -22,7 +22,11 @@ const tramoSchema = new mongoose.Schema(
     direccion: {
         type: String,
         required: true,
-    },	
+    },
+    descripcion:{
+        type: String,
+        required: true,
+    },
   },
   {
     timestamps: true,

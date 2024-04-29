@@ -24,7 +24,7 @@ async function setFilters(){
     select.innerHTML = '<option value=""></option>'
     categories.forEach((category) => {
         const option = document.createElement('option');
-        option.value = category.nombre;
+        option.value = category._id;
         option.innerText = category.nombre;
         select.appendChild(option);
     });
@@ -59,7 +59,7 @@ async function getProducts(){
 async function loadTable() {
     const data = await getProducts();
     const table = document.getElementById("tablereport");
-
+    table.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
                         <td>${data[i].nombre}</td>

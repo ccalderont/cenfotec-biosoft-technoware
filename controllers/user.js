@@ -102,10 +102,27 @@ exports.getReportUserAdmin = (req, res) => {
 exports.getAllUsers = async (req, res) => {
     try{
         const users = await User.find({
-            estado: req.body.estado !== '' ? req.body.estado : {$ne: null},
+            estado: req.body.estado !== '' ? req.body.estado : {$ne: "pendiente"},
             tipoUsuario: req.body.tipoUsuario !== '' ? req.body.tipoUsuario : {$ne: null}
         }).populate('tramo').sort({nombre: 1});
         res.status(200).send({users: users});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+exports.changeStatus = async (req, res) => {
+    try{
+        const user = await User.findById(req.body.idUsuario).populate('tramo');
+        user.estado = user.estado === 'activo' ? 'inactivo' : 'activo';
+        await user.save();
+        if(user.estado === 'inactivo'){
+            user.tramo.estado = 'inactivo';
+            await user.tramo.save();
+        }
+        res.status(200).send({message: 'Estado actualizado'});
     }
     catch(error){
         console.log(error);

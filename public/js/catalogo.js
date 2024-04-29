@@ -5,6 +5,9 @@ let impuestoAdmin = 0; // Global variable that stores the admin tax
  * Run when loading the page. Sets up the page accordingly
  */
 window.onload = async function() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const product = urlParams.get('producto')
     impuestoAdmin = await getImpuestoAdmin();
     numberOfPages = await addProductsToCatalogue(false);
     await setCategories();
@@ -12,6 +15,10 @@ window.onload = async function() {
     showPage(); // At the start it will show the first page
     activatePaginationButtons();
     removeCartButtons();
+    if(product && product !== ""){
+        document.getElementById("product-name-filter").value = product;
+        filterProducts();
+    }
 }
 
 async function filterProducts(){
