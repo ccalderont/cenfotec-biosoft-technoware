@@ -36,8 +36,10 @@ router.get("/perfilAdministrador", userController.getAdminProfile);
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
 router.get("/getTramosPendientes", tramosController.getPendingTramos);
 router.post("/aprobarTramo", tramosController.postApproveTramo);
+router.post("/rechazarTramo", tramosController.postRejectTramo);
 router.get("/getProductosPendientes", productsController.getPendingProducts);
 router.post("/aprobarProducto", productsController.postApproveProduct);
+
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);
 router.get("/getAllCategorias", adminController.getAllCategorias);

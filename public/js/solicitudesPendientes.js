@@ -67,7 +67,7 @@ function createStoreRow(store){
                 </button>
                 <button 
                     class='reject-button'
-                    onclick=rejectStore(${store.id})>
+                    onclick=rejectStore("${store.id}")>
                         Recharzar
                 </button>
             </td>
@@ -96,6 +96,47 @@ async function approveProduct(productId){
     alert('Hubo un error al aprobar la solicitud');
 
 }
+
+async function rejectStore(storeId){
+    //show an alert to request the reason of the rejection
+    const reason = prompt('Por favor, indique la razón por la que desea rechazar esta solicitud');
+    if(!reason) return;
+    const response = await fetch('/admin/rechazarTramo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({tramo: storeId, razon: reason})
+    });
+    const data = await response.json();
+    if(data.message === 'Tramo rechazado con éxito'){
+        alert('Solicitud rechazada con éxito');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al rechazar la solicitud');
+}
+
+async function rejectProduct(productId){
+    //show an alert to request the reason of the rejection
+    const reason = prompt('Por favor, indique la razón por la que desea rechazar esta solicitud');
+    if(!reason) return;
+    const response = await fetch('/admin/rechazarProducto', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({producto: productId, razon: reason})
+    });
+    const data = await response.json();
+    if(data.message === 'Producto rechazado con éxito'){
+        alert('Solicitud rechazada con éxito');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al rechazar la solicitud');
+}
+
 
 async function approveStore(storeId){
     const confirmation = confirm('¿Está seguro de aprobar esta solicitud?');
@@ -170,7 +211,7 @@ function createProductRow(product){
             </button>
             <button 
                 class='reject-button'
-                onclick=rejectProduct(${product.id})>
+                onclick=rejectProduct("${product.id}")>
                     Recharzar
             </button>
             </td>
