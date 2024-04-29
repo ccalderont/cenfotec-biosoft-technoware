@@ -125,7 +125,7 @@ async function submitForm() {
     );
   }
 
-  // Cuando si no hay errores, mandar el for
+  // Cuando si no hay errores, mandar el form
 
   if (form.querySelectorAll(".error-message").length === 0) {
     const accountCreated = await createaccount();

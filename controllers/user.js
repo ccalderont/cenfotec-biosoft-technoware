@@ -5,6 +5,7 @@ const options = {
 };
 
 const Usuario = require("../models/usuario");
+const Tramo = require("../models/tramo");
 
 exports.getLogin = (req, res) => {
   const fileName = "formularioLogin.html";
@@ -101,18 +102,8 @@ exports.getRegistroCliente = (req, res) => {
   });
 };
 
-//Nuevo Mongo
-
+//Nuevo Mongo Cliente
 exports.postRegistroCliente = async (req, res) => {
-  const foto = req.body.foto;
-  const tipoIdent = req.body.tipoId;
-  const numeroID = req.body.numeroId;
-  const nombre = req.body.nombre;
-  const apellido = req.body.apellido;
-  const telefono = req.body.telefono;
-  const correo = req.body.correo;
-  const contrasena = req.body.contrasena;
-
   try {
     const newUsuario = new Usuario({
       foto: req.body.foto,
@@ -149,6 +140,51 @@ exports.getRegistroVendedor = (req, res) => {
     }
   });
 };
+
+//Nuevo Mongo Vendedor
+exports.postRegistroVendedor = async (req, res) => {
+  try {
+    let newVendedor = new Usuario({
+      foto: req.body.foto,
+      tipoIdent: req.body.tipoId,
+      cedula: req.body.numeroId,
+      nombre: req.body.nombre,
+      apellidos: req.body.apellido,
+      telefono: req.body.telefono,
+      email: req.body.correo,
+      permisos: req.body.permisos,
+      tipoUsuario: "Vendedor",
+      estado: "pendiente",
+    });
+
+    //Guardar el usuario en la BD
+    newVendedor = await newVendedor.save();
+
+    let newTramo = new Tramo({
+      nombre: req.body.tramo,
+      estado: "pendiente",
+      calificacion: 0,
+      descripcion: req.body.descripcion,
+      direccion: req.body.ubicacion,
+      usuario: newVendedor,
+    });
+
+    newTramo = await newTramo.save();
+
+    newVendedor.tramo = newTramo;
+
+    newVendedor = await newVendedor.save();
+
+    res
+      .status(200)
+      .send({ message: "Solicitud de vendedor enviada exitosamente" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error en el servidor" });
+  }
+};
+
+//
 
 exports.getResetPassword = (req, res) => {
   const fileName = "restablecercont.html";

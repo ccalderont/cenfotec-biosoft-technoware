@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP - La Feria en línea</title>
     <link rel="stylesheet" href="../css/main.css">
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script defer src="/js/RegistroVendedor.js"></script>
     <link rel="stylesheet" href="../css/RegistroUsuarios.css">
 </head>
@@ -31,19 +32,18 @@
     </header>
     <main>
       <section id="form-background">
-        <form onSubmit={handleSubmit(onSubmit)} noValidate id= "signin-form" class="signin-form">
+        <section id= "signin-form" class="signin-form">
             <h2>Solicitud de registro de vendedor</h2>
 
             <div class="registry-container">
 
-                <div class="input-form">
-                    <label for="user-picture"> Agregar Foto</label>
-                    <input
-                      name="user-picture"
-                      id="user-picture"
-                      type="file"
-                    />
-                  </div>
+              <div class="input-form">
+                <img id="foto_perfil"></img>
+                <button onclick="subirImagen()"
+                  name="user-picture"
+                  id="user-picture"
+                >Agregar Foto</button>
+              </div>
                   
                   <div class="input-form">
                     <label for="id-type">Tipo de identificación</label>
@@ -122,14 +122,39 @@
                 </div>
 
                 <div class="input-form">
-                  <label for="gov-permit">Permisos Municipales*</label>
+                  <label for="store-description">Descripción del Tramo*</label>
                   <input
-                    name="gov-permit"
-                    id="gov-permit"
-                    type="file"
+                    name="store-description"
+                    id="store-description"
+                    type="text"
+                    placeholder="Tramo exclusivo para venta de flores"
                     required
                   />
                 </div>
+
+                <div class="input-form">
+                  <label for="location">Ubicación*</label>
+                  <input
+                    name="location"
+                    id="location"
+                    type="text"
+                    placeholder="San Jose, San Jose, Zapote"
+                    required
+                  />
+                </div>
+
+                <div class="input-form">
+                  <label for="gov-permit">Permisos Municipales*</label>
+                  <input
+                    id="gov-permit-input"
+                    type="text"
+                    disabled
+                  />
+                  <button onclick="subirArchivo()"
+                  id="gov-permit"
+                >Agregar Permisos Municipales</button>
+                </div>
+
                 
                 
                     <div class="checkbox-form">
@@ -142,7 +167,7 @@
                       <label for="terms-conditions">Acepto términos y condiciones*</label>
                     </div>
                 
-        <button id="test">Enviar Solicitud</button>
+        <button id="test" onclick="submitForm()">Enviar Solicitud</button>
 
         <section id="modal" class="" onclick="closeModal(event)">
           <section id="modal-content">

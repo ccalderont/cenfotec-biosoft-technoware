@@ -20,10 +20,11 @@ router.get("/restablecerContrasena", userController.getResetPassword);
 router.get("/restaurarContrasena", userController.getRestaurarContrasena);
 
 router.get("/registroCliente", userController.getRegistroCliente);
-
 //Nuevo Post para DB
 router.post("/registroCliente", userController.postRegistroCliente);
 
 router.get("/registroVendedor", userController.getRegistroVendedor);
+//Nuevo Post para DB
+router.post("/registroVendedor", userController.postRegistroVendedor);
 
 module.exports = router;

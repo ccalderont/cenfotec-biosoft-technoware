@@ -37,7 +37,6 @@ const usuarioSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     foto: {
       type: String,
