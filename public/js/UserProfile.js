@@ -79,6 +79,8 @@ async function loadMainProfileInfo(){
     let inputLastName = document.querySelector("#last-name");
     let inputPhone = document.querySelector("#phone-number");
     let inputEmail = document.querySelector("#email");
+    let userPhoto = document.querySelector("#user-photo");
+
 
     userName.innerHTML = userData.nombre + " " + userData.apellidos;
     identificationNumber.innerHTML = userData.cedula;
@@ -86,6 +88,7 @@ async function loadMainProfileInfo(){
     inputLastName.value = userData.apellidos;
     inputPhone.value = userData.telefono;
     inputEmail.value = userData.email;
+    userPhoto.src = userData.foto;
 }
 
 function loadDefaultProfile(){

@@ -139,7 +139,7 @@ exports.getUserData = async (req, res) =>{
 
 /**
  * Update the user's info.
- * First validate the body and confirm it includes data to be udpated <code>if(!req.body)</code>. Then it takes the id and tramoID from the body. For all users it updates the common fields <code>User.findByIdAndUpdate</code>. If the user is a vendor it updates the fields for vendor <code>if(tramoID)</code> 
+ * First validate the body and confirm it includes data to be udpated <code>if(!req.body)</code>. Then it takes the id and tramoID from the body. For all users it updates the common fields in <code>User.findByIdAndUpdate</code>. If the user is a vendor it updates the fields for vendor in <code>if(tramoID)</code> 
  * @param {*} req 
  * @param {*} res 
  * @returns
