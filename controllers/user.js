@@ -137,19 +137,37 @@ exports.getUserData = async (req, res) =>{
     }
 };
 
+/**
+ * Update the user's info.
+ * First validate the body and confirm it includes data to be udpated <code>if(!req.body)</code>. Then it takes the id and tramoID from the body. For all users it updates the common fields <code>User.findByIdAndUpdate</code>. If the user is a vendor it updates the fields for vendor <code>if(tramoID)</code> 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns
+ * @see public/js/UserProfile.js 
+ */
 exports.putUserData = async(req, res) =>{
 
     if(!req.body){
         console.log("No se envió el cuerpo del correo");
         res.status(400).send("Falta el cuerpo de la solicitud");
       }
-  
+      
     try {
-        const userUpdated = await User.findByIdAndUpdate(req.body.id, req.body, {new: true});
+        const {id, tramoID} = req.body;
+        let userUpdated = null; 
+
+        userUpdated = await User.findByIdAndUpdate(id, req.body, {new: true}).populate("tramo");
 
         if(!userUpdated){
             console.log("Usuario no encontrado");
             return res.status(400).send("Usuario no encontrado")
+        };
+
+        if(tramoID){
+            userUpdated.tramo.nombre = req.body.tramoNombre;
+            userUpdated.tramo.direccion = req.body.tramoDireccion;
+    
+            userUpdated = await userUpdated.tramo.save();
         }
 
         console.log(`Usuario ${userUpdated.id} actualizado.`);

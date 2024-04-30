@@ -35,6 +35,10 @@ router.get("/perfilAdministrador", userController.getAdminProfile);
  */
 router.get("/perfilAdministrador/:id", userController.getUserData);
 
+
+/**
+ * Set the route to update the user's data
+ */
 router.put("/perfilAdministrador", userController.putUserData);
 
 router.get("/solicitudesPendientes", adminController.getPendingRequests);

@@ -201,7 +201,10 @@ async function validateVendorInfo(){
         addressHelper.style.display ="none";
     }
 
-    const response = await fetch("/admin/perfilAdministrador", {method:"PUT", headers:{
+    const response = await fetch(`/admin/perfilAdministrador/${idUsuario}`, {method:"GET",});
+    const userData = await response.json();
+
+    const responseTwo = await fetch("/admin/perfilAdministrador", {method:"PUT", headers:{
         "Content-Type":"application/json",
     },
     body: JSON.stringify({
@@ -210,6 +213,9 @@ async function validateVendorInfo(){
         apellidos: lastName,
         telefono: phone,
         email: email,
+        tramoID: userData.tramo._id,
+        tramoNombre: tramoName,
+        tramoDireccion: address
     })
     });
 
