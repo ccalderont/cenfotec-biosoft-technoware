@@ -3,6 +3,7 @@ const path = require('path');
 const options = {
     root: path.join(__dirname, '../views')
 };
+const Usuario= require("../models/usuario");
 
 exports.getLogin = (req, res) => {
 
@@ -126,4 +127,15 @@ exports.getResetPassword = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+exports.getAllVendors = async (req, res) => {
+    try{
+        const vendors = await Usuario.find({tipoUsuario: 'vendedor'});
+        res.status(200).send({vendors: vendors});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
 }
