@@ -96,6 +96,93 @@ exports.sendRejectedProductEmail = (producto, usuario, razon) => {
     sendEmail(datosCorreo);
 }
 
+exports.sendProductStatusChangeEmail = (producto, usuario, razon) => {
+    const datosCorreo = {
+        subject: "¡El estado de tu producto ha cambiado!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>El estado de tu producto <strong>${producto.nombre}</strong> ha cambiado a <strong>${producto.estado.charAt(0).toUpperCase() + producto.estado.slice(1)}</strong> por la siguiente razón:</p>
+        <br>
+        <p><strong>${razon}</strong></p>
+        <br>
+        <p>Si tienes alguna duda, por favor contáctanos a través de este correo.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+
+    sendEmail(datosCorreo);
+}
+
+exports.sendUserStatusChangeEmail = (usuario, razon) => {
+    const datosCorreo = {
+        subject: "¡El estado de tu cuenta ha cambiado!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>El estado de tu cuenta ha cambiado a <strong>${usuario.estado.charAt(0).toUpperCase() + usuario.estado.slice(1)}</strong> por la siguiente razón:</p>
+        <br>
+        <p><strong>${razon}</strong></p>
+        <br>
+        <p>Si tienes alguna duda, por favor contáctanos a través de este correo.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+    sendEmail(datosCorreo);
+}
+
+exports.sendPasswordResetEmail = (usuario, newPassword) => {
+    const datosCorreo = {
+        subject: "¡Tu contraseña ha sido restablecida!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>Tu contraseña ha sido restablecida a la siguiente:</p>
+        <br>
+        <p><strong>${newPassword}</strong></p>
+        <br>
+        <p>Por favor, ingresa a tu perfil en la página de la feria en línea para cambiar tu contraseña.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+    sendEmail(datosCorreo);
+}
+
+exports.sendInactiveUserEmail = (usuario) => {
+    const datosCorreo = {
+        subject: "¡Tu cuenta ha sido desactivada!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>Tu cuenta ha sido desactivada por el administrador.</p>
+        <br>
+        <p>Si tienes alguna duda, por favor contáctanos a través de este correo.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+    sendEmail(datosCorreo);
+}
+
+exports.sendPendingUserEmail = (usuario) => {
+    const datosCorreo = {
+        subject: "¡Tu cuenta está pendiente de aprobación!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>Tu cuenta está pendiente de aprobación por el administrador.</p>
+        <br>
+        <p>Recibirás un correo cuando tu cuenta haya sido aprobada.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+    sendEmail(datosCorreo);
+}
+
 
 async function sendEmail(datosCorreo) {
     console.log("Enviando correo", datosCorreo);

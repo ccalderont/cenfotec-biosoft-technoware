@@ -16,6 +16,8 @@ router.post("/updateImpuestoAdmin", adminController.updateImpuestoAdmin);
 
 //product report manager route
 router.get("/reporteProductos", productsController.getReportProductsAdmin);
+router.post("/getAllProductsFilterd", productsController.getAllProductsFilterd);
+router.post("/cambiarEstadoProducto", productsController.changeProductStatus);
 
 //Tramo report manager route
 router.get("/reporteTramos", tramosController.getReportTramosAdmin);
@@ -23,7 +25,7 @@ router.get("/reporteTramos", tramosController.getReportTramosAdmin);
 //User report manager route
 router.get("/reporteUsuarios", userController.getReportUserAdmin);
 router.post("/getAllUsers", userController.getAllUsers);
-router.post("/cambiarEstadoUsuario", userController.changeStatus);
+router.post("/cambiarEstadoUsuario", userController.changeUserStatus);
 
 //Sales report manager route
 router.get("/reporteVentas", ventasController.getReportSalesAdmin);

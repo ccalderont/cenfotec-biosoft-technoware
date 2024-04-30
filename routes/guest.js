@@ -27,8 +27,11 @@ router.get('/sobreNosotros', generalController.getAboutUsCNP);
 router.get('/sobreNosotrosTech', generalController.getAboutUsTech);
 
 router.get('/restablecerContrasena', userController.getResetPassword);
+router.post('/enviarCorreoPassword', userController.postEnviarCorreoPassword);
+
 
 router.get('/restaurarContrasena', userController.getRestaurarContrasena);
+router.post('/cambiarPassword', userController.postCambiarPassword);
 
 router.get('/registroCliente', userController.getRegistroCliente);
 

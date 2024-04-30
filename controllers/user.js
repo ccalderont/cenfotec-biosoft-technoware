@@ -4,6 +4,7 @@ const options = {
 };
 
 const User = require('../models/usuario');
+const mailController = require('./mail');
 
 exports.getLogin = (req, res) => {
 
@@ -113,15 +114,20 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
-exports.changeStatus = async (req, res) => {
+exports.changeUserStatus = async (req, res) => {
     try{
         const user = await User.findById(req.body.idUsuario).populate('tramo');
         user.estado = user.estado === 'activo' ? 'inactivo' : 'activo';
         await user.save();
         if(user.estado === 'inactivo'){
-            user.tramo.estado = 'inactivo';
-            await user.tramo.save();
+            if(user.tramo){
+                user.tramo.estado = 'inactivo';
+                await user.tramo.save();
+            }
         }
+
+        //send email to the user
+        mailController.sendUserStatusChangeEmail(user, req.body.razon);
         res.status(200).send({message: 'Estado actualizado'});
     }
     catch(error){
@@ -157,6 +163,62 @@ exports.getRestaurarContrasena = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+exports.postCambiarPassword = async (req, res) => {
+    const userId = req.body.userId;
+    const newPassword = req.body.newPassword;
+    const oldPassword = req.body.oldPassword;
+    try{
+        const user = await User.findById(userId);
+        if(user.password !== oldPassword){
+            res.status(401).send({message: 'Contraseña incorrecta'});
+            return;
+        }
+        user.password = newPassword;
+        await user.save();
+        res.status(200).send({message: 'Contraseña actualizada'});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+exports.postEnviarCorreoPassword = async (req, res) => {
+    const cedula = req.body.identificacion;
+    try{
+        const user = await User.findOne({cedula: cedula});
+        if(!user){
+            res.status(401).send({message: 'Usuario no encontrado'});
+            return;
+        }
+        //send email to the user
+        switch(user.estado){
+            case 'activo':
+                const newPassword = await changeUserPassword(user);
+                mailController.sendPasswordResetEmail(user, newPassword);
+                break;
+            case 'inactivo':
+                mailController.sendInactiveUserEmail(user);
+                break;
+            case 'pendiente':
+                mailController.sendPendingUserEmail(user);
+                break;
+        }
+        res.status(200).send({message: 'Correo enviado'});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+async function changeUserPassword(user){
+    const newPassword = Math.random().toString(36).slice(-8);
+    user.password = newPassword;
+    await user.save();
+    return newPassword;
 }
 
 exports.getRegistroCliente = (req, res) => {

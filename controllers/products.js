@@ -22,6 +22,22 @@ exports.getReportProductsAdmin = (req, res) => {
     });
 }
 
+exports.getAllProductsFilterd = async (req, res) => {
+    try{
+        let products = await Producto.find({
+            nombre: {$regex: req.body.nombre, $options: 'i'},
+            categoria: req.body.categoria !== "" ? req.body.categoria: {$ne: null},
+            tramo: req.body.tramo !== "" ? req.body.tramo: {$ne: null},
+            estado: {$ne: 'pendiente'}
+        }).populate('categoria tramo');
+        res.status(200).send({products: products});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
 exports.getRegistrarProducto = (req, res) => {
     const fileName = 'registrarprod.html';
     res.sendFile(fileName, options, function (err) {
@@ -188,6 +204,23 @@ exports.postRejectProduct = async (req, res) => {
         //send email to the vendor
         mailController.sendRejectedProductEmail(producto, usuario, req.body.razon);
         res.status(200).send({message: 'Producto rechazado con éxito'});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
+
+exports.changeProductStatus = async (req, res) => {
+    try{
+        const product = await Producto.findById(req.body.idProducto).populate('tramo');
+        product.estado = product.estado === 'activo' ? 'inactivo' : 'activo';
+        await product.save();
+        const vendor = await Usuario.findById(product.tramo.usuario);
+
+        //send eamil to the vendor
+        mailController.sendProductStatusChangeEmail(product, vendor, req.body.razon);
+        res.status(200).send({message: 'Estado actualizado'});
     }
     catch(error){
         console.log(error);
