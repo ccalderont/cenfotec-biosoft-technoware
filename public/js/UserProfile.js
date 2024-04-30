@@ -55,7 +55,7 @@ async function loadSellerProfile(){
 
 function loadAdminProfile(){
     let userType = document.querySelector("#user-type");
-    userType.innerHTML = "Administrador";
+    userType.innerHTML = "Administrador(a)";
 
     removeVendorOptions();
     loadMainProfileInfo();
