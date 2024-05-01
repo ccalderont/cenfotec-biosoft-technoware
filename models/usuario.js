@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 
 const usuarioSchema = new mongoose.Schema(
   {
+    tipoIdent: {
+      type: String,
+      required: true,
+    },
     nombre: {
       type: String,
       required: true,
     },
     apellidos: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     cedula: {
       type: String,
@@ -24,31 +28,31 @@ const usuarioSchema = new mongoose.Schema(
       required: true,
     },
     tipoUsuario: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     estado: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
     },
     foto: {
-        type: String,
+      type: String,
     },
     permisos: {
-        type: String,
+      type: String,
     },
     tramo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Tramo",
     }
+
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Usuario", usuarioSchema);;
+module.exports = mongoose.model("Usuario", usuarioSchema);
