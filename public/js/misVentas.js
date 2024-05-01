@@ -1,19 +1,27 @@
+loadPage();
+
 /**
  * Set the dynamic information of the page
  */
 function loadPage(){
+    setDates();
     loadTable();
-    setUpTotalBrutePrice();
-    setUpTotalNetPriceWithVendorTaxes();
-    setUpTotalNetPriceWithAdminTaxes();
+    
+}
+
+function setDates(){
+    const today = new Date();
+    document.getElementById('date-filter-to').value = today.toISOString().split('T')[0];
+    today.setDate(today.getDate() - 30);
+    document.getElementById('date-filter-from').value = today.toISOString().split('T')[0];
 }
 
 /**
  * Sets the net price of the sells with the admin taxes in the page
  */
-function setUpTotalNetPriceWithAdminTaxes(){
+function setUpTotalNetPriceWithAdminTaxes(validPurchases){
     const totalPrice = document.getElementById('total-net-with-admin-taxes');
-    const total = getTotalNetExpenseWithAdminTaxes();
+    const total = getTotalNetExpenseWithAdminTaxes(validPurchases);
     totalPrice.innerHTML = `<strong>Total con impuestos de admin:</strong> ₡${total}`
 }
 
@@ -21,16 +29,16 @@ function setUpTotalNetPriceWithAdminTaxes(){
  * Returns the total net expense of all the sells with the admins's taxes currently showing in the page
  * @returns 
  */
-function getTotalNetExpenseWithAdminTaxes(){
-    return sells.reduce((acc, sell) => acc + sell.total_with_admin_taxes, 0);
+function getTotalNetExpenseWithAdminTaxes(validPurchases){
+    return validPurchases.reduce((acc, purchase) => acc + purchase.precioConImpuestoAdmin, 0);
 }
 
 /**
  * Sets the net price of the sells with the vendor taxes in the page
  */
-function setUpTotalNetPriceWithVendorTaxes(){
+function setUpTotalNetPriceWithVendorTaxes(validPurchases){
     const totalPrice = document.getElementById('total-net-with-my-taxes');
-    const total = getTotalNetExpenseWithVendorTaxes();
+    const total = getTotalNetExpenseWithVendorTaxes(validPurchases);
     totalPrice.innerHTML = `<strong>Total con mis impuestos:</strong> ₡${total}`
 }
 
@@ -38,61 +46,80 @@ function setUpTotalNetPriceWithVendorTaxes(){
  * Returns the total net expense of all the sells with the vendor's taxes currently showing in the page
  * @returns 
  */
-function getTotalNetExpenseWithVendorTaxes(){
-    return sells.reduce((acc, sell) => acc + sell.net_price_my_tax, 0);
+function getTotalNetExpenseWithVendorTaxes(validPurchases){
+    return validPurchases.reduce((acc, purchase) => acc + purchase.precioSinImpuestoAdmin, 0);
 }
 
-/**
- * Sets the total brute price of the sells in the page
- */
-function setUpTotalBrutePrice(){
-    const totalPrice = document.getElementById('total-brute-price');
-    const total = getTotalBruteExpense();
-    totalPrice.innerHTML = `<strong>Total bruto:</strong> ₡${total}`;
-}
-
-/**
- * Returns the total brute expense of all the sells currently showing in the page
- * @returns {number} - Total expense of all the sells
- */
-function getTotalBruteExpense(){
-    return sells.reduce((acc, sell) => acc + sell.brute_price, 0);
-}
 
 /**
  * Loads the table with the sells information
  */
-function loadTable(){
+async function loadTable(){
+    const data = await getSells();
     const table = document.getElementById('sells-tbody');
-    sells.forEach(sell => {
-        const row = createRow(sell);
-        table.appendChild(row);
+    table.innerHTML = '';
+    const validPurchases = [];
+    data.ventas.forEach(sell => {
+        sell.productos.forEach(compra => {
+            // A sell can have products from different stores
+            // Skip the embedded documents from the sell that are not from the current store
+            if(compra.tramo._id === data.tramo){
+                const row = createRow(sell, compra);
+                table.appendChild(row);
+                validPurchases.push(compra);
+            }
+        });
     });
+    setUpTotalNetPriceWithVendorTaxes(validPurchases);
+    setUpTotalNetPriceWithAdminTaxes(validPurchases);
+}
+
+
+async function getSells(){
+    const result = await fetch('/vendedor/obtenerVentas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            fechaInicio: document.getElementById('date-filter-from').value,
+            fechaFin: document.getElementById('date-filter-to').value
+        })
+    });
+    const data = await result.json();
+    if(data.message !== 'Ventas encontradas'){
+        alert('Hubo un error al conseguir las ventas');
+        return [];
+    }
+    return data;
 }
 
 /**
  * Gets the information of the sell and creates a row element with it
- * @param {Object} sell - Object with the information of a sell 
+ * @param {Object} sell - Object with the information of a sell
+ * @param {Object} compra - Embeded document with the information of the product bought
  * @returns {HTMLElement} - Row element with the information of the sell
  */
-function createRow(sell){
+function createRow(sell, compra){
+    let date = new Date(sell.fecha);
+    let formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     const row = document.createElement('tr');
     row.innerHTML = `
         <tr>
-            <td>${sell.date}</td>
-            <td>${sell.product}</td>
-            <td>${sell.quantity} ${sell.unit}</td>
-            <td>${sell.id_client}</td>
-            <td>₡${sell.brute_price}</td>
-            <td>₡${sell.net_price_my_tax}</td>
-            <td>₡${sell.total_with_admin_taxes}</td>
-            ${(sell.review) ?
+            <td>${formattedDate}</td>
+            <td>${compra.producto.nombre}</td>
+            <td>${compra.cantidad} ${compra.producto.unidadMedida}</td>
+            <td>${sell.usuario.nombre} ${sell.usuario.apellido}</td>
+            <td>₡ ${compra.precioSinImpuestoAdmin}</td>
+            <td>₡ ${compra.precioConImpuestoAdmin}</td>
+            ${(compra.resena) ?
                 `<td class="centered-td"
                 data-purchaseid="${sell.id}"
-                data-productname="${sell.product}"
-                data-reviewid="${sell.review.id}"
-                data-stars="${sell.review.stars}"
-                data-comment="${sell.review.comment}"
+                data-productname="${compra.producto.nombre}"
+                data-reviewid="${compra.resena._id}"
+                data-stars="${compra.resena.calificacion}"
+                data-comment="${compra.resena.comentario}"
                 onclick=showModal(this)>
                     <i class="fa-solid fa-list-check"></i>
                 </td>`
@@ -151,58 +178,3 @@ function loadSubmittedReviewModal(target){
     document.getElementById('modal-product-name').innerHTML = target.getAttribute('data-productname');
 }
 
-
-
-const sells= [
-    {
-        id: 1,
-        date: '2021-10-10',
-        product: 'Manzanas',
-        quantity: 10,
-        unit: 'unidades',
-        id_client: 'Jose Fernandez',
-        brute_price: 1200,
-        net_price_my_tax: 1250,
-        total_with_admin_taxes: 1320,
-        review: {
-            id: 1,
-            stars: 5,
-            comment: 'Excelente producto, muy fresco y delicioso'
-        }
-    },
-    {
-        id: 2,
-        date: '2021-10-10',
-        product: 'Manzanas',
-        quantity: 10,
-        unit: 'unidades',
-        id_client: 'Jose Fernandez',
-        brute_price: 1200,
-        net_price_my_tax: 1250,
-        total_with_admin_taxes: 1320
-    },
-    {
-        id: 3,
-        date: '2021-10-10',
-        product: 'Manzanas',
-        quantity: 10,
-        unit: 'unidades',
-        id_client: 'Jose Fernandez',
-        brute_price: 1200,
-        net_price_my_tax: 1250,
-        total_with_admin_taxes: 1320
-    },
-    {
-        id: 4,
-        date: '2021-10-10',
-        product: 'Manzanas',
-        quantity: 10,
-        unit: 'unidades',
-        id_client: 'Jose Fernandez',
-        brute_price: 1200,
-        net_price_my_tax: 1250,
-        total_with_admin_taxes: 1320
-    },
-];
-
-loadPage();

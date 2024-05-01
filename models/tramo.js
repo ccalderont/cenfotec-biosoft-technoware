@@ -15,6 +15,7 @@ const tramoSchema = new mongoose.Schema(
       required: true,
     },
     usuario: {
+
       type: mongoose.Schema.Types.ObjectId,
       ref: "Usuario",
     },
@@ -25,6 +26,7 @@ const tramoSchema = new mongoose.Schema(
     direccion: {
       type: String,
       required: true,
+
     },
   },
   {

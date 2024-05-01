@@ -23,10 +23,12 @@ body{
     width: auto;
 }
 
-.individual-category button{
+.add-category-section button{
     padding: 0.30rem;
     margin-left: 0.3rem;
 }
+
+
 
 #categories-list{
     display: flex;
@@ -43,6 +45,15 @@ body{
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+.add-category-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
 
 /*main*/
 main h1{

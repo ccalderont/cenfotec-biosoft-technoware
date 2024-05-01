@@ -1,8 +1,11 @@
 const path = require('path');
-
 const options = {
     root: path.join(__dirname, '../views')
 };
+
+const Producto = require('../models/producto');
+const Impuesto = require('../models/impuesto');
+const Categoria = require('../models/categoria');
 
 exports.getIndex = (req, res) => {
     const fileName = 'index.html';
@@ -48,4 +51,27 @@ exports.getAboutUsTech = (req, res) => {
             console.log('Sent:', fileName);
         }
     });
+}
+
+
+
+exports.getImpuestoAdmin = async (req, res) => {
+    try{
+        const impuesto = await Impuesto.findOne();
+        res.status(200).send({impuesto: impuesto.impuesto});
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+exports.getActiveCategories = async (req, res) => {
+    try{
+        const categorias = await Categoria.find({activo: true});
+        res.status(200).send({categorias: categorias});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
 }

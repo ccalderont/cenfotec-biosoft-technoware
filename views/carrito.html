@@ -12,7 +12,7 @@
     <header>
         <!--logo and nav-->
         <div class="logo-and-nav">
-            <a href="/"><img id="logo-cnp" src="resources/images/home/logoCNP.png" alt="Logo del CNP"></a>
+            <a href="/"><img id="logo-cnp" src="../resources/images/home/logoCNP.png" alt="Logo del CNP"></a>
             <nav id="first-nav">
 
             </nav>
@@ -22,7 +22,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
             <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -34,16 +34,15 @@
             <section id="header-section">
                 <h2>Mi carrito</h2>
                 <div id="selected-card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th id="card-button" onclick="goToRegisterCards()">
-                                    BAC Credomatic 551234 ******** 1234
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
+                    <select id="cards-select">
+                        
+                    </select>
+                    <div id="card-buttons">
+                        <button id="add-card" onclick="addCard()">Agregar tarjeta</button>
+                        <button id="delete-card" onclick="deleteCard()">Eliminar tarjeta</button>
+                    </div>
                 </div>
+                
                 <table>
                     <thead>
                         <tr>
@@ -66,19 +65,20 @@
                     </tfoot>
                 </table>
                 <div id="action-buttons">
-                    <button type="submit" id="complete" onclick="showModal()"> Completar </button>
-                    <button type="submit" id="edit"> Editar </button>
-                    <button type="submit" id="delete"> Eliminar </button>
+                    <button type="submit" id="delete" onclick="deleteSelected()"> Eliminar seleccionados </button>
+                    <button type="submit" id="complete" onclick="showModal()"> Completar compra </button>
                 </div>
                 <div id="modal" class="modal-container" onclick="closeModal(event)">
                     <div id="modal-content">
                         <h2>Confirmación de compra</h2>
                         <p>La compra se ha completado de manera exitosa!</p>
                         <div id="close" class="close">
-                            <button onclick="proceedBuy()">Aceptar</button>
+                            <button onclick="goToMisCompras()">Aceptar</button>
                         </div>
                     </div>
                 </div>
+            </section>
+        </section>
 
     </main>
     <footer>

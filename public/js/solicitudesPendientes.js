@@ -1,20 +1,45 @@
+let impuestoAdmin = 0;
 /**
  * Set the dynamic information of the page
  */
-function loadPage(){
-    loadStoresTable();
-    loadProductsTable();
+async function loadPage(){
+    impuestoAdmin = await getAdminTax();
+    await loadStoresTable();
+    await loadProductsTable();
+}
+
+async function getAdminTax(){
+    const response = await fetch('/getImpuestoAdmin', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await response.json();
+    return data.impuesto;
 }
 
 /**
  * Loads the table with the stores information
  */
-function loadStoresTable(){
+async function loadStoresTable(){
     const table = document.getElementById('stores-tbody');
+    const stores = await getStores();
     stores.forEach(store => {
         const row = createStoreRow(store);
         table.appendChild(row);
     });
+}
+
+async function getStores(){
+    const response = await fetch('/admin/getTramosPendientes', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await response.json();
+    return data.stores;
 }
 
 /**
@@ -24,43 +49,136 @@ function loadStoresTable(){
  */
 function createStoreRow(store){
     const row = document.createElement('tr');
+    const date = new Date(store.fecha);
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     row.innerHTML = `
         <tr>
-            <td class="text-cell">${store.date}</td>
-            <td class="text-cell">${store.name}</td>
-            <td class="description-cell">${store.description}</td>
-            <td class="text-cell">${store.id_user}</td>
-            <td class="text-cell">${store.address}</td>
-            <td class='centered-td'><a href=${store.permission} download><i class="fa-solid fa-download"></i></a></td>
+            <td class="text-cell">${formattedDate}</td>
+            <td class="text-cell">${store.nombre}</td>
+            <td class="description-cell">${store.descripcion}</td>
+            <td class="text-cell">${store.usuario}</td>
+            <td class="text-cell">${store.direccion}</td>
+            <td class='centered-td'><a href=${store.permisos} download target="_blank"><i class="fa-solid fa-download"></i></a></td>
             <td class='centered-td'>
-                <span 
-                    onclick=showModal(this) 
-                    data-action='accept'
-                    data-table='store'>
-                        <i class="fa-solid fa-square-check accept-button"></i>
-                </span>
-                <span
-                    onclick=showModal(this)
-                    data-action='reject'
-                    data-table='store'>
-                        <i class="fa-solid fa-rectangle-xmark reject-button"></i>
-                </span>
+                <button 
+                    class='accept-button'
+                    onclick=approveStore("${store.id}")>
+                        Aprobar
+                </button>
+                <button 
+                    class='reject-button'
+                    onclick=rejectStore("${store.id}")>
+                        Recharzar
+                </button>
             </td>
         </tr>
     `
     return row;
 }
 
+async function approveProduct(productId){
+    const confirmation = confirm('¿Está seguro de aprobar esta solicitud?');
+    if(!confirmation) return;
+    const response = await fetch('/admin/aprobarProducto', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({producto: productId})
+    });
+    const data = await response.json();
+    if(data.message === 'Producto aprobado con éxito'){
+        alert('Solicitud aprobada con éxito');
+        location.reload();
+        return;
+    }
+
+    alert('Hubo un error al aprobar la solicitud');
+
+}
+
+async function rejectStore(storeId){
+    //show an alert to request the reason of the rejection
+    const reason = prompt('Por favor, indique la razón por la que desea rechazar esta solicitud');
+    if(!reason) return;
+    const response = await fetch('/admin/rechazarTramo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({tramo: storeId, razon: reason})
+    });
+    const data = await response.json();
+    if(data.message === 'Tramo rechazado con éxito'){
+        alert('Solicitud rechazada con éxito');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al rechazar la solicitud');
+}
+
+async function rejectProduct(productId){
+    //show an alert to request the reason of the rejection
+    const reason = prompt('Por favor, indique la razón por la que desea rechazar esta solicitud');
+    if(!reason) return;
+    const response = await fetch('/admin/rechazarProducto', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({producto: productId, razon: reason})
+    });
+    const data = await response.json();
+    if(data.message === 'Producto rechazado con éxito'){
+        alert('Solicitud rechazada con éxito');
+        location.reload();
+        return;
+    }
+    alert('Hubo un error al rechazar la solicitud');
+}
+
+
+async function approveStore(storeId){
+    const confirmation = confirm('¿Está seguro de aprobar esta solicitud?');
+    if(!confirmation) return;
+    const response = await fetch('/admin/aprobarTramo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({tramo: storeId})
+    });
+    const data = await response.json();
+    if(data.message === 'Tramo aprobado con éxito'){
+        alert('Solicitud aprobada con éxito');
+        location.reload();
+        return;
+    }
+
+    alert('Hubo un error al aprobar la solicitud');
+}
 
 /**
  * Loads the table with the stores information
  */
-function loadProductsTable(){
+async function loadProductsTable(){
     const table = document.getElementById('products-tbody');
+    const products = await getProducts();
     products.forEach(product => {
         const row = createProductRow(product);
         table.appendChild(row);
     });
+}
+
+async function getProducts(){
+    const response = await fetch('/admin/getProductosPendientes', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await response.json();
+    return data.products;
 }
 
 /**
@@ -70,36 +188,44 @@ function loadProductsTable(){
  */
 function createProductRow(product){
     const row = document.createElement('tr');
+    const date = new Date(product.fecha);
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     row.innerHTML = `
         <tr>
-            <td class="text-cell">${product.date}</td>
-            <td class="text-cell">${product.name}</td>
-            <td><img class='product-img' src='${product.picture}'></td>
-            <td class="description-cell">${product.description}</td>
-            <td class="text-cell">${product.category}</td>
-            <td class="text-cell">${product.unit}</td>
-            <td class="text-cell">${product.store_id}</td>
-            <td>₡${product.brute_price}</td>
-            <td>${product.store_tax}%</td>
-            <td>₡${product.price_with_store_tax}</td>
-            <td>₡${product.price_with_admin_tax}</td>
+            <td class="text-cell">${formattedDate}</td>
+            <td class="text-cell">${product.nombre}</td>
+            <td><img class='product-img' src='${product.foto}'></td>
+            <td class="description-cell">${product.descripcion}</td>
+            <td class="text-cell">${product.categoria}</td>
+            <td class="text-cell">${product.unidadMedida}</td>
+            <td class="text-cell">${product.tramo}</td>
+            <td>₡${product.precioBruto}</td>
+            <td>${product.impuesto}%</td>
+            <td>₡${getPriceWithoutAdminTax(product.precioBruto, product.impuesto)}</td>
+            <td>₡${getPriceWithAdminTax(product.precioBruto, product.impuesto)}</td>
             <td class='centered-td'>
-                <span 
-                    onclick=showModal(this) 
-                    data-action='accept'
-                    data-table='product'>
-                        <i class="fa-solid fa-square-check accept-button"></i>
-                </span>
-                <span 
-                    onclick=showModal(this) 
-                    data-action='reject'
-                    data-table='product'>
-                        <i class="fa-solid fa-rectangle-xmark reject-button"></i>
-                </span>
+            <button 
+                class='accept-button'
+                onclick=approveProduct("${product.id}")>
+                    Aprobar
+            </button>
+            <button 
+                class='reject-button'
+                onclick=rejectProduct("${product.id}")>
+                    Recharzar
+            </button>
             </td>
         </tr>
     `
     return row;
+}
+
+function getPriceWithoutAdminTax(price, tax){
+    return price + (price * tax / 100);
+}
+
+function getPriceWithAdminTax(price, tax){
+    return price + (price * (tax + impuestoAdmin) / 100);
 }
 
 /**
@@ -168,85 +294,5 @@ function displayModalInView(){
     let modal = document.getElementById('modal');
     modal.style.display = 'block';
 }
-
-
-
-const stores= [
-    {
-        id: 1,
-        date: '2021-10-10',
-        name: 'Las Manzanitas de Doña Rosa',
-        description: 'El lugar con las manzanas más frescas y deliciosas',
-        id_user: 'Jose Fernandez',
-        address: 'San Ramón, Alajuela',
-        permission: '../resources/extra/permission.pdf',
-    },
-    {
-        id: 2,
-        date: '2021-10-10',
-        name: 'Las Manzanitas de Doña Rosa',
-        description: 'El lugar con las manzanas más frescas y deliciosas',
-        id_user: 'Jose Fernandez',
-        address: 'San Ramón, Alajuela',
-        permission: '../resources/extra/permission.pdf',
-    },
-    {
-        id: 3,
-        date: '2021-10-10',
-        name: 'Las Manzanitas de Doña Rosa',
-        description: 'El lugar con las manzanas más frescas y deliciosas',
-        id_user: 'Jose Fernandez',
-        address: 'San Ramón, Alajuela',
-        permission: '../resources/extra/permission.pdf',
-    },
-];
-
-const products= [
-    {
-        id: 1,
-        date: '2021-10-10',
-        name: 'Manzanas',
-        picture: 'https://i0.wp.com/www.buenmercadoacasa.com/blog/wp-content/uploads/2018/05/variedades-de-manzanas-buenmercadoacasa-portada.jpg?fit=2880%2C1800&ssl=1',
-        description: 'Las manzanas rojas mas deliciosas de alajuela que no se comparan con ninguna otra que hayas probado nunca jamas de los jamases es que en serio son demasiado ricas, y demasiado rojas y dulces',
-        category: 'Frutas',
-        unit: 'kgs',
-        store_id: 'Mi Tierra Linda',
-        user_id: 'Jose Fernandez',
-        brute_price: 500,
-        store_tax: 10,
-        price_with_store_tax: 550,
-        price_with_admin_tax: 600,
-    },
-    {
-        id: 2,
-        date: '2021-10-10',
-        name: 'Peras',
-        picture: 'https://farmaciaribera.es/blog/wp-content/uploads/2020/01/Beneficios-de-comer-peras.jpg',
-        description: 'Las peras mas deliciosas de alajuela que no se comparan con ninguna otra que hayas probado nunca jamas de los jamases es que en serio son demasiado ricas, y demasiado rojas y dulces',
-        category: 'Frutas',
-        unit: 'kgs',
-        store_id: 'Mi Tierra Linda',
-        user_id: 'Jose Fernandez',
-        brute_price: 500,
-        store_tax: 10,
-        price_with_store_tax: 550,
-        price_with_admin_tax: 600,
-    },
-    {
-        id: 3,
-        date: '2021-10-10',
-        name: 'Manzanas',
-        picture: 'https://i0.wp.com/www.buenmercadoacasa.com/blog/wp-content/uploads/2018/05/variedades-de-manzanas-buenmercadoacasa-portada.jpg?fit=2880%2C1800&ssl=1',
-        description: 'las manzanas rojas mas deliciosas de alajuela que no se comparan con ninguna otra que hayas probado nunca jamas de los jamases es que en serio son demasiado ricas, y demasiado rojas y dulces',
-        category: 'Frutas',
-        unit: 'kgs',
-        store_id: 'Mi Tierra Linda',
-        user_id: 'Jose Fernandez',
-        brute_price: 500,
-        store_tax: 10,
-        price_with_store_tax: 550,
-        price_with_admin_tax: 600,
-    },
-];
 
 loadPage();

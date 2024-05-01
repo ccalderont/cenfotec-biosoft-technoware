@@ -21,7 +21,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -36,20 +36,27 @@
                     <h3>Filtro</h3>
                     <div id="filter-form-info">
                         <section>
-                            <label for="name-user">Nombre usuario:</label>
-                            <label for="tipo-de-user">Tipo usuario:</label>
+                            <label for="estado-select">Estado:</label>
+                            <label for="tipo-select">Tipo:</label>
                         </section>
                         <section>
-                            <input type="text" name="Nombre de usuario" id="name-user" class="product-input">
-                            <select name="Tipo de usuario" id="tipo-de-user" required>
-                                <option value="Vendedor">Vendedor</option>
-                                <option value="Cliente">Cliente</option>
+                            <select id="estado-select">
+                                <option value=""></option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                                
+                            </select>
+                            <select name="Tipo de usuario" id="tipo-select">
+                                <option value=""></option>
+                                <option value="admin">Administrador</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="vendedor">Vendedor</option>
                             </select>
                         </section>
                     </div>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
-                        <i class="fa-solid fa-eraser fa-xl"></i>
+                        <button type="button" onclick="loadTable()">Filtrar</button>
+                        <button type="button" onclick="loadPage()">Borrar</button>
                     </section>
                 </form>        
             </div>
@@ -58,12 +65,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Tipo de usuario</th>
                             <th>Nombre de Usuario</th>
+                            <th>Tipo de usuario</th>
                             <th>Id de Usuario</th>
                             <th>Tramo</th>
                             <th>Correo electrónico</th>
                             <th>Teléfono</th>
+                            <th>Activar</th>
                         </tr>
                     </thead>
     

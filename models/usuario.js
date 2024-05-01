@@ -45,9 +45,10 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
     },
     tramo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tramo",
-    },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tramo",
+    }
+
   },
   {
     timestamps: true,
