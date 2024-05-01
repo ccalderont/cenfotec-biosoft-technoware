@@ -1,60 +1,76 @@
-const UsuarioReport = [
-{
-    TipoDeUsuario : "vendedor",
-    NombreDeUsuario : "Christian Calderon",
-    IdDeUsuario : "1-1111-1111",
-    Tramo : "Campo Verde",
-    CorreoElectronico: "campoverde@technoware.com",
-    Telefono:"6666-6666",
-},
-{
-    TipoDeUsuario : "Cliente",
-    NombreDeUsuario : "Monica Pererira",
-    IdDeUsuario : "1-1111-1111",
-    Tramo : "No Aplica",
-    CorreoElectronico: "monip@technoware.com",
-    Telefono:"6666-6666",
-},
-{
-    TipoDeUsuario : "Cliente",
-    NombreDeUsuario : "Maricruz Reyes",
-    IdDeUsuario : "1-1111-1111",
-    Tramo : "No Aplica",
-    CorreoElectronico: "maryr@technoware.com",
-    Telefono:"6666-6666",
-},
-{
-    TipoDeUsuario : "vendedor",
-    NombreDeUsuario : "Carolina Araya",
-    IdDeUsuario : "1-1111-1111",
-    Tramo : "Las Rosas",
-    CorreoElectronico: "lasrosas@technoware.com",
-    Telefono:"6666-6666",
-},
-{
-    TipoDeUsuario : "vendedor",
-    NombreDeUsuario : "Daniel Marin",
-    IdDeUsuario : "1-1111-1111",
-    Tramo : "Granja Saludable",
-    CorreoElectronico: "granjasaludable@technoware.com",
-    Telefono:"6666-6666",
-},
-];
-buildTable(UsuarioReport);
+loadPage()
 
-function buildTable(data) {
+function loadPage(){
+    setFilters();
+    loadTable();
+}
+
+function setFilters(){
+    document.getElementById('estado-select').value = "";
+    document.getElementById('tipo-select').value = "";
+}
+
+async function loadTable() {
+    const usuarios = await getUsers();
     const table = document.getElementById("tablereport");
-
-    for (let i = 0; i < data.length; i++) {
+    table.innerHTML = '';
+    usuarios.forEach((usuario) => {
         const row = `<tr>
-                        <td>${data[i].TipoDeUsuario}</td>
-                        <td>${data[i].NombreDeUsuario}</td>
-                        <td>${data[i].IdDeUsuario}</td>
-                        <td>${data[i].Tramo}</td>
-                        <td>${data[i].CorreoElectronico}</td>
-                        <td>${data[i].Telefono}</td>
+                        <td>${usuario.nombre} ${usuario.apellidos}</td>
+                        <td>${usuario.tipoUsuario}</td>
+                        <td>${usuario.cedula}</td>
+                        <td>${usuario.tramo ? usuario.tramo.nombre : "No aplica"}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.telefono}</td>
+                        <td>
+                            <label class="switch" >
+                                <input onclick=changeStatus("${usuario._id}") type="checkbox" ${usuario.estado === 'activo' ? 'checked': ""}>
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
                     </tr>`;
         table.innerHTML += row;
+    });
+}
+
+async function changeStatus(id){
+    //Ask the user for confirmation
+    const reason = prompt("Ingrese la razón del cambio. Esta será informada al usuario por correo electrónico");
+    if(!reason || reason === "") {
+        location.reload();
+        return;
     }
+    const result = await fetch('/admin/cambiarEstadoUsuario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            idUsuario: id,
+            razon: reason
+        })
+    });
+    const data = await result.json();
+    if(data.message !== "Estado actualizado"){
+        alert("Hubo un error al cambiar el estado del usuario");
+        location.reload();
+        return;
+    }
+    alert("Estado actualizado exitosamente");
+}
+
+async function getUsers(){
+    const result = await fetch('/admin/getAllUsers',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            estado: document.getElementById('estado-select').value,
+            tipoUsuario: document.getElementById('tipo-select').value
+        })
+    });
+    const data = await result.json();
+    return data.users;
 }
     

@@ -53,6 +53,7 @@ exports.getAboutUsTech = (req, res) => {
     });
 }
 
+
 exports.getAllProducts = async (req, res) => {
     try{
         let products = null;

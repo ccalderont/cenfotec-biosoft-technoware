@@ -21,7 +21,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -38,27 +38,41 @@
                         <section>
                             <label for="date-filter-from">Desde:</label>
                             <label for="date-filter-to">Hasta:</label>
-                            <label for="Tramo">Tramo</label>
+                            <label for="cliente-select">Cliente:</label>
+                            <label for="tramo-select">Tramo:</label>
+                            <label for="product-select">Producto:</label>
+
                         </section>
                         <section>
                             <input type="date" name="date-filter-from" id="date-filter-from" class="product-input">
                             <input type="date" name="date-filter-to" id="date-filter-to" class="product-input">
-                            <input type="search" name="tramo" id="tramo" class="product-input">
+                            <select id="cliente-select" >
+                                
+                            </select>
+                            <select id="tramo-select" >
+                               
+                            </select>
+                            
+                            <select id="producto-select" >
+                                
+                            </select>
                         </section>
                     </div>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
-                        <i class="fa-solid fa-eraser fa-xl"></i>
+                        <button type="button" onclick="loadTable()">Filtrar</button>
+                        <button type="button" onclick="loadPage()">Borrar</button>
                     </section>
                 </form>        
             </div>
             <div class="tabla">
-                <h2>Reporte de Ventas</h2>  
-                <p id="balance">Ganancias totales:</p> 
+                <h2>Reporte de Ventas</h2>
+                <p id="balanceTotal">Balance total:</p> 
+                <p id="gananciasAdmin">Ganancias totales de Admin:</p> 
                 <table>
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Cliente</th>
                             <th>Tramo</th>
                             <th>Producto</th>
                             <th>Cantidad</th>

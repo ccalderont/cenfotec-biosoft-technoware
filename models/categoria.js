@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
 const categoriaSchema = new mongoose.Schema(
   {
@@ -7,7 +6,8 @@ const categoriaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    estado:{
+
+    activo:{
       type: Boolean,
       required: true,
     }

@@ -153,3 +153,7 @@ label{
     justify-content: flex-start;
     gap: 1rem;
 }
+
+input:not([type='checkbox']):not(#nav-search){
+    width: 100%;
+}

@@ -7,26 +7,30 @@ const tramoSchema = new mongoose.Schema(
       required: true,
     },
     estado: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     calificacion: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     usuario: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Usuario",
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario",
     },
-    direccion:{
+    descripcion: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    direccion: {
+      type: String,
+      required: true,
+
+    },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Tramo", tramoSchema);;
+module.exports = mongoose.model("Tramo", tramoSchema);

@@ -22,7 +22,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -40,7 +40,7 @@
                 <label for="input-id">Número de identificación</label>
                 <input type="text" placeholder="Identificación" id="input-id">
                 <label for="input-password">Contraseña</label>
-                <input type="text" placeholder="Contraseña" id="input-password">
+                <input type="password" placeholder="Contraseña" id="input-password">
             </div>      
             <span id="button-continue">Continuar</span>
             <div class="reminder">

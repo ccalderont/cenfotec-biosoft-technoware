@@ -1,23 +1,32 @@
-function validarCorreo() {
-    // Obtener el valor del correo electrónico ingresado por el usuario
-    var correo = document.getElementById('email').value;
+async function validarIdentificacion() {
+    // Obtener el valor de la identificación ingresado por el usuario
+    var identificacion = document.getElementById('identificacion-input').value;
     
-    // Validar si el correo electrónico está presente y contiene el carácter "@"
-    if (correo.trim() !== '') {
-        if (correo.includes('@')) {
-            // Mostrar alerta con mensaje personalizado
-            alert('Se ha enviado un correo para restablecer tu contraseña. Por favor, revisa la bandeja de entrada.');
+    // Validar si la identificación está presente
+    if (identificacion.trim() !== '') {
+        // Si la identificación no está vacía, enviar el correo
+        const idEncontrado = await sendEmail(identificacion);
+        if (idEncontrado) {
+            alert('Se ha enviado un correo a tu dirección de correo electrónico.');
         } else {
-            // Si el correo electrónico no contiene "@", mostrar mensaje de error
-            alert('Por favor, ingresa un correo electrónico válido.');
+            alert('La identificación ingresada no existe en la base de datos.');
         }
-        // Eliminar el event listener después de hacer clic en el botón
-        document.querySelector('.send-button').removeEventListener('click', validarCorreo);
     } else {
-        // Si el correo electrónico está vacío, mostrar mensaje de error
+        // Si la identificación está vacía, mostrar mensaje de error
         alert('Por favor, ingresa tu correo electrónico.');
     }
 }
 
-// Agregar event listener al botón "Enviar"
-document.querySelector('.send-button').addEventListener('click', validarCorreo);
+async function sendEmail(identificacion) {
+    const result = await fetch('/enviarCorreoPassword', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ identificacion: identificacion })
+    });
+    const data = await result.json();
+    return data.message === 'Correo enviado';
+}
+
+
