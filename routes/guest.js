@@ -4,7 +4,9 @@ const router = express.Router();
 const generalController = require('../controllers/general.js');
 const userController = require('../controllers/user.js');
 const storeController = require('../controllers/tramos.js');
+
 const productController = require('../controllers/products.js');
+
 
 // Home page route.
 router.get("/", generalController.getIndex);
@@ -17,6 +19,7 @@ router.get('/login', userController.getLogin);
 router.post('/login', userController.postLogin);
 
 router.get('/catalogo', generalController.getCatalogue);
+router.get('/getAllStores', storeController.getActiveStores);
 router.get('/getActiveProducts', productController.getActiveProducts);
 router.get('/getAllStores', storeController.getActiveStores);
 router.get('/getActiveCategories', generalController.getActiveCategories);
@@ -27,6 +30,7 @@ router.post('/getProductsFiltered', productController.postProductsFiltered);
 router.get("/catalogo", generalController.getCatalogue);
 
 router.get("/sobreNosotros", generalController.getAboutUsCNP);
+
 
 
 router.get("/sobreNosotrosTech", generalController.getAboutUsTech);
@@ -52,6 +56,10 @@ router.get('/getImpuestoAdmin', generalController.getImpuestoAdmin);
 
 
 
+
+router.get('/getImpuestoAdmin', generalController.getImpuestoAdmin);
+
+router.get('/getActiveCategories', generalController.getActiveCategories);
 
 
 module.exports = router;

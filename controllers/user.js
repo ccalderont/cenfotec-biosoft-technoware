@@ -1,14 +1,15 @@
 
 const path = require('path');
-
 const options = {
   root: path.join(__dirname, "../views"),
 };
 
 
+
 const Usuario = require("../models/usuario");
 const Tramo = require("../models/tramo");
 const mailController = require('./mail');
+
 
 exports.getLogin = (req, res) => {
   const fileName = "formularioLogin.html";
@@ -30,7 +31,7 @@ exports.postLogin = async (req, res) => {
     const password = req.body.password;
 
     try{
-        const user = await User.findOne({ 
+        const user = await Usuario.findOne({ 
             cedula: cedula,
             password: password,
             estado: 'activo'
@@ -58,6 +59,38 @@ exports.postLogin = async (req, res) => {
     
 
 }
+
+exports.postLogin = async (req, res) => {
+    const cedula = req.body.loginName;
+    const password = req.body.password;
+
+    try{
+        const user = await Usuario.findOne({ 
+            cedula: cedula,
+            password: password,
+            estado: 'activo'
+        });
+        if(!user){
+            res.status(401).send({message: 'Usuario no encontrado'});
+            return;
+        }
+        res.status(200).send({
+            message: 'Usuario encontrado',
+            id: user.id,
+            cedula: user.cedula,
+            nombre: user.nombre,
+            apellido: user.apellidos,
+            email: user.email,
+            telefono: user.telefono,
+            tipoUsuario: user.tipoUsuario,
+            foto: user.foto
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+};
 
 
 
@@ -109,7 +142,7 @@ exports.getReportUserAdmin = (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     try{
-        const users = await User.find({
+        const users = await Usuario.find({
             estado: req.body.estado !== '' ? req.body.estado : {$ne: "pendiente"},
             tipoUsuario: req.body.tipoUsuario !== '' ? req.body.tipoUsuario : {$ne: null}
         }).populate('tramo').sort({nombre: 1});
@@ -123,7 +156,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.changeUserStatus = async (req, res) => {
     try{
-        const user = await User.findById(req.body.idUsuario).populate('tramo');
+        const user = await Usuario.findById(req.body.idUsuario).populate('tramo');
         user.estado = user.estado === 'activo' ? 'inactivo' : 'activo';
         await user.save();
         if(user.estado === 'inactivo'){
@@ -171,12 +204,80 @@ exports.getRestaurarContrasena = (req, res) => {
   });
 };
 
+
+/**
+ * Retrieve the user´s info.
+ * According to the id obtained from <code>localstore.getitem(idUsuario)</code> the info for the user is retrieved.
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @see postLogin
+ * @see routes/admin.js
+ * @see public/js/formularioLogin.js
+ */
+exports.getUserData = async (req, res) =>{
+    let user = null
+    try {
+        const id = req.params.id;
+        user = await Usuario.findById(id).populate(`tramo`);
+
+        if(!user.foto){
+            user.foto = "../resources/images/home/lupa.png";
+        }
+        res.status(200).send(user);
+    } catch (error) {
+        console.error(error);
+        console.log("Usuario no encontrado");
+    }
+};
+
+/**
+ * Update the user's info.
+ * First validate the body and confirm it includes data to be udpated <code>if(!req.body)</code>. Then it takes the id and tramoID from the body. For all users it updates the common fields in <code>Usuario.findByIdAndUpdate</code>. If the user is a vendor it updates the fields for vendor in <code>if(tramoID)</code> 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns
+ * @see public/js/UserProfile.js 
+ */
+exports.putUserData = async(req, res) =>{
+
+    if(!req.body){
+        console.log("No se envió el cuerpo del correo");
+        res.status(400).send("Falta el cuerpo de la solicitud");
+      }
+      
+    try {
+        const {id, tramoID} = req.body;
+        let userUpdated = null; 
+
+        userUpdated = await Usuario.findByIdAndUpdate(id, req.body, {new: true}).populate("tramo");
+
+        if(!userUpdated){
+            console.log("Usuario no encontrado");
+            return res.status(400).send("Usuario no encontrado")
+        };
+
+        if(tramoID){
+            userUpdated.tramo.nombre = req.body.tramoNombre;
+            userUpdated.tramo.direccion = req.body.tramoDireccion;
+    
+            userUpdated = await userUpdated.tramo.save();
+        }
+
+        console.log(`Usuario ${userUpdated.id} actualizado.`);
+        res.status(200).send(userUpdated);
+    } catch (error) {
+        console.error(error);
+        res.status(501).send("Hubo un error. No se pueden actualizar los datos");
+    }
+};
+
 exports.postCambiarPassword = async (req, res) => {
     const userId = req.body.userId;
     const newPassword = req.body.newPassword;
     const oldPassword = req.body.oldPassword;
     try{
-        const user = await User.findById(userId);
+        const user = await Usuario.findById(userId);
         if(user.password !== oldPassword){
             res.status(401).send({message: 'Contraseña incorrecta'});
             return;
@@ -194,7 +295,7 @@ exports.postCambiarPassword = async (req, res) => {
 exports.postEnviarCorreoPassword = async (req, res) => {
     const cedula = req.body.identificacion;
     try{
-        const user = await User.findOne({cedula: cedula});
+        const user = await Usuario.findOne({cedula: cedula});
         if(!user){
             res.status(401).send({message: 'Usuario no encontrado'});
             return;
@@ -336,7 +437,7 @@ exports.getResetPassword = (req, res) => {
 
 exports.getAllClients = async (req, res) => {
     try{
-        const clients = await User.find({tipoUsuario: 'cliente'});
+        const clients = await Usuario.find({tipoUsuario: 'cliente'});
         res.status(200).send({clients: clients});
     }
     catch(error){
@@ -347,7 +448,7 @@ exports.getAllClients = async (req, res) => {
 
 exports.getAllVendors = async (req, res) => {
     try{
-        const vendors = await User.find({tipoUsuario: 'vendedor'});
+        const vendors = await Usuario.find({tipoUsuario: 'vendedor'});
         res.status(200).send({vendors: vendors});
     }
     catch(error){

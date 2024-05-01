@@ -10,6 +10,8 @@ const Usuario = require('../models/usuario');
 
 const mailController = require('./mail');
 
+const Tramo = require('../models/tramo');
+
 //tramo report admin controller
 exports.getReportTramosAdmin = (req, res) => {
     const fileName = 'reporteTramosAdmin.html';
@@ -31,6 +33,7 @@ exports.getActiveStores = async (req, res) => {
         console.log(error);
         res.status(500).send({message: 'Error en el servidor'});
     }
+
 }
 
 exports.getAllStores = async (req, res) => {
@@ -102,4 +105,5 @@ exports.postRejectTramo = async (req, res) => {
         res.status(500).send({message: 'Error en el servidor'});
     }
 }
+
 

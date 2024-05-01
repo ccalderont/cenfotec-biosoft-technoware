@@ -15,7 +15,6 @@ const tramoSchema = new mongoose.Schema(
       required: true,
     },
     usuario: {
-
       type: mongoose.Schema.Types.ObjectId,
       ref: "Usuario",
     },

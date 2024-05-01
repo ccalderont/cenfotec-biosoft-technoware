@@ -54,6 +54,26 @@ exports.getAboutUsTech = (req, res) => {
 }
 
 
+exports.getAllProducts = async (req, res) => {
+    try{
+        let products = null;
+        if(req.body.filter){
+            products = await Producto.find({
+                estado: 'activo', 
+                categoria: req.body.filter,
+            }).populate('categoria tramo');
+        }
+        else{
+            products = await Producto.find({estado: 'activo'}).populate('categoria tramo');
+        }
+        
+        res.status(200).send(products);
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
 
 exports.getImpuestoAdmin = async (req, res) => {
     try{

@@ -35,6 +35,17 @@ router.get("/reporteVentas", ventasController.getReportSalesAdmin);
  */
 router.get("/perfilAdministrador", userController.getAdminProfile);
 
+/**
+ * Set the route to get the current user's data
+ */
+router.get("/perfilAdministrador/:id", userController.getUserData);
+
+
+/**
+ * Set the route to update the user's data
+ */
+router.put("/perfilAdministrador", userController.putUserData);
+
 router.get("/solicitudesPendientes", adminController.getPendingRequests);
 router.get("/getTramosPendientes", tramosController.getPendingTramos);
 router.post("/aprobarTramo", tramosController.postApproveTramo);
