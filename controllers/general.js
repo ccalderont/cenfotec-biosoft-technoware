@@ -75,3 +75,4 @@ exports.getActiveCategories = async (req, res) => {
         res.status(500).send({message: 'Error en el servidor'});
     }
 }
+

@@ -6,6 +6,7 @@ const userController = require('../controllers/user.js');
 const productsController = require('../controllers/products.js');
 const ventasController = require('../controllers/ventas.js');
 
+
 // Home page route.
 router.get("/", generalController.getIndex);
 
@@ -29,6 +30,6 @@ router.post("/actualizarImpuesto", productsController.updateProductTax);
 
 
 router.get("/registrarProducto", productsController.getRegistrarProducto);
-
+router.post("/registrarProducto", productsController.postRegistrarProducto);
 
 module.exports = router;

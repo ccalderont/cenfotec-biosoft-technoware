@@ -22,6 +22,7 @@ router.get('/getActiveCategories', generalController.getActiveCategories);
 router.post('/getProductsFiltered', productController.postProductsFiltered);
 
 
+
 router.get('/sobreNosotros', generalController.getAboutUsCNP);
 
 router.get('/sobreNosotrosTech', generalController.getAboutUsTech);
