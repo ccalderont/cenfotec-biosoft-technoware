@@ -22,7 +22,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+              <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -39,13 +39,13 @@
                 <!-- List of categories here -->
                 
               </div>
-                <button id="test">Guardar cambios</button>
+                <button onclick="saveChanges()">Guardar cambios</button>
               </div>
 
 
           <section id="modal" class="" onclick="closeModal(event)">
                      <section id="modal-content">
-                             <p>La cuenta ha sido creada exitosamente</p>
+                             <p>Cambios guardados exitosamente</p>
                      </section>
             </section>
     </main>

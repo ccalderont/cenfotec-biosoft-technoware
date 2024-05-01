@@ -35,6 +35,10 @@ const productoSchema = new mongoose.Schema(
       ref: "Categoria",
       required: true,
     },
+    calificacion:{
+      type: Number,
+      required: false,
+    },
     tramo: {
       type: Schema.Types.ObjectId,
       ref: "Tramo",

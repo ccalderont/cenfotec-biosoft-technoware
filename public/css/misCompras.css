@@ -159,7 +159,9 @@ table tr:hover{
     margin-left: 0.5rem;
 }
 
-
+input:not([type='checkbox']):not(#nav-search){
+    width: 100%;
+}
 
 #submitted-evaluation-section{
     display: flex;

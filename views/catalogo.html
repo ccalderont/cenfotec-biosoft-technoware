@@ -20,7 +20,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -40,26 +40,26 @@
                         </section>
                         <section>
                             <input type="text" name="search" id="product-name-filter">
-                            <input type="text" name="search" id="store-name-filter">
-                            <select name="category" id="category">
-                                <option value="1">Categoría 1</option>
-                                <option value="2">Categoría 2</option>
-                                <option value="3">Categoría 3</option>
+                            <select id="store-name-filter">
+                                <option value="*" default></option>
+                             </select>
+                            <select id="category">
+                               <option value="*" default></option>
                             </select>
                         </section>
                     </section>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
-                        <i class="fa-solid fa-eraser fa-xl"></i>
+                        <button type="button" onclick="filterProducts()">Filtrar</button>
+                        <button type="button" onclick="removeFilters()" class="erase-button">Borrar filtros</button>
                     </section>
-                    
                 </form>
             </section>
             <section class="page-button-section">
                 <span id="previous-page" class="pagination-button hidden-element" onclick="changePage(this)"><i class="fa-solid fa-circle-left fa-2xl"></i></span>
             </section>
+            <section id="no-product-message"></section>
             <section id="catalogue-section">
-            
+                
             </section>
                 
             
@@ -70,8 +70,9 @@
         </section>
         <section id="modal" class="" onclick="closeModal(event)">
             <section id="modal-content">
-                <section>
+                <section id="image-section-modal">
                     <img id="modal-product-image" class="product-img">
+                    <span onclick=closeModal() class="close-modal">X</span>
                 </section>
                 <section id="modal-info">
                     <h2 id="modal-product-name"></h2>
@@ -82,7 +83,8 @@
                             <input type="number" id="modal-product-quantity" min="1" value="1">
                             <span id="modal-product-unit"></span>
                         </section>
-                        <span id="cart-button-modal" onclick="addToCart(this)"><i class="fa-solid fa-cart-plus fa-lg"></i></span>
+                        <span id="cart-button-modal" onclick="addToCart(this)"><button>Agregar al carrito</button></span>
+                        <input type="hidden" id="selected-product-id">
                     </section>
                 </section>
             </section>

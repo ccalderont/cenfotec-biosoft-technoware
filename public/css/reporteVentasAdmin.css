@@ -81,4 +81,10 @@ label{
 }
     
     
-  
+input:not([type='checkbox']):not(#nav-search){
+    width: 100%;
+}
+
+select{
+    width: 100%;
+}

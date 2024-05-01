@@ -1,24 +1,38 @@
 document.getElementById('button-continue').addEventListener('click', checkLogin);
 clearLoginData();
 
-function checkLogin(){
+async function checkLogin(){
     const loginName = document.getElementById('input-id').value;
     const loginPassword = document.getElementById('input-password').value;
 
-    switch(loginName){
-        case 'admin':
-            localStorage.setItem('user', 'admin');
-            break;
-        case 'cliente':
-            localStorage.setItem('user', 'cliente')
-            break;
-        case 'vendedor':
-            localStorage.setItem('user', 'vendedor')   
-            break;
-        default:
-            localStorage.removeItem('user');
-            break;
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            loginName: loginName, 
+            password: loginPassword
+        }),
+    });
+
+    const data = await response.json();
+    if(data.message === 'Usuario no encontrado'){
+        alert('Usuario no encontrado');
+        return;
     }
+    if(data.message !== 'Usuario encontrado'){
+        alert('Error en el servidor');
+        return;
+    }
+
+    localStorage.setItem('nombreUsuario', data.nombre + " " + data.apellido);
+    localStorage.setItem('cedula', data.cedula);
+    localStorage.setItem('idUsuario', data.id);
+    localStorage.setItem('emailUsuario', data.email);
+    localStorage.setItem('telefonoUsuario', data.telefono);
+    localStorage.setItem('fotoUsuario', data.foto);
+    localStorage.setItem('tipoUsuario', data.tipoUsuario);
 
     window.location = '/';
 }
@@ -26,12 +40,13 @@ function checkLogin(){
 
 
 function clearLoginData(){
-    localStorage.removeItem('user');
-}
-
-function createAccount(){
-    const accountType = document.getElementById('account-type').value;
-    
+    localStorage.removeItem('nombreUsuario');
+    localStorage.removeItem('cedula');
+    localStorage.removeItem('idUsuario');
+    localStorage.removeItem('emailUsuario');
+    localStorage.removeItem('telefonoUsuario');
+    localStorage.removeItem('fotoUsuario');
+    localStorage.removeItem('tipoUsuario');
 }
 
 
@@ -39,7 +54,7 @@ function createAccount(){
  * Closes the modal to add to the cart
  */
 function closeModal(event){
-    if (event.target.id === "modal") {
+    if (event.target.id === "modal" || event.target.classList.contains("close-modal")) {
         let modal = document.getElementById('modal');
         // If it was, hide the modal
         modal.style.display = 'none';
@@ -59,3 +74,4 @@ function goToNewAccount(){
         window.location.href = '/RegistroVendedor';
     }
 }
+
