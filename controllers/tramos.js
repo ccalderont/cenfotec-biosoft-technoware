@@ -10,9 +10,6 @@ const Usuario = require('../models/usuario');
 
 const mailController = require('./mail');
 
-const Tramo = require('../models/tramo');
-
-const Tramo = require('../models/tramo');
 
 //tramo report admin controller
 exports.getReportTramosAdmin = (req, res) => {
@@ -32,6 +29,12 @@ exports.getAllTramos = async (req, res) => {
         let tramos = await Tramo.find({usuario:req.body.idUsuario !== '' ? req.body.idUsuario: {$ne: null} }).populate('usuario');
 
         res.status(200).send(tramos);
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}
 
 exports.getActiveStores = async (req, res) => {
     try{
