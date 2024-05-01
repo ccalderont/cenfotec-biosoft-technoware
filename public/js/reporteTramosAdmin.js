@@ -1,65 +1,62 @@
-const TramoReport = [
-{
-    Tramo : "La Rosas",
-    Ubicacion:"San Jose, desamparados, desamparados",
-    Producto : "Zanahoria",
-    Cantidad: "60",
-    Unidad:"kilos",
-    Descripcion: "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Calificacion: "2",
 
-},
-{
-    Tramo : "Campo verde",
-    Ubicacion:"San Jose, desamparados, desamparados",
-    Producto : "Zanahoria unidades",
-    Cantidad: "90",
-    Unidad:"kilos",
-    Descripcion: "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Calificacion: "5",
-},
-{
-    Tramo : "La Rosas",
-    Ubicacion:"San Jose, desamparados, desamparados",
-    Producto : "Manzana mixta",
-    Cantidad: "30",
-    Unidad:"kilos",
-    Descripcion: "Manzanas mixtas importadas desde california EEUU",
-    Calificacion:"5",
-},
-{
-    Tramo : "Campo Verde",
-    Ubicacion:"San Jose, desamparados, desamparados",
-    Producto : "Manzana mixta",
-    Cantidad: "60",
-    Unidad:"kilos",
-    Descripcion: "frescas manzanas libres de quimicos",
-    Calificacion:"4",
-},
-{
-    Tramo : "Granja saludable",
-    Ubicacion:"San Jose, desamparados, desamparados",
-    Producto : "cebolla",
-    Cantidad: "70",
-    Unidad:"kilos",
-    Descripcion: "Sembrada en San Carlos, libre de pesticidas y  quimicos",
-    Calificacion:"3",
-},
-];
 
-buildTable(TramoReport);
+loadPage();
 
-function buildTable(data) {
+
+
+async function loadPage(){
+    await setVendorFilter();
+    buildTable();
+}
+
+async function setVendorFilter(){
+    const vendors = await getVendors();
+    const select = document.getElementById('vendor-select');
+    select.innerHTML = '<option value=""></option>'
+    vendors.forEach(vendor => {
+        const option = document.createElement('option');
+        option.value = vendor._id;
+        option.innerText = vendor.nombre + " " + vendor.apellidos;
+        select.appendChild(option);
+    });
+}
+
+async function getVendors(){
+    const response = await fetch('/admin/getAllVendors',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await response.json();
+    return data.vendors;
+}
+
+async function getTramos(){
+    const response = await fetch('/admin/obtenerTramos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify( {idUsuario: document.getElementById("vendor-select").value})
+           
+        
+    });
+    const data= await response.json()
+    return data
+}
+
+async function buildTable() {
+    const data= await getTramos()
     const table = document.getElementById("tablereport");
+table.innerHTML=""
 
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-                        <td>${data[i].Tramo}</td>
-                        <td>${data[i].Ubicacion}</td>
-                        <td>${data[i].Producto}</td>
-                        <td>${data[i].Cantidad} ${data[i].Unidad}</td>
-                        <td>${data[i].Descripcion}</td>
-                        <td class="centered-td">${data[i].Calificacion} ⭐</td>
+                        <td>${data[i].nombre}</td>
+                        <td>${data[i].direccion}</td>
+                        <td>${data[i].usuario.nombre} ${data[i].usuario.apellidos}</td>
+                        <td class="centered-td">${data[i].calificacion} ⭐</td>
                     </tr>`;
         table.innerHTML += row;
     }

@@ -21,6 +21,7 @@ router.post("/cambiarEstadoProducto", productsController.changeProductStatus);
 
 //Tramo report manager route
 router.get("/reporteTramos", tramosController.getReportTramosAdmin);
+router.post("/obtenerTramos",tramosController.getAllTramos);
 
 //User report manager route
 router.get("/reporteUsuarios", userController.getReportUserAdmin);
@@ -56,6 +57,7 @@ router.post("/rechazarProducto", productsController.postRejectProduct);
 
 
 router.get("/registrarCategoria", adminController.getRegistrarCategoria);
+
 router.get("/getAllCategorias", adminController.getAllCategorias);
 router.post("/saveCategories", adminController.saveCategories);
 

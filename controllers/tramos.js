@@ -12,6 +12,8 @@ const mailController = require('./mail');
 
 const Tramo = require('../models/tramo');
 
+const Tramo = require('../models/tramo');
+
 //tramo report admin controller
 exports.getReportTramosAdmin = (req, res) => {
     const fileName = 'reporteTramosAdmin.html';
@@ -23,6 +25,13 @@ exports.getReportTramosAdmin = (req, res) => {
         }
     });
 }
+
+
+exports.getAllTramos = async (req, res) => {
+    try{
+        let tramos = await Tramo.find({usuario:req.body.idUsuario !== '' ? req.body.idUsuario: {$ne: null} }).populate('usuario');
+
+        res.status(200).send(tramos);
 
 exports.getActiveStores = async (req, res) => {
     try{
@@ -83,11 +92,13 @@ exports.postApproveTramo = async (req, res) => {
         mailController.sendApprovedStoreEmail(tramo);
 
         res.status(200).send({message: 'Tramo aprobado con éxito'});
+
     }
     catch(error){
         console.log(error);
         res.status(500).send({message: 'Error en el servidor'});
     }
+
 }
 
 exports.postRejectTramo = async (req, res) => {
@@ -105,5 +116,6 @@ exports.postRejectTramo = async (req, res) => {
         res.status(500).send({message: 'Error en el servidor'});
     }
 }
+
 
 

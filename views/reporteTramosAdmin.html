@@ -36,15 +36,17 @@
                     <h3>Filtros</h3>
                     <div id="filter-form-info">
                         <section>
-                            <label for="Tram">Tramo:</label>
+                            <label for="vendor-select">Vendedor:</label>
                         </section>
                         <section>
-                            <input type="text" name="tramo" id="tramo" class="product-input">
+                            <select id="vendor-select">
+                                <option value=""></option>
+                            </select>
                         </section>
                     </div>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
-                        <i class="fa-solid fa-eraser fa-xl"></i>
+                        <button type="button" onclick="buildTable()">Filtrar</button>
+                        <button type="button" onclick="loadPage()">Borrar</button>
                     </section>
                 </form>        
             </div>
@@ -54,10 +56,8 @@
                     <thead>
                         <tr>
                             <th>Tramo</th>
-                            <th>Ubicación</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Descripción</th>
+                            <th>Dirección</th>
+                            <th>Vendedor</th>
                             <th>Calificación</th>
                         </tr>
                     </thead>

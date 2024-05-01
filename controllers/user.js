@@ -3,6 +3,7 @@ const path = require('path');
 const options = {
   root: path.join(__dirname, "../views"),
 };
+const Usuario= require("../models/usuario");
 
 
 
@@ -405,6 +406,7 @@ exports.postRegistroVendedor = async (req, res) => {
       direccion: req.body.ubicacion,
       usuario: newVendedor,
     });
+
     newTramo = await newTramo.save();
 
     newVendedor.tramo = newTramo;
@@ -444,6 +446,7 @@ exports.getAllClients = async (req, res) => {
         console.log(error);
         res.status(500).send({message: 'Error en el servidor'});
     }
+
 }
 
 exports.getAllVendors = async (req, res) => {
@@ -455,5 +458,6 @@ exports.getAllVendors = async (req, res) => {
         console.log(error);
         res.status(500).send({message: 'Error en el servidor'});
     }
+
 }
 
