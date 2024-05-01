@@ -4,7 +4,6 @@ const usuarioSchema = new mongoose.Schema(
   {
     tipoIdent: {
       type: String,
-      required: true,
     },
     nombre: {
       type: String,

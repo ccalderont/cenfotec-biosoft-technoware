@@ -41,7 +41,7 @@ async function submitForm() {
                 return;
             }
             alert("La contraseña ha sido actualizada exitosamente.");
-        
+            window.location.href = '/';
         
     } else {
             alert("Las contraseñas no coinciden. Por favor, inténtelo de nuevo.");

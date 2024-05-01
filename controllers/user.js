@@ -4,10 +4,6 @@ const options = {
   root: path.join(__dirname, "../views"),
 };
 const Usuario= require("../models/usuario");
-
-
-
-const Usuario = require("../models/usuario");
 const Tramo = require("../models/tramo");
 const mailController = require('./mail');
 
@@ -435,7 +431,7 @@ exports.getResetPassword = (req, res) => {
   });
 };
 
-}
+
 
 exports.getAllClients = async (req, res) => {
     try{
