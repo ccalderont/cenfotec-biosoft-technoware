@@ -153,7 +153,7 @@ exports.postRegistroVendedor = async (req, res) => {
       telefono: req.body.telefono,
       email: req.body.correo,
       permisos: req.body.permisos,
-      tipoUsuario: "Vendedor",
+      tipoUsuario: "vendedor",
       estado: "pendiente",
     });
 

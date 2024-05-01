@@ -119,20 +119,10 @@ async function submitForm() {
   }
 
   //   //Validacion del documento de permisos municipales
-  //   const permitFile = form.querySelector("#gov-permit");
-  //   if (permitFile.value.trim() === "") {
-  //     displayErrorMessage(
-  //       permitFile,
-  //       "El documento de permisos municipales debe ser formato PDF."
-  //     );
-  //   } else {
-  //     const allowedExtensions = ["pdf"];
-  //     const fileExtension = permitFile.value.split(".").pop().toLowerCase();
-
-  //     if (!allowedExtensions.includes(fileExtension)) {
-  //       displayErrorMessage(permitFile, "El archivo debe ser formato PDF.");
-  //     }
-  //   }
+  const permitFile = form.querySelector("#gov-permit");
+  if (storeLocation.value.trim() === "") {
+    displayErrorMessage(storeLocation, "Por favor, agregue un archivo.");
+  }
 
   // Validacion de terminos y condiciones
   const termsConditions = form.querySelector("#terms-conditions");
@@ -177,10 +167,12 @@ function showModal() {
 }
 
 function closeModal(event) {
-  if (event.target.id === "modal") {
-    let modal = document.getElementById("modal");
-    // If it was, hide the modal
+  const modal = document.getElementById("modal");
+  const closeButton = document.querySelector(".close-btn");
+
+  if (event.target === modal || event.target === closeButton) {
     modal.style.display = "none";
+    window.location = "/login";
   }
 }
 
@@ -212,6 +204,8 @@ let cloudinaryWidget2 = cloudinary.createUploadWidget(
   {
     cloudName: "dy0ldxijc",
     uploadPreset: "cenfo_test",
+    resourceType: "auto",
+    allowedFormats: ["pdf"],
   },
   function (error, result) {
     if (!error && result && result.event === "success") {

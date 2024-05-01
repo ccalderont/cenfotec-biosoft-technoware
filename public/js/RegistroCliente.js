@@ -160,7 +160,11 @@ function showModal() {
 }
 
 function closeModal(event) {
-  if (event.target.id === "modal") {
+  const modal = document.getElementById("modal");
+  const closeButton = document.querySelector(".close-btn");
+
+  if (event.target === modal || event.target === closeButton) {
+    modal.style.display = "none";
     window.location = "/login";
   }
 }
