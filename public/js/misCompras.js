@@ -1,17 +1,27 @@
+loadPage();
+
 /**
  * Set the dynamic information of the page
  */
 function loadPage(){
+    setDates();
     loadTable();
-    setUpTotalPrice();
+    
+}
+
+function setDates(){
+    const today = new Date();
+    document.getElementById('date-filter-to').value = today.toISOString().split('T')[0];
+    today.setDate(today.getDate() - 30);
+    document.getElementById('date-filter-from').value = today.toISOString().split('T')[0];
 }
 
 /**
  * Sets the total price of the purchases in the page
  */
-function setUpTotalPrice(){
+function setUpTotalPrice(purchases){
     const totalPrice = document.getElementById('total-price');
-    const total = getTotalExpense();
+    const total = getTotalExpense(purchases);
     totalPrice.innerHTML = `<strong>Total pagado:</strong> ₡${total}`;
 }
 
@@ -19,19 +29,39 @@ function setUpTotalPrice(){
  * Returns the total expense of all the purchases currently showing in the page
  * @returns {number} - Total expense of all the purchases
  */
-function getTotalExpense(){
-    return purchases.reduce((acc, purchase) => acc + purchase.total, 0);
+function getTotalExpense(purchases){
+    return purchases.reduce((acc, purchase) => acc + purchase.precioTotalConImpuestoAdmin, 0);
 }
 
 /**
  * Loads the table with the purchases information
  */
-function loadTable(){
+async function loadTable(){
+    const purchases = await getPurchases();
+    if(!purchases) return;
     const table = document.getElementById('purchases-tbody');
+    table.innerHTML = '';
     purchases.forEach(purchase => {
         const row = createRow(purchase);
         table.appendChild(row);
     });
+    setUpTotalPrice(purchases);
+}
+
+async function getPurchases(){
+    const result = await fetch('/cliente/obtenerCompras', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            fechaInicio: document.getElementById('date-filter-from').value,
+            fechaFin: document.getElementById('date-filter-to').value
+        })
+    });
+    const data = await result.json();
+    return data.compras;
 }
 
 /**
@@ -41,29 +71,31 @@ function loadTable(){
  */
 function createRow(purchase){
     const row = document.createElement('tr');
+    let date = new Date(purchase.fecha);
+    let formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     row.innerHTML = `
-        <td class="centered-td">${purchase.date}</td>
-        <td id="center-cell-${purchase.id}" class="main-table-center-td">
+        <td class="centered-td">${formattedDate}</td>
+        <td id="center-cell-${purchase._id}" class="main-table-center-td">
             <section class="general-section">
                 <table class="general-info-table">
                     <tbody>
-                        ${purchase.products.map(product => `
+                        ${purchase.productos.map(product => `
                             <tr>
-                                <td>${product.name}</td>
-                                <td>₡${product.net_price}</td>
+                                <td>${product.producto.nombre} - ${product.cantidad} ${product.producto.unidadMedida} </td>
+                                <td>₡${product.precioConImpuestoAdmin}</td>
                             </tr>
                         `).join('')}
                     </tbody>
                 </table>
                 <button
                     class="show-details-button details-button"
-                    data-sellid = '${purchase.id}'
+                    data-sellid = '${purchase._id}'
                     onclick="showHideDetails(this)">Detalles <i class="fa-solid fa-eye"></i></button>
             </section>
             <section class="details-section hidden-element">
                 <button 
                     class="hide-details-button details-button "
-                    data-sellid = '${purchase.id}'
+                    data-sellid = '${purchase._id}'
                     onclick="showHideDetails(this)">Ocultar <i class="fa-solid fa-eye-slash"></i></button>
                 <table class="details-table">
                     <thead>
@@ -75,31 +107,35 @@ function createRow(purchase){
                         <th>Reseña</th>
                     </thead>
                     <tbody>
-                        ${purchase.products.map(product => `
+                        ${purchase.productos.map(product => `
                             <tr>
-                                <td>${product.name}</td>
-                                <td>${product.store}</td>
-                                <td>${product.quantity} ${product.unit}</td>
-                                <td>₡${product.net_price}</td>
-                                <td>₡${product.brute_price}</td>
-                                ${(product.review) ?
+                                <td>${product.producto.nombre}</td>
+                                <td>${product.tramo.nombre}</td>
+                                <td>${product.cantidad} ${product.producto.unidadMedida}</td>
+                                <td>₡${product.precioSinImpuestoAdmin}</td>
+                                <td>₡${product.precioConImpuestoAdmin}</td>
+                                ${(product.resena) ?
                                     `<td class="centered-td review-filled"
-                                    data-purchaseid="${purchase.id}"
-                                    data-productid="${product.id}"
-                                    data-productname="${product.name}"
-                                    data-store="${product.store}"
-                                    data-reviewid="${product.review.id}"
-                                    data-stars="${product.review.stars}"
-                                    data-comment="${product.review.comment}"
+                                    data-sellid="${purchase._id}"
+                                    data-purchaseid="${product._id}"
+                                    data-productid="${product.producto._id}"
+                                    data-productname="${product.producto.nombre}"
+                                    data-store="${product.tramo.nombre}"
+                                    data-storeid="${product.tramo._id}"
+                                    data-reviewid="${product.resena._id}"
+                                    data-stars="${product.resena.calificacion}"
+                                    data-comment="${product.resena.comentario}"
                                     onclick=showModal(this)>
                                         <i class="fa-solid fa-list-check"></i>
                                     </td>`
                                 : 
                                     `<td class="centered-td"
-                                        data-purchaseid="${purchase.id}"
-                                        data-productname="${product.name}"
-                                        data-productid="${product.id}"
-                                        data-store="${product.store}"
+                                        data-sellid="${purchase._id}"
+                                        data-purchaseid="${product._id}"
+                                        data-productname="${product.producto.nombre}"
+                                        data-productid="${product.producto._id}"
+                                        data-store="${product.tramo.nombre}"
+                                        data-storeid="${product.tramo._id}"
                                         onclick=showModal(this)>
                                             <i class="fa-solid fa-list"></i>
                                     </td>`
@@ -112,7 +148,7 @@ function createRow(purchase){
             </section>
 
         </td>
-        <td class="centered-td">₡${purchase.total}</td>
+        <td class="centered-td">₡${purchase.precioTotalConImpuestoAdmin}</td>
     `
     return row;
 }
@@ -231,6 +267,11 @@ function isReviewSubmitted(target){
 function loadPendingReviewModal(target){
     document.getElementsByClassName('modal-pending-evaluation')[0].classList.remove('hidden-element');
     document.getElementsByClassName('modal-submitted-evaluation')[0].classList.add('hidden-element');
+    document.getElementById('hidden-sell-id').value = target.getAttribute('data-sellid');
+    document.getElementById('hidden-review-id').value = target.getAttribute('data-reviewid');
+    document.getElementById('hidden-product-id').value = target.getAttribute('data-productid');
+    document.getElementById('hidden-store-id').value = target.getAttribute('data-storeid');
+    document.getElementById('hidden-purchase-id').value = target.getAttribute('data-purchaseid');
     document.getElementById('modal-product-name').innerHTML = target.getAttribute('data-productname');
     document.getElementById('modal-product-store').innerHTML = "<strong>Tramo:</strong> " + target.getAttribute('data-store');
 }
@@ -238,20 +279,58 @@ function loadPendingReviewModal(target){
 /**
  * Adds the review to the product
  */
-function addReview(){
+async function addReview(){
     const stars = document.getElementsByClassName('star-selected').length;
     const comment = document.getElementById('review-comment').value;
-    alert('Reseña agregada con éxito');
-    window.location.reload();
+    const result = await fetch('/cliente/agregarResena', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: localStorage.getItem('idUsuario'),
+            producto: document.getElementById('hidden-product-id').value,
+            tramo: document.getElementById('hidden-store-id').value,
+            compra: document.getElementById('hidden-purchase-id').value,
+            venta: document.getElementById('hidden-sell-id').value,
+            calificacion: stars,
+            comentario: comment
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Reseña agregada'){
+        alert('Reseña agregada con éxito');
+        window.location.reload();
+        return;
+    }
+    alert('Error al agregar la reseña');
 }
 
 /**
  * Deletes the review of the product
  * @param {HTMLElement} target - Delete button with the id of the review to delete
  */
-function deleteReview(target){
-    alert('Reseña eliminada con éxito');
-    window.location.reload();
+async function deleteReview(){
+    const result = await fetch('/cliente/eliminarResena', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            producto: document.getElementById('hidden-product-id').value,
+            tramo: document.getElementById('hidden-store-id').value,
+            compra: document.getElementById('hidden-purchase-id').value,
+            venta: document.getElementById('hidden-sell-id').value,
+            resena: document.getElementById('hidden-review-id').value
+        })
+    });
+    const data = await result.json();
+    if(data.message === 'Reseña eliminada'){
+        alert('Reseña eliminada con éxito');
+        window.location.reload();
+        return;
+    }
+    alert('Error al eliminar la reseña');
 }
 
 /**
@@ -341,89 +420,3 @@ function selectStar(starNumber){
     }
 }
 
-
-
-const purchases= [
-    {
-        id: 1,
-        date: '2021-10-10',
-        total: 550,
-        products: [
-            {
-                id: 1,
-                name: 'Manzanas',
-                store: 'Mi Tierra',
-                quantity: 2,
-                unit: 'kg',
-                net_price: 50,
-                brute_price: 45,
-                review: {
-                    id: 1,
-                    stars: 4,
-                    comment: 'Muy buenas manzanas'
-                }
-            },
-            {
-                id: 2,
-                name: 'Leche',
-                store: 'Tienda Don Pepe',
-                quantity: 1,
-                unit: 'caja',
-                net_price: 500,
-                brute_price: 450
-            }
-        ]
-    },
-    // {
-    //     id: 2,
-    //     date: '2021-10-12',
-    //     total: 750,
-    //     products: [
-    //         {
-    //             id: 3,
-    //             name: 'Manzanas',
-    //             store: 'Mi Tierra',
-    //             quantity: 3,
-    //             unit: 'kg',
-    //             net_price: 50,
-    //             brute_price: 45
-    //         },
-    //         {
-    //             id: 2,
-    //             name: 'Leche',
-    //             store: 'Tienda Don Pepe',
-    //             quantity: 2,
-    //             unit: 'caja',
-    //             net_price: 500,
-    //             brute_price: 450
-    //         }
-    //     ]
-    // },
-    // {
-    //     id: 3,
-    //     date: '2021-10-14',
-    //     total: 950,
-    //     products: [
-    //         {
-    //             id: 4,
-    //             name: 'Manzanas',
-    //             store: 'Mi Tierra',
-    //             quantity: 4,
-    //             unit: 'kg',
-    //             net_price: 50,
-    //             brute_price: 45
-    //         },
-    //         {
-    //             id: 2,
-    //             name: 'Leche',
-    //             store: 'Tienda Don Pepe',
-    //             quantity: 3,
-    //             unit: 'caja',
-    //             net_price: 500,
-    //             brute_price: 450
-    //         }
-    //     ]
-    // }
-];
-
-loadPage();

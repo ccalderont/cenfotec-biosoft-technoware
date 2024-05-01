@@ -22,7 +22,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -35,8 +35,8 @@
                 <!--<span class="close">&times;</span>-->
                 <h3>IMPUESTO ADMINISTRADOR</h3>
                 <p class="imp-text">Favor indique el monto del impuesto para el administrador:</p>
-                <input type="impuesto" class="impuesto-input">
-                <button class="continue">Guardar</button> 
+                <input type="impuesto" class="impuesto-input" id="impuesto-input">
+                <button class="continue" onclick="updateTax()">Guardar</button> 
             </div>
             <div id="popup" class="popup">
                 <p>¡Guardado exitosamente!</p>

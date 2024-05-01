@@ -21,18 +21,18 @@ const purchaseSquema = new mongoose.Schema({
     tarjeta:{
         type: Schema.Types.ObjectId,
         ref: "Tarjeta",
-        required: true,
     },
     precioTotalSinImpuestoAdmin:{
         type: Number,
-        required: true,
     },
     precioTotalConImpuestoAdmin:{
         type: Number,
-        required: true,
     },
     fecha:{
         type: Date,
+    },
+    estado:{
+        type: String,
         required: true,
     },
     productos:[{
@@ -48,13 +48,17 @@ const purchaseSquema = new mongoose.Schema({
             type: Number,
             required: true,
         },
-        precioSinImpuesto:{
+        precioSinImpuestoAdmin:{
             type: Number,
             required: true,
         },
-        precioConImpuesto:{
+        precioConImpuestoAdmin:{
             type: Number,
             required: true,
+        },
+        resena:{
+            type: Schema.Types.ObjectId,
+            ref: "Resena",
         }
     }]
 },

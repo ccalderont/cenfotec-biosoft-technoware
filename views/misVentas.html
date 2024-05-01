@@ -21,7 +21,7 @@
         <nav id="second-nav" class="search-bar-and-second-nav">
              <!--search bar-->
             <nav class="container-search-bar" id="menu-search-bar">
-                <input type="text" placeholder="Buscar" id="nav-search">
+                <input type="text" placeholder="Buscar" id="nav-search" onkeyup="seachProductBar(event)">
                 <div class="btn-search">
                     <i class="fa fa-search"></i>
                 </div>
@@ -43,17 +43,16 @@
                     </section>
                 </section>
                 <section id="filter-buttons">
-                    <button type="submit">Filtrar</button>
-                    <i class="fa-solid fa-eraser fa-xl"></i>
+                    <button type="button" onclick="loadTable()">Filtrar</button>
+                    <button type="button" onclick="loadPage()">Borrar</button>
                 </section>
             </form>
         </section>
         <section id="table-section">
             <section id="header-section">
                 <h2>Mis ventas</h2>
-                <p id="total-brute-price">Total neto: ₡1.000.000</p>
-                <p id="total-net-with-my-taxes">Total con mis impuestos: ₡1.000.000</p>
-                <p id="total-net-with-admin-taxes">Total con impuestos de admin: ₡1.000.000</p>
+                <p id="total-net-with-my-taxes">Total con mis impuestos: ₡0</p>
+                <p id="total-net-with-admin-taxes">Total con impuestos de admin: ₡0</p>
             </section>
             <table>
                 <thead>
@@ -61,7 +60,6 @@
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Comprador</th>
-                    <th>Precio bruto</th>
                     <th>Precio con mis impuestos</th>
                     <th>Precio con impuestos de admin</th>
                     <th>Reseña</th>
