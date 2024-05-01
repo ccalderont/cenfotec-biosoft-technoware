@@ -39,12 +39,12 @@
                 <input class="controls" type="text" id="card-holder" placeholder="nombre - apellidos" required>
                 <p>Número de tarjeta</p>
                 <input class="controls" type="text" id="card-number" placeholder="xxxx - xxxx - xxxx- xxxx" required>
-                <p>Código de seguridad (CVC)</p>
-                <input class="controls" type="text" id="security-code" placeholder="xxx" required>
-                <p>Fecha de expiración</p>
-                <input class="controls" type="datetime" id="expiration-date" placeholder="MM / YY" required>
+                <p>Mes de expiración</p>
+                <input class="controls" type="datetime" id="mes-exp" placeholder="MM " required>
+                <p>Año de expiración</p>
+                <input class="controls" type="datetime" id="anno-exp" placeholder="YY " required>
                 <section id="section-button-enviar">
-                    <button type="submit" id="button-enviar">Enviar</button>
+                    <button type="button" onclick="envioTarjeta()" id="button-enviar">Enviar</button>
                 </section>
 
             </section>
@@ -70,7 +70,7 @@
     <footer>
         <section id="developed-by">
 
-          <p><a href="/sobreNosotrosTech">Desarrollado por Technoware</a></p>
+            <p><a href="/sobreNosotrosTech">Desarrollado por Technoware</a></p>
 
         </section>
         <section id="follow-us">

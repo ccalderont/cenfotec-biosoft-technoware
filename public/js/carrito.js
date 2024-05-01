@@ -90,7 +90,7 @@ async function deleteCard(){
         })
     });
 
-    const data = result.json();
+    const data = await result.json();
     if(data.message === 'Tarjeta eliminada'){
         location.reload();
         return;

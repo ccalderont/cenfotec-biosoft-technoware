@@ -5,9 +5,11 @@ let impuestoAdmin = 0; // Global variable that stores the admin tax
  * Run when loading the page. Sets up the page accordingly
  */
 window.onload = async function() {
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const product = urlParams.get('producto')
+
     impuestoAdmin = await getImpuestoAdmin();
     numberOfPages = await addProductsToCatalogue(false);
     await setCategories();
@@ -58,6 +60,63 @@ async function setStores(){
     stores.forEach((store) => {
         const option = document.createElement("option");
         option.value = store._id;
+        option.text = store.nombre;
+        storesSelect.appendChild(option);
+    });
+}
+
+async function getStores(){
+    const response = await fetch('/getAllStores', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.stores;
+}
+
+
+async function getImpuestoAdmin(){
+    const response = await fetch('/getImpuestoAdmin', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.impuesto;
+}
+
+async function setCategories(){
+    const categories = await getCategories();
+    const categoriesSelect = document.getElementById("category");
+    categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.nombre;
+        categoriesSelect.appendChild(option);
+    });
+}
+
+async function getCategories(){
+    const response = await fetch('/getActiveCategories', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    return data.categorias;
+}
+
+
+async function setStores(){
+    const stores = await getStores();
+    const storesSelect = document.getElementById("store-name-filter");
+    stores.forEach((store) => {
+        const option = document.createElement("option");
+        option.value = store.id;
         option.text = store.nombre;
         storesSelect.appendChild(option);
     });
@@ -163,13 +222,16 @@ async function getProducts(filter){
     let response = null;
     
     if(!filter) {
+
         response = await fetch('/getActiveProducts', {
+
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             }
         });
     } else {
+
         const filtersSelected = {
             categoria: document.getElementById("category").value,
             tramo: document.getElementById("store-name-filter").value,
@@ -182,6 +244,7 @@ async function getProducts(filter){
             },
             body: JSON.stringify(filtersSelected)
         });
+
     }
     const data = await response.json();
     return data;
@@ -194,6 +257,7 @@ async function getProducts(filter){
 async function addProductsToCatalogue(filter){
     const products = await getProducts(filter);
     const catalogue = document.getElementById("catalogue-section");
+
     catalogue.innerHTML = ""; // Initialize the catalogue everytime
     document.getElementById("no-product-message").innerHTML= "";
     if(!products || products.message === "Error en el servidor" || products.length === 0){
@@ -204,6 +268,7 @@ async function addProductsToCatalogue(filter){
     }
 
     catalogue.style.minWidth = "1080px";
+
     let pageNumber = 0;
     let productsPerPage = 12;
     products.forEach((product) => {
@@ -234,7 +299,6 @@ function createProductItem(product, pageClass){
     article.classList.add(pageClass);
     article.innerHTML = `
         <img class="product-img" src="${product.foto}" alt="${product.nombre}">
-        
         <section class="catalogue-item-info">
             <h2>${product.nombre}</h2>
             <p>${product.descripcion}</p>
@@ -252,7 +316,9 @@ function createProductItem(product, pageClass){
                     data-productimage="${product.foto}"
                     data-productquantity="${product.cantidadDisponible}"
                     data-productunit="${product.unidadMedida}"
+
                     onclick=showModal(this)><button>Agregar al carrito</button></span>
+
             </section>
         </section>
     `;
@@ -335,8 +401,10 @@ async function addToCart(target){
         return;
     }
 
+
     target.innerHTML = `<button>Agregar al carrito</button>`;
     alert("No se pudo agregar el producto al carrito");
+
     
 }
 

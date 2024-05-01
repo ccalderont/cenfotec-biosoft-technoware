@@ -1,12 +1,9 @@
 const cardHolder = document.getElementById("card-holder")
 const cardNumber = document.getElementById("card-number")
 const cvc = document.getElementById("security-code")
-const expDate = document.getElementById("expiration-date")
+const monthExpiration = document.getElementById("mes-exp");
+const yearExpiration = document.getElementById("anno-exp");
 const form = document.getElementById("form")
-//const msj = document.getElementById("button-enviar")
-// let openModal = document.getElementById("button-enviar")
-// let cardModal = document.getElementById("modal")
-// let closeModal = document.getElementById("close")
 
 
 
@@ -41,7 +38,7 @@ function cardVerification() {
 }
 
 
-function cvcVerification() {
+/*function cvcVerification() {
 
     // valor ingresado es valida (es igual a 3 digitos)
     if (cvc.value.length === 3) {
@@ -51,11 +48,31 @@ function cvcVerification() {
         // document.getElementById("security-code").style.borderColor = "red";
         return false;
     }
+}*/
+
+function monthExpVerification() {
+
+    if (monthExpiration.value > 0 && monthExpiration.value <= 12) {
+        return true;
+    } else {
+        alert("Mes: El valor debe ser del 1-12")
+        return false;
+    }
+}
+
+function yearExpVerification() {
+
+    if (yearExpiration.value >= 24 && yearExpiration.value <= 80) {
+        return true;
+    } else {
+        alert("Año: El valor debe ser igual o mayor a 24")
+    }
+
 }
 
 
 
-function expirationDateVerification() {
+/*function expirationDateVerification() {  // cambiar por inputs numbers (mes ano )
 
     const expDate = document.getElementById("expiration-date").value;
     const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
@@ -70,60 +87,64 @@ function expirationDateVerification() {
         // document.getElementById("expiration-date").style.borderColor = "red";
         return false;
     }
-}
-
-
-// open modal
-
-// openModal.onclick = function () {
-//     cardModal.style.visibility = "visible";
-// }
-
-// // close modal
-
-// closeModal.onclick = function () {
-//     cardModal.style.visibility = "hidden";
-// }
-
-// // close window modal
-
-// cardModal.onclick = function () {
-//     cardModal.style.visibility = "hidden";
-// }
+}*/
 
 
 
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Previene el envío del formulario
+
+async function envioTarjeta() {
 
     // Llama a las funciones de validación
     const isCardHolderValid = cardHolderVerification();
     const isCardNumberValid = cardVerification();
-    const isCvcValid = cvcVerification();
-    const isExpDateValid = expirationDateVerification();
+    const isMonthExpirationValid = monthExpVerification();
+    const isYearExpirationValid = yearExpVerification();
+
 
     // Si todas las validaciones son correctas, muestra el modal
-    if (isCardHolderValid && isCardNumberValid && isCvcValid && isExpDateValid) {
+    if (isCardHolderValid && isCardNumberValid && isMonthExpirationValid && isYearExpirationValid) {
         // cardModal.style.display = 'block';
+        await addUserPaymentMethod();
         showModal();
     }
+};
 
+const idUser = localStorage.getItem('idUsuario');
+
+
+
+
+async function addUserPaymentMethod() {
     const idUser = localStorage.getItem('idUsuario');
-    
-});
+    const cardHolder = document.getElementById("card-holder").value;
+    const cardNumber = document.getElementById("card-number").value;
+    const monthExpiration = document.getElementById("mes-exp").value;
+    const yearExpiration = document.getElementById("anno-exp").value;
 
-// Para cerrar el modal
-// closeModal.addEventListener('click', function () {
-//     cardModal.style.display = 'none';
-//     form.reset();
-// });
+    const response = await fetch('/cliente/registroTarjeta', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            idUser: idUser,
+            cardHolder: cardHolder,
+            cardNumber: cardNumber,
+            monthExpiration: monthExpiration,
+            yearExpiration: yearExpiration
+        }),
+    })
+
+    const data = await response.json();
+    return data;
+};
 
 
 /**
  * Closes the modal to add to the cart
  */
-function closeModal(event){
+function closeModal(event) {
     if (event.target.id === "modal") {
         let modal = document.getElementById('modal');
         // If it was, hide the modal
@@ -136,51 +157,6 @@ function showModal() {
     modal.style.display = 'block';
 }
 
-function goToCard(){
+function goToCard() {
     window.location.href = '/cliente/carrito';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*form.addEventListener("submit", e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (cardHolderVerification() === true && cardVerification() === true && cvcVerification() === true && expirationDateVerification() === true); {
-        openModal();
-    }
-    else{
-        closeModal();
-    }
-})*/
-
-
-/*function showConfirm() {
-    e.preventDefault()
-    const msj = "¿Estás seguro de continuar?";
-    const option = confirm(msj);
-
-    if (option) {
-        // El usuario hizo clic en "Aceptar"
-        alert("Registro de tarjeta exitoso!");
-        setTimeout // Crear time out para pasarme a la otra pagina 
-    } else {
-        // El usuario hizo clic en "Cancelar"
-        alert("Acción cancelada.");
-    }
-}*/
-
-
-
-
-

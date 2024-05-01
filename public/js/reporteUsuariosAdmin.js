@@ -35,8 +35,8 @@ async function loadTable() {
 
 async function changeStatus(id){
     //Ask the user for confirmation
-    const confirmation = confirm("¿Está seguro que desea cambiar el estado del usuario?");
-    if(!confirmation){
+    const reason = prompt("Ingrese la razón del cambio. Esta será informada al usuario por correo electrónico");
+    if(!reason || reason === "") {
         location.reload();
         return;
     }
@@ -46,14 +46,17 @@ async function changeStatus(id){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            idUsuario: id
+            idUsuario: id,
+            razon: reason
         })
     });
     const data = await result.json();
     if(data.message !== "Estado actualizado"){
-        alert(data.message);
+        alert("Hubo un error al cambiar el estado del usuario");
+        location.reload();
         return;
     }
+    alert("Estado actualizado exitosamente");
 }
 
 async function getUsers(){

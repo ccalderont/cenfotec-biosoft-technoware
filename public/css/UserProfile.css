@@ -23,7 +23,7 @@ main p{
     /* height: 70vh; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
     gap: 0.5rem;
 }
@@ -31,8 +31,9 @@ main p{
 .heading-section{
     display: flex;
     flex-direction: row;
-    text-align: left;
-    gap: 3rem;
+    width: 100%;
+    justify-content: space-around;
+    gap: 1rem;
 }
 
 .photo-section{
@@ -43,7 +44,7 @@ main p{
 .edit-box-section{
     margin: 1rem 0 2rem 0;
     padding: 0 25px 0 25px;
-    width: 500px; 
+    width: 600px; 
     text-align: left;
     border: solid #fa7d35;
 }
@@ -61,9 +62,8 @@ main p{
     display: none;
 }
 
-.edit-input{
+input:not([type='checkbox']):not(#nav-search) {
     width: 70%;
-    justify-content: right;
 }
 
 #edit-button{
@@ -76,4 +76,9 @@ main p{
     align-items: center;
     background-color: #005b4d;
     width: 100%;
+}
+
+#user-picture{
+    align-self: self-start;
+
 }

@@ -1,78 +1,146 @@
-const ProductsReport = [
-{
-    Categoria : "verduras",
-    Tramo : "La Rosas",
-    Producto : "Zanahoria",
-    Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Cantidad: "60",
-    Unidad:"kilos",
-    Calificacion: "2",
-    PrecioSinImpuesto: "600",
-    PrecioConImpuesto: "700",
 
-},
-{
-    Categoria : "verduras",
-    Tramo : "Campo verde",
-    Producto : "Zanahoria unidades",
-    Detalle : "zanahorias frescas, sembradas naturalmente y libre de quimicos",
-    Cantidad: "90",
-    Unidad:"kilos",
-    Calificacion: "5",
-    PrecioSinImpuesto: "650",
-    PrecioConImpuesto: "750",
-},
-{
-    Categoria : "Fruta",
-    Tramo : "La Rosas",
-    Producto : "Manzana mixta",
-    Detalle : "Manzanas mixtas importadas desde california EEUU",
-    Cantidad: "30",
-    Unidad:"kilos",
-    Calificacion: "4",
-    PrecioSinImpuesto: "1000",
-    PrecioConImpuesto: "1100",
-},
-{
-    Categoria : "Fruta",
-    Tramo : "Campo Verde",
-    Producto : "Manzana mixta",
-    Detalle : "frescas manzanas libres de quimicos",
-    Cantidad: "60",
-    Unidad:"kilos",
-    Calificacion: "3",
-    PrecioSinImpuesto: "900",
-    PrecioConImpuesto: "1000",
-},
-{
-    Categoria : "verduras",
-    Tramo : "Granja saludable",
-    Producto : "cebolla",
-    Detalle : "Sembrada en San Carlos, libre de pesticidas y  quimicos",
-    Cantidad: "70",
-    Unidad:"kilos",
-    Calificacion: "1",
-    PrecioSinImpuesto: "800",
-    PrecioConImpuesto: "825",
-},
-];
-buildTable(ProductsReport);
+loadPage();
+let impuestoAdmin = 0;
+async function loadPage(){
+    impuestoAdmin = await getImpuestoAdmin();
+    await loadFilters();
+    await loadTable();
+}
 
-function buildTable(data) {
+async function getImpuestoAdmin(){
+    const result = await fetch("/getImpuestoAdmin",{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const data = await result.json();
+    return data.impuesto;
+}
+
+async function loadFilters(){
+    document.getElementById("product-name-filter").value = "";
+    await loadStoresFilter();
+    await loadCategoriesFilter();
+}
+
+async function loadStoresFilter(){
+    const stores = await getStores();
+    const select = document.getElementById("store-name-filter");
+    select.innerHTML = "<option value=''></option>";
+    stores.forEach(store => {
+        const option = document.createElement("option");
+        option.text = store.nombre;
+        option.value = store._id;
+        select.add(option);
+    });
+}
+
+async function loadCategoriesFilter(){
+    const categories = await getCategories();
+    const select = document.getElementById("category-name-filter");
+    select.innerHTML = "<option value=''></option>";
+    categories.forEach(category => {
+        const option = document.createElement("option");
+        option.text = category.nombre;
+        option.value = category._id;
+        select.add(option);
+    });
+}
+
+async function getCategories(){
+    const result = await fetch("/admin/getAllCategorias",{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const data = await result.json();
+    return data;
+}
+
+
+async function getStores(){
+    const result = await fetch("/admin/getAllStores",{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const data = await result.json();
+    return data.stores;
+}
+
+
+
+async function loadTable() {
+    const data = await getProducts();
     const table = document.getElementById("tablereport");
-
+    table.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         const row = `<tr>
-                        <td>${data[i].Categoria}</td>
-                        <td>${data[i].Tramo}</td>
-                        <td>${data[i].Producto}</td>
-                        <td>${data[i].Detalle}</td>
-                        <td>${data[i].Cantidad} ${data[i].Unidad}</td>
-                        <td class="centered-td">${data[i].Calificacion} ⭐</td>
-                        <td>${data[i].PrecioSinImpuesto}</td>
-                        <td>${data[i].PrecioConImpuesto}</td>
+                        <td>${data[i].nombre}</td>
+                        <td>${data[i].categoria.nombre}</td>
+                        <td>${data[i].tramo.nombre}</td>
+                        <td>${data[i].descripcion}</td>
+                        <td>${data[i].cantidadDisponible} ${data[i].unidadMedida}</td>
+                        <td class="centered-td">${data[i].calificacion} ⭐</td>
+                        <td>₡ ${data[i].precioBruto}</td>
+                        <td>₡ ${getTotalPrice(data[i].precioBruto, data[i].impuesto)}</td>
+                        <td>
+                            <label class="switch" >
+                                <input onclick=changeStatus("${data[i]._id}") type="checkbox" ${data[i].estado === 'activo' ? 'checked': ""}>
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
                     </tr>`;
         table.innerHTML += row;
     }
 }
+
+function getTotalPrice(precio, impuesto){
+    return precio + (precio * (impuesto + impuestoAdmin) / 100);
+} 
+
+async function getProducts(){
+    const result = await fetch("/admin/getAllProductsFilterd",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre: document.getElementById("product-name-filter").value,
+            tramo: document.getElementById("store-name-filter").value,
+            categoria: document.getElementById("category-name-filter").value
+        })
+    });
+    const data = await result.json();
+    return data.products;
+}
     
+
+async function changeStatus(id){
+    //Ask the user for confirmation
+    const reason = prompt("Ingrese la razón por la que desea cambiar el estado del producto. Esta será comunicada al vendedor del tramo.");	
+    if(!reason || reason === "") {
+        location.reload();
+        return;
+    }
+    const result = await fetch('/admin/cambiarEstadoProducto', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            idProducto: id,
+            razon: reason
+        })
+    });
+    const data = await result.json();
+    if(data.message !== "Estado actualizado"){
+        alert("Hubo un error al actualizar el producto");
+        location.reload();
+        return;
+    }
+    alert("Estado actualizado exitosamente");
+}

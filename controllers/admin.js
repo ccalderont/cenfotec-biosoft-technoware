@@ -4,8 +4,10 @@ const options = {
     root: path.join(__dirname, '../views')
 };
 
+
 const Categoria = require('../models/categoria');
 const Impuesto = require('../models/impuesto');
+
 
 exports.getImpuestoAdmin = (req, res) => {
     const fileName = 'impuestAdmin.html';

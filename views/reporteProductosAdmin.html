@@ -40,21 +40,21 @@
                         <section>
                             <label for="product-name-filter">Producto</label>
                             <label for="store-name-filter">Tramo</label>
-                            <label for="category">Categoría</label>
+                            <label for="category-name-filter">Categoría</label>
                         </section>
                         <section>
-                            <input type="text" name="search" id="product-name-filter">
-                            <input type="text" name="search" id="store-name-filter">
-                            <select name="category" id="category">
-                                <option value="1">Categoría 1</option>
-                                <option value="2">Categoría 2</option>
-                                <option value="3">Categoría 3</option>
+                            <input type="text" id="product-name-filter">
+                            <select id="store-name-filter">
+                                
+                            </select>
+                            <select id="category-name-filter">
+                                
                             </select>
                         </section>
                     </section>
                     <section id="filter-buttons">
-                        <button type="submit">Filtrar</button>
-                        <i class="fa-solid fa-eraser fa-xl"></i>
+                        <button type="button" onclick="loadTable()">Filtrar</button>
+                        <button type="button" onclick="loadPage()">Borrar</button>
                     </section>
                     
                 </form>
@@ -64,14 +64,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Categoria</th>
-                            <th>Tramo</th>
                             <th>Producto</th>
-                            <th>Detalle</th>
+                            <th>Categoría</th>
+                            <th>Tramo</th>
+                            <th>Descripción</th>
                             <th>Cantidad</th>
                             <th>Calificación</th>
                             <th class="text-cell">Precio sin impuestos</th>
                             <th class="text-cell"> Precio con impuestos</th>
+                            <th>Activar</th>
                         </tr>
                     </thead>
     

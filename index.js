@@ -1,16 +1,14 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require('path');
-
+const path = require("path");
 
 // Routes
-const adminRoutes = require('./routes/admin.js');
-const clientRoutes = require('./routes/clients.js');
-const vendorRoutes = require('./routes/vendors.js');
-const guestRoutes = require('./routes/guest.js');
-
+const adminRoutes = require("./routes/admin.js");
+const clientRoutes = require("./routes/clients.js");
+const vendorRoutes = require("./routes/vendors.js");
+const guestRoutes = require("./routes/guest.js");
 
 // Importar modelos
 const modeloUsuario = require("./models/usuario.js");
@@ -25,7 +23,6 @@ const modeloCanton = require("./models/canton.js");
 const modeloDistrito = require("./models/distrito.js");
 const modeloImpuesto = require("./models/impuesto.js");
 
-
 const app = express();
 
 app.use(cors());
@@ -37,11 +34,14 @@ mongoose.connect(
 );
 
 
-app.use('/admin', adminRoutes);
-app.use('/vendedor', vendorRoutes);
-app.use('/cliente', clientRoutes);
-app.use('/', guestRoutes);
+app.use(express.static("public"));
 
+mongoose.connect(process.env.MONGO_URI);
+
+app.use("/admin", adminRoutes);
+app.use("/vendedor", vendorRoutes);
+app.use("/cliente", clientRoutes);
+app.use("/", guestRoutes);
 
 // app.get("/usuarios/:id", function (req, res) {
 //   const id = req.params.id;

@@ -33,7 +33,7 @@
         <section id="form-background">
             <div class="popup">
                 <h2>RESTABLECER CONTRASEÑA</h2>
-                <form id="password-form">
+                <section id="password-form">
                     <ul>
                         <li>
                             <label for="current-password" class="reset-text">Contraseña actual</label>
@@ -48,9 +48,20 @@
                             <input type="password" id="confirm-password" name="confirm-password" required>
                         </li>
                     </ul>
+                    <div class="tooltip">
+                        <p>Criterio para la creación de contraseña</p>
+                        <span class="tooltiptext">
+                          Debe contener:<br>
+                          <li>Un mínimo de 8 caracteres</li>
+                          <li>Al menos un carácter especial</li>
+                          <li>Al menos un número</li>
+                          <li style=color:#191919>Importante: No debe contener vocales</li>
+                        </span>
+                      </div>
+                      <br>
                 
-                    <button type="submit" class="send-button">Guardar</button>
-                </form>
+                    <button type="button" class="send-button" onclick="submitForm()">Guardar</button>
+                </section>
             </div>
         </section>
     </main>
@@ -67,9 +78,7 @@
       </footer>
 </body>
 <script src="https://kit.fontawesome.com/ec009b7d90.js" crossorigin="anonymous"></script>
-<script src="../js/formularioLogin.js"></script>
 <script src="../js/mainMenu.js"></script>
-<script src="../js/contrasenarest.js"></script>
 <script src="../js/restablecercont.js"></script>
 </html> 
 

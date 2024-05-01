@@ -108,3 +108,38 @@ ul {
     width: 100%;
     height: 78%;
 }
+
+ /*tooltip style
+
+  /* Tooltip container */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    font-family: "Poppins-medium";
+    font-size: 14px;
+  }
+
+  .tooltip p {
+    color: #005b4d;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width:90%;
+    height:auto ;
+    background-color: #818181 ;
+    color: #fafafa;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
