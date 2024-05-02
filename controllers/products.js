@@ -49,6 +49,32 @@ exports.getRegistrarProducto = (req, res) => {
     });
 }
 
+exports.postRegistrarProducto = async(req, res) => {
+    try {
+        const usuario = await Usuario.findById (req.body.usuario)
+        const newProduct = new Producto({
+       nombre: req.body.productName,
+       foto:  req.body.foto_producto,
+       descripcion: req.body.description,
+       precioBruto: req.body.price,
+       cantidadDisponible: 0,
+       unidadMedida: req.body.unit,
+       impuesto: req.body.tax,
+       categoria: req.body.categ,
+       calificacion: 0,
+       estado:"pendiente",
+       tramo: usuario.tramo,
+        });
+    
+        //Guardar el producto en la BD
+        await newProduct.save();
+        res.status(200).send({ message: "Producto agregado exitosamente" });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Error en el servidor" });
+      }
+}
+
 exports.getMisProductos = (req, res) => {
     const fileName = 'misProductos.html';
     res.sendFile(fileName, options, function (err) {

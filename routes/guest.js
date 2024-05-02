@@ -25,8 +25,6 @@ router.get('/getAllStores', storeController.getActiveStores);
 router.get('/getActiveCategories', generalController.getActiveCategories);
 router.post('/getProductsFiltered', productController.postProductsFiltered);
 
-
-
 router.get("/catalogo", generalController.getCatalogue);
 
 router.get("/sobreNosotros", generalController.getAboutUsCNP);
