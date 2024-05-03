@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'vendedor'){
+    window.location.href = '/';
+}
+
 loadPage();
 let impuestoAdmin = 0;
 

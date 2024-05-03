@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'admin'){
+    window.location.href = '/';
+}
+
 loadPage();
 let gananciaTotal = 0;
 let balanceTotal = 0;

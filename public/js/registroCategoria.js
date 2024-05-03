@@ -1,4 +1,6 @@
-
+if (localStorage.getItem('tipoUsuario') !== 'admin'){
+    window.location.href = '/';
+}
 
 //Funcion para el modal
 function showModal() {

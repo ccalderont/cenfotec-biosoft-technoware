@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'cliente'){
+    window.location.href = '/';
+}
+
 initializePage();
 
 async function generarTabla() {

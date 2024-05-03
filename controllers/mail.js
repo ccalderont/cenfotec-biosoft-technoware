@@ -115,6 +115,26 @@ exports.sendProductStatusChangeEmail = (producto, usuario, razon) => {
     sendEmail(datosCorreo);
 }
 
+
+exports.sendTramoStatusChangeEmail = (tramo, usuario, razon) => {
+    const datosCorreo = {
+        subject: "¡El estado de tu tramo ha cambiado!",
+        correoUsuario: usuario.email,
+        html: `
+        <h1>¡Atención!</h1>
+        <p>El estado de tu tramo <strong>${tramo.nombre}</strong> ha cambiado a <strong>${tramo.estado.charAt(0).toUpperCase() + tramo.estado.slice(1)}</strong> por la siguiente razón:</p>
+        <br>
+        <p><strong>${razon}</strong></p>
+        <br>
+        <p>Si tienes alguna duda, por favor contáctanos a través de este correo.</p>
+        <br>
+        <p>¡Gracias por confiar en el CNP!</p>
+        `,
+    };
+
+    sendEmail(datosCorreo);
+}
+
 exports.sendUserStatusChangeEmail = (usuario, razon) => {
     const datosCorreo = {
         subject: "¡El estado de tu cuenta ha cambiado!",
@@ -182,6 +202,8 @@ exports.sendPendingUserEmail = (usuario) => {
     };
     sendEmail(datosCorreo);
 }
+
+
 
 
 async function sendEmail(datosCorreo) {

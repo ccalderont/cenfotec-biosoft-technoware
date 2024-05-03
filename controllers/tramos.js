@@ -68,9 +68,9 @@ exports.getPendingTramos = async (req, res) => {
                 fecha: new ObjectId(store._id).getTimestamp(),
                 nombre: store.nombre,
                 descripcion: store.descripcion,
-                usuario: store.usuario.nombre + " " + store.usuario.apellidos + "<br><a href='mailto:" + store.usuario.email+"'>" + store.usuario.email + "</a>",
+                usuario: store.usuario === null ? null : store.usuario.nombre + " " + store.usuario.apellidos + "<br><a href='mailto:" + store.usuario.email+"'>" + store.usuario.email + "</a>",
                 direccion: store.direccion,
-                permisos: store.usuario.permisos
+                permisos: store.usuario === null ? null : store.usuario.permisos
             }
         });
         res.status(200).send({stores: curatedStores});
@@ -121,4 +121,19 @@ exports.postRejectTramo = async (req, res) => {
 }
 
 
+exports.changeTramoStatus = async (req, res) => {
+    try{
+        const tramo = await Tramo.findById(req.body.idTramo).populate('usuario');
+        tramo.estado = tramo.estado === 'activo' ? 'inactivo' : 'activo';
+        await tramo.save();
+        const vendor = tramo.usuario;
 
+        //send eamil to the vendor
+        mailController.sendTramoStatusChangeEmail(tramo, vendor, req.body.razon);
+        res.status(200).send({message: 'Estado actualizado'});
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({message: 'Error en el servidor'});
+    }
+}

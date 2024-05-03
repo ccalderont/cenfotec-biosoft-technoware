@@ -1,3 +1,7 @@
+if (!localStorage.getItem('tipoUsuario')){
+    window.location.href = '/';
+}
+
 const idUsuario = localStorage.getItem("idUsuario");
 
 changePasswordView();

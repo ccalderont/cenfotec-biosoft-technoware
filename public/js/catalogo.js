@@ -4,7 +4,7 @@ let impuestoAdmin = 0; // Global variable that stores the admin tax
 /**
  * Run when loading the page. Sets up the page accordingly
  */
-window.onload = async function() {
+async function loadPage() {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -33,6 +33,7 @@ async function filterProducts(){
 
 async function setCategories(){
     const categories = await getCategories();
+    console.log(categories);
     const categoriesSelect = document.getElementById("category");
     categories.forEach((category) => {
         const option = document.createElement("option");
@@ -88,62 +89,10 @@ async function getImpuestoAdmin(){
     return data.impuesto;
 }
 
-async function setCategories(){
-    const categories = await getCategories();
-    const categoriesSelect = document.getElementById("category");
-    categories.forEach((category) => {
-        const option = document.createElement("option");
-        option.value = category.id;
-        option.text = category.nombre;
-        categoriesSelect.appendChild(option);
-    });
-}
-
-async function getCategories(){
-    const response = await fetch('/getActiveCategories', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-    const data = await response.json();
-    return data.categorias;
-}
 
 
-async function setStores(){
-    const stores = await getStores();
-    const storesSelect = document.getElementById("store-name-filter");
-    stores.forEach((store) => {
-        const option = document.createElement("option");
-        option.value = store.id;
-        option.text = store.nombre;
-        storesSelect.appendChild(option);
-    });
-}
-
-async function getStores(){
-    const response = await fetch('/getAllStores', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-    const data = await response.json();
-    return data.stores;
-}
 
 
-async function getImpuestoAdmin(){
-    const response = await fetch('/getImpuestoAdmin', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-    const data = await response.json();
-    return data.impuesto;
-}
 
 /**
  * Confirms if the user is logged in as a client
@@ -414,3 +363,5 @@ function removeFilters(){
     document.getElementById("product-name-filter").value = "";
     filterProducts();
 }
+
+ loadPage();

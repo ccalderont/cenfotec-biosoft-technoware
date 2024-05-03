@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'vendedor'){
+    window.location.href = '/';
+}
+
 loadPage();
 
 /**
@@ -110,7 +114,7 @@ function createRow(sell, compra){
             <td>${formattedDate}</td>
             <td>${compra.producto.nombre}</td>
             <td>${compra.cantidad} ${compra.producto.unidadMedida}</td>
-            <td>${sell.usuario.nombre} ${sell.usuario.apellido}</td>
+            <td>${sell.usuario.nombre} ${sell.usuario.apellidos}</td>
             <td>₡ ${compra.precioSinImpuestoAdmin}</td>
             <td>₡ ${compra.precioConImpuestoAdmin}</td>
             ${(compra.resena) ?
