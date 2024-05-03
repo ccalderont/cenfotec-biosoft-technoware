@@ -1,3 +1,6 @@
+if (localStorage.getItem('tipoUsuario') !== 'admin'){
+    window.location.href = '/';
+}
 
 loadPage();
 let impuestoAdmin = 0;
@@ -121,7 +124,7 @@ async function getProducts(){
 
 async function changeStatus(id){
     //Ask the user for confirmation
-    const reason = prompt("Ingrese la razón por la que desea cambiar el estado del producto. Esta será comunicada al vendedor del tramo.");	
+    const reason = prompt("Ingrese la razón por la que desea cambiar el estado del producto. Esta será comunicada al dueño del tramo.");	
     if(!reason || reason === "") {
         location.reload();
         return;

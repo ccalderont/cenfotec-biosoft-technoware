@@ -378,11 +378,9 @@ footer i:hover{
 }
 
 .close-btn {
-    align-self: right;
-    border-radius: 0.5px;
-    width: 45px;
-    height: 35px;
-    background-color: #818181;
     font-family: "Poppins-Medium"; 
-    color: #ffffff;
+    color: #818181; 
+    float: right; /*Place the X to the right of the modal box*/
+    font-size: 30px;
+    font-weight: bold;
 }

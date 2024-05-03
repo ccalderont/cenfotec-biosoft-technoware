@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'cliente'){
+    window.location.href = '/';
+}
+
 const cardHolder = document.getElementById("card-holder")
 const cardNumber = document.getElementById("card-number")
 const cvc = document.getElementById("security-code")

@@ -18,6 +18,7 @@ router.post("/updateImpuestoAdmin", adminController.updateImpuestoAdmin);
 router.get("/reporteProductos", productsController.getReportProductsAdmin);
 router.post("/getAllProductsFilterd", productsController.getAllProductsFilterd);
 router.post("/cambiarEstadoProducto", productsController.changeProductStatus);
+router.post("/cambiarEstadoTramo", tramosController.changeTramoStatus);
 
 //Tramo report manager route
 router.get("/reporteTramos", tramosController.getReportTramosAdmin);

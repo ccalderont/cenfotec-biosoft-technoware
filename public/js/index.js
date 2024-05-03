@@ -1,5 +1,5 @@
 function goToCatalogue(){
-    window.location.href = "/catalogol";
+    window.location.href = "/catalogo";
 }
 
 function goToAboutUs(){

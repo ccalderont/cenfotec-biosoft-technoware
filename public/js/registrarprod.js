@@ -1,4 +1,6 @@
-
+if (localStorage.getItem('tipoUsuario') !== 'vendedor'){
+  window.location.href = '/';
+}
 
 
    async function validarFormulario() {

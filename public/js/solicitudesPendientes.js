@@ -1,3 +1,7 @@
+if (localStorage.getItem('tipoUsuario') !== 'admin'){
+    window.location.href = '/';
+}
+
 let impuestoAdmin = 0;
 /**
  * Set the dynamic information of the page

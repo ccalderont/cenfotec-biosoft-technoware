@@ -1,3 +1,6 @@
+if (!localStorage.getItem('tipoUsuario')){
+    window.location.href = '/';
+}
 
 async function submitForm() {
         const currentPassword = document.getElementById("current-password").value;
